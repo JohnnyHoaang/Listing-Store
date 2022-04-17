@@ -15,10 +15,11 @@ def signup(request):
         fname = request.POST['fname']
         lname = request.POST['lname']
         email = request.POST['email']
-        pwd1 = request.POST['pwd1']
+        pwd = request.POST['pass1']
         # pwd2 = request.POST['pwd2']  --> to confirm the pwd
 
-        new_user = Account.objects.create_user(username, fname, lname, email, pwd1)
+        new_user = Account()
+        new_user.create_user(username, fname, lname, email, pwd)
         new_user.save()
 
         return redirect('signin')
