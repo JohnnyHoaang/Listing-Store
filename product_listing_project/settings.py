@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user_management_app',
 ]
 
 MIDDLEWARE = [
@@ -72,11 +73,15 @@ WSGI_APPLICATION = 'product_listing_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+import os
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'user_management_db',
+        'USER': 'django',
+        'PASSWORD': os.environ['DJANGO_PWD'],
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
