@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('user_management_app.urls'), name='index'),
+    path('', include('messaging.app.urls'))
 ]
