@@ -1,3 +1,4 @@
+@echo off
 rem activate venv
 if exist .venv\ (
    .venv\Scripts\activate
