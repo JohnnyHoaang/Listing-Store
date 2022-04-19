@@ -6,6 +6,7 @@ class Group(models.Model):
     account = models.ManyToManyField(Account, through='PersonGroup', through_fields=('group', 'account'))
     def __str__(self):
         return self.group_name
+        
 class PersonGroup(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
