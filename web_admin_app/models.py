@@ -7,7 +7,7 @@ class Group(models.Model):
     def __str__(self):
         return self.group_name
         
-class PersonGroup(models.Model):
+class AccountGroup(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     def __str__(self):

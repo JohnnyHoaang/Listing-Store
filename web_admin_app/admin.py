@@ -1,5 +1,5 @@
 from django.contrib import admin
-from web_admin_app.models import Group, PersonGroup
+from web_admin_app.models import Group, AccountGroup
 # Register your models here
 admin.site.register(Group)
-admin.site.register(PersonGroup)
+admin.site.register(AccountGroup)
