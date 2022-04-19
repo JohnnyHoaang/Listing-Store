@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user_management_app',
+    'web_admin_app',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'user_management_db',
         'USER': 'django',
-        'PASSWORD': os.environ['DJANGO_PWD'],
+        'PASSWORD': "django",
         'HOST': 'localhost',
         'PORT': '',
     }
