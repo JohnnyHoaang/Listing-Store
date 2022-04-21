@@ -1,30 +1,43 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Account
-from django.template.defaulttags import csrf_token
+from .forms import CreateUserForm
+from django.contrib.auth.models import User
+from django.template import loader
 
 # Create your views here.
 def index(request):
-    return render(request, "authentication/signup.html")
+    return render(request, "base.html")
     # return HttpResponse("Hello World")
 
 # @csrf_token
 def signup(request):
     if request.method == "POST":
-        username = request.POST['username']
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        email = request.POST['email']
-        pwd = request.POST['pass1']
-        # pwd2 = request.POST['pwd2']  --> to confirm the pwd
+        form = None
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            fname = request.POST['first_name']
+            lname = request.POST['last_name']
+            email = request.POST['email']
+            pwd = request.POST['password']
+            # pwd2 = request.POST['pwd2']  --> to confirm the pwd
 
-        new_user = Account()
-        new_user.create_user(username, fname, lname, email, pwd)
-        new_user.save()
+            new_user = User.objects.create_user(username, email, pwd)
+            new_user.first_name = fname
+            new_user.last_name = lname
+            new_user.save()
+            # return redirect('signin')
+            return redirect('/accounts/login')
+    else:
+        form = CreateUserForm()
+    template = loader.get_template('registration/signup.html')
+    context = {
+    'form': form,
+    }
+    return HttpResponse(template.render(context, request))        
 
-        return redirect('signin')
+    # return render(request, "registration/signup.html")
 
-    return render(request, "authentication/signup.html")
 
 def signin(request):
-    return render(request, "authentication/signin.html")
+    return render(request, "registration/login.html")
