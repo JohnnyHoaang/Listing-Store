@@ -11,7 +11,7 @@ def index(request):
         #'prod_posts': post,
     #}
     #return HttpResponse(template.render(context, request))
-    return render(request, 'product_posts.html')
+    return render(request, 'home.html')
 '''
 def create_post(request):
     prod_posts = Posts.objects.get(prod_posts=prod_posts)
