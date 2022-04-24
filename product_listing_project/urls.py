@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('user_management_app.urls'), name='index'),
     path('', include('messaging_app.urls')),
     path('', include('product_listing_app.urls')),
+    path('', include('web_admin_app.urls'))
 ]
