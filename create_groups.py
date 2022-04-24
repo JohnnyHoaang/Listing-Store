@@ -29,4 +29,8 @@ if Group.objects.filter(name="admin_item_gp").count() == 0:
 if Group.objects.filter(name="admins").count() == 0:
     admins = Group(name="admins", id=3)
     admins.save()
+    user = User.objects.create_user('Instructor', 'instructor@gmail.com', 'Python420')
+    user.save()
+    g = Group.objects.get(name='admins')
+    g.user_set.add(user)
 print(Permission.objects.all().values('name'))
