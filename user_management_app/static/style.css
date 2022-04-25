@@ -39,3 +39,8 @@ div.registration > button{
     padding: 1em;
 
 }
+
+div {
+    background-color: white;
+    padding: 16px;
+}

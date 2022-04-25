@@ -7,9 +7,8 @@ from django.template import loader
 # Create your views here.
 def index(request):
     return render(request, "base.html")
-    # return HttpResponse("Hello World")
 
-# @csrf_token
+
 def signup(request):
     if request.method == "POST":
         form = None
@@ -35,9 +34,6 @@ def signup(request):
     'form': form,
     }
     return HttpResponse(template.render(context, request))        
-
-    # return render(request, "registration/signup.html")
-
 
 def signin(request):
     return render(request, "registration/login.html")
