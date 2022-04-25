@@ -44,10 +44,11 @@ if Group.objects.filter(name="admins").count() == 0:
                     add_post_perms, change_post_perms, delete_post_perms, view_post_perms,
                     add_group_perms, change_group_perms, delete_group_perms, view_group_perms]
     admins.permissions.set(permissions)
-    user = User.objects.create_user('Instructor', 'instructor@gmail.com', 'Python420')
-    user.save()
-    g = Group.objects.get(name='admins')
-    g.user_set.add(user)
+    if User.objects.filter(username="Instructor").count() == 0:
+        user = User.objects.create_user('Instructor', 'instructor@gmail.com', 'Python420')
+        user.save()
+        g = Group.objects.get(name='admins')
+        g.user_set.add(user)
 
 # print(Permission.objects.all().values('name'))
 users = User.objects.all().values('username', 'groups__name')

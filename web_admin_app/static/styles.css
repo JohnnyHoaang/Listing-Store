@@ -23,5 +23,10 @@
 
 table, th, td {
   border: 2px solid;
+  border-collapse: collapse;
   border-color:black;
+}
+
+td {
+  padding: 0.5em
 }
