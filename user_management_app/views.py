@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import CreateUserForm
 from django.contrib.auth.models import User
 from django.template import loader
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -25,6 +26,7 @@ def signup(request):
             new_user.first_name = fname
             new_user.last_name = lname
             new_user.save()
+            messages.success(request, "User account created")
             # return redirect('signin')
             return redirect('/accounts/login')
     else:
@@ -37,3 +39,8 @@ def signup(request):
 
 def signin(request):
     return render(request, "registration/login.html")
+
+def logout(request):
+    logout(request)
+    messages.success(request, "User was logged out")
+    return redirect("/accounts/login")
