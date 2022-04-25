@@ -34,5 +34,5 @@ class Post(models.Model):
     post_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        post_value = f'Title: {self.post_title} \n Category: {self.post_category}'
+        post_value = f'Title: {self.post_title} \n Category: {self.post_category} \n Description: {self.post_description} \n Status: {self.post_status} \n Date: {self.post_date}'
         return f'{post_value}'
