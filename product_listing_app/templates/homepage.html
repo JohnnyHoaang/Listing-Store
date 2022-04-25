@@ -8,16 +8,23 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="home_styling.css">
+    <!--<link rel="stylesheet" href="home_styling.css">-->
+    {% load static %}
+    <link rel="stylesheet", href={% static 'home_styling.css' %}>
     <title>Home Page</title>
 
 </head>
 
 
 <body>
-    <div>
-        <h1>Product Listing</h1>
-    </div>
+<div>
+    <h1>Product Listing</h1>
+</div>
+        {% block NavBar %}
+
+        Product Listing
+
+        {% endblock %}
     <div>
 
         {% block content %}
@@ -27,14 +34,22 @@
         {% endblock %}
 
     </div>
-    <!--
-    {% block NavBar %}
-    {% endblock %}
+    <div>
+    <h2>Posts</h2>
+        <form action='' method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Create" />
+        </form>
+
+    </div>
+    <br>
+    <br>
     <span>
-    {% block Footer %}
-    {% endblock %}
+        {% block Footer %}
+            Posts Footer
+        {% endblock %}
     </span>
-    -->
 
 </body>
 
