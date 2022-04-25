@@ -2,14 +2,34 @@ from django.db import models
 
 # Create your models here.
 class Post(models.Model):
+    books = 'Books'
+    cd = 'CDs'
+    videos = 'Videos'
+    movies = 'Movies'
+    tv_show = 'TV Shows'
+    categories_for_posts = [
+        (books,'Books'),
+        (cd, 'CDs'),
+        (videos, 'Videos'),
+        (movies, 'Movies'),
+        (tv_show, 'TV Shows'),
+    ]
+    pg_13 = 'PG13'
+    status_r = 'R'
+    pg = 'PG'
+    explicit = 'Explicit'
+    status_for_posts = [
+        (pg_13, 'PG13'),
+        (status_r, 'R'),
+        (pg, 'PG'),
+        (explicit, 'Explicit'),
+    ]
     post_title = models.CharField(max_length=2000)
-    #maybe a dropdown here?
-    post_category = models.CharField(max_length=2000, default="Books")
+    post_category = models.CharField(max_length=2000, choices=categories_for_posts, default=books)
     # post_price = 
     # post_keywords = 
     post_description = models.CharField(max_length=2000)
-    #maybe a drop down for this?
-    post_status = models.CharField(max_length=2000, default="status")
+    post_status = models.CharField(max_length=2000, choices=status_for_posts, default=pg_13)
     #post_image = 
     post_date = models.DateField(auto_now_add=True)
 
