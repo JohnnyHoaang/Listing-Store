@@ -5,6 +5,7 @@ let global;
 function setUp(){
     console.log("Hello World")
     global = {}
+    global.count = 0
     global.div = document.querySelector('div')
     global.table = document.querySelector('table')
     load()
@@ -28,35 +29,34 @@ function createTable(data){
     createHeaders()
     console.log(data)
     data.forEach(e=> {
-
-        // let p = document.createElement('p');
-        // p.textContent = e.username + " " + e.groups__name
-        // global.div.appendChild(p)
         let tr = document.createElement('tr')
+        let userid = document.createElement('td')
+        userid.textContent = global.count
         let username = document.createElement('td')
         username.textContent = e.username
         let group = document.createElement('td')
         group.textContent = e.groups__name
-        tr.appendChild(username)
-        tr.appendChild(group)
+        tr.append(userid, username, group)
         global.table.append(tr)
-        createButtons(tr)
+        createButtons(tr, global.count)
+        global.count++
     })
     
 }
 
 function createHeaders(){
     let tr = document.createElement('tr')
+    let id = document.createElement('th')
+    id.textContent = "User ID"
     let username = document.createElement('th')
     username.textContent="Username"
     let group = document.createElement('th')
     group.textContent="Group"
-    tr.append(username, group)
-    //tr.appendChild(group)
+    tr.append(id, username, group)
     global.table.append(tr)
 }
 
-function createButtons(tr){
+function createButtons(tr, count){
     let edit = document.createElement('button')
     edit.textContent = "Edit Details"
     edit.id = "edit"
