@@ -15,12 +15,11 @@
 
 </head>
 
-
 <body>
 <div>
     <h1>Product Listing</h1>
 </div>
-        {% block NavBar %}
+        {% block nav-bar %}
 
         Product Listing
 
@@ -36,13 +35,39 @@
     </div>
     <div>
     <h2>Posts</h2>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" name="post_title" />
+        <button type="submit">Submit</button>
+    </form>
+    <!--
         <form action='' method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Create" />
         </form>
+        -->
 
     </div>
+
+    <h1>{{create_post.post_title}}</h1>
+        <!--{% for item in todo_items %}
+        <div>
+            <li>
+                Title: {{create_post.post_title}}
+            </li>
+            <li>
+                Category: {{create_post.post_category}}
+            </li>
+            <li>
+                Description: {{create_post.post_description}}
+            </li>
+            <li>
+                Date: {{create_post.post_date}}
+            </li>
+        </div>
+    <!--{% endfor %}-->
+    
     <br>
     <br>
     <span>
