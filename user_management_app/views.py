@@ -4,6 +4,7 @@ from .forms import CreateUserForm
 from django.contrib.auth.models import User
 from django.template import loader
 from django.contrib import messages
+from django.contrib.auth import logout
 
 # Create your views here.
 def index(request):
@@ -40,7 +41,7 @@ def signup(request):
 def signin(request):
     return render(request, "registration/login.html")
 
-def logout(request):
+def logout_user(request):
     logout(request)
     messages.success(request, "User was logged out")
     return redirect("/accounts/login")
