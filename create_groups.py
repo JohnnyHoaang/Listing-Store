@@ -7,6 +7,7 @@ from django.contrib.auth.models import Group, User, Permission
 
 
 add_user_perms = Permission.objects.get(name='Can add user')
+print(add_user_perms)
 delete_user_perms = Permission.objects.get(name='Can delete user')
 view_user_perms = Permission.objects.get(name='Can view user')
 add_post_perms = Permission.objects.get(name='Can add post')
