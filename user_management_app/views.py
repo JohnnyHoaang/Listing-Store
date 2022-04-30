@@ -1,9 +1,5 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm
-from django.contrib.auth.models import User
-from django.template import loader
-from django.contrib import messages
+from .forms import CustomUserCreationForm
 from django.contrib.auth import logout
 
 # Create your views here.
@@ -12,36 +8,23 @@ def index(request):
 
 
 def signup(request):
-    if request.method == "POST":
-        form = None
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            username = request.POST['username']
-            fname = request.POST['first_name']
-            lname = request.POST['last_name']
-            email = request.POST['email']
-            pwd = request.POST['password']
-            # pwd2 = request.POST['pwd2']  --> to confirm the pwd
-
-            new_user = User.objects.create_user(username, email, pwd)
-            new_user.first_name = fname
-            new_user.last_name = lname
+    form = None
+    if request.method == 'POST':  
+        form = CustomUserCreationForm(request.POST)  
+        print(f"valid: {form.is_valid()}")
+        if form.is_valid(): 
+            new_user = form.save(commit = False)
+            new_user.first_name = form.cleaned_data['first_name']
+            new_user.last_name = form.cleaned_data['last_name']
             new_user.save()
-            messages.success(request, "User account created")
-            # return redirect('signin')
-            return redirect('/accounts/login')
-    else:
-        form = CreateUserForm()
-    template = loader.get_template('registration/signup.html')
-    context = {
-    'form': form,
-    }
-    return HttpResponse(template.render(context, request))        
+            return redirect('index')
+    else:  
+        form = CustomUserCreationForm()  
+    context = {  
+        'form':form  
+    }  
+    return render(request, 'registration/signup.html', context)     
 
-def signin(request):
-    return render(request, "registration/login.html")
 
-def logout_user(request):
+def logout(request):
     logout(request)
-    messages.success(request, "User was logged out")
-    return redirect("/accounts/login")
