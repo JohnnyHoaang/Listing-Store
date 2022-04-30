@@ -14,8 +14,6 @@ def members_page(request):
     return HttpResponse(template.render(context, request))
 
 def admin_manage_users(request):
-    import json 
-    from django.core.serializers.json import DjangoJSONEncoder
     members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
     template = loader.get_template('web_app/admins_users.html')
     context = {
@@ -24,8 +22,6 @@ def admin_manage_users(request):
     return HttpResponse(template.render(context,request))
 
 def admin_manage_items(request):
-    import json 
-    from django.core.serializers.json import DjangoJSONEncoder
     members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
     posts = Post.objects.all()
     template = loader.get_template('web_app/admins_items.html')
@@ -33,5 +29,4 @@ def admin_manage_items(request):
         'members' : members,
         'posts' : posts,
     }
-    print(posts)
     return HttpResponse(template.render(context,request))
