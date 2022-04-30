@@ -62,7 +62,8 @@ div.registration > span > button{
 }
 
 input {
-    width: 250%;
+    /* width: 250%; */
+    width: 29.5em;
     padding: 10px;
     margin: 5px 0 10px 0;
     border: none;
