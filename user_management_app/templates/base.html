@@ -12,9 +12,14 @@
         <header>
             header
             <div class="registration">
-                <button><a href={%url 'signup'%}>Sign up</a></button>
-                <button><a href={%url 'login'%}>Sign in</a></button>
-            <div>
+                {% if user.is_authenticated %}
+                    <span><h3> Welcome, {{user.username}}</h3></span>
+                    <span><button><a href={%url 'logout'%}>Logout</a></button></span>
+                {% else %}
+                <span><button><a href={%url 'signup'%}>Sign up</a></button></span>
+                <span><button><a href={%url 'login'%}>Sign in</a></button></span>
+                {% endif %}
+            </div>
         </header>
         <section>
             {% block content %} This content will be replaced {% endblock %}
