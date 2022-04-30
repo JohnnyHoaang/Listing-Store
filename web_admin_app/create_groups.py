@@ -1,13 +1,11 @@
 import django
 import os
 
-os.environ['DJANGO_SETTINGS_MODULE']='product_listing_project.settings'
 django.setup()
 from django.contrib.auth.models import Group, User, Permission
 
 
 add_user_perms = Permission.objects.get(name='Can add user')
-print(add_user_perms)
 delete_user_perms = Permission.objects.get(name='Can delete user')
 view_user_perms = Permission.objects.get(name='Can view user')
 add_post_perms = Permission.objects.get(name='Can add post')
@@ -51,7 +49,6 @@ if Group.objects.filter(name="admins").count() == 0:
         g = Group.objects.get(name='admins')
         g.user_set.add(user)
 
-# print(Permission.objects.all().values('name'))
 users = User.objects.all().values('username', 'groups__name')
 
 # sets users without groups to members
