@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /*! margin: 10px; */
 }
 
 html{
@@ -13,7 +12,7 @@ html{
 }
   
 body{
-    background-color: #d5d6ec;
+    /* background-color: #d5d6ec; */
     display: flex;
     flex-direction: column;
 }
@@ -21,13 +20,17 @@ body{
 header, footer{
     text-align: center;
     padding: 2.4%;
-    background-color: #600060;
-    /* margin-bottom: 1%;       */
+    background-color: #53537d;
     display: flex; 
-    /* justify-content: center;  */
     color: white;
     font-size: large;
 }
+
+footer {
+    position:absolute;
+    bottom:0;
+    width: 100%;
+ }
  
 div.registration{
     position: absolute;
@@ -43,7 +46,7 @@ div.registration > button{
 .signup {
     background-color: white;
     margin: auto;
-    width: 40%;
+    width: 32.5%;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
