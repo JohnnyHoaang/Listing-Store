@@ -10,18 +10,26 @@
     </head>
     <body>
         <header>
-            header
+            <a href={%url 'index'%}><img src="{% static 'logo.png'%}" width="200" height="200" id="logo"></a>
+            <input id="searchbar" type="text" placeholder="Search...">
             <div class="registration">
                 {% if user.is_authenticated %}
-                    <span><h3> Welcome, {{user.username}}</h3></span>
-                    <span><button><a href={%url 'logout'%}>Logout</a></button></span>
+                <div>
+                    <span><h3> Hello, {{user.username}}</h3></span>
+                    <span><h3> <a href={%url 'logout'%}>Logout</a></h3></span>
+                </div>
+                    {% if request.user.profile.avatar != None %}
+                    <span><img src="data:;base64,{{encoded_image}}" width="50" height="50" /></span>
+                    {% endif %}
                 {% else %}
-                <span><button><a href={%url 'signup'%}>Sign up</a></button></span>
-                <span><button><a href={%url 'login'%}>Sign in</a></button></span>
+                <div>
+                    <span><h3><a href={%url 'signup'%}>Sign up</a></h3></span>
+                    <span><h3><a href={%url 'login'%}>Sign in</a></h3></span>
+                </div>
                 {% endif %}
             </div>
         </header>
-        <section>
+        <section class="main" style="background-image: url('{% static "background2.jpg"%}')">
             {% block content %} This content will be replaced {% endblock %}
         </section>
         <footer>
