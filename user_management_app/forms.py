@@ -4,9 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 
 # This is a custom form from which I do my own validation
 class CustomUserCreationForm(UserCreationForm):  
-    username = forms.CharField(label='Username', min_length=4, max_length=150)  
-    first_name = forms.CharField(label='First Name', min_length=2, max_length=150) 
-    last_name = forms.CharField(label='Last Name', min_length=2, max_length=150)     
+    username = forms.CharField(label='Username', min_length=4, max_length=50)  
+    first_name = forms.CharField(label='First Name', min_length=2, max_length=50) 
+    last_name = forms.CharField(label='Last Name', min_length=2, max_length=50)     
     email = forms.EmailField(label='Email')  
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)  
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)  
