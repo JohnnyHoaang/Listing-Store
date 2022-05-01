@@ -20,13 +20,13 @@ body{
 .main{
     /* background-image: url("static/background1.jpg") 50% 0 no-repeat fixed; */
     /* color: white; */
-    height: 600px;
-    /* padding: 100px 0 0 0;  */
+    height: 50em;
+    /* padding: 40px 0 0 0;  */
 }
 
 #logo{
     position: absolute;
-    top: -6%;
+    top: -2.5em;
 }
 
 header, footer{
@@ -43,7 +43,7 @@ header{
 }
 
 footer {
-    position:absolute;
+    position: relative;
     bottom:0;
     width: 100%;
     border-top: solid gray;
@@ -70,7 +70,7 @@ div.registration > div > span > h3 > a{
 .signup {
     background-color: white;
     margin: auto;
-    width: 32.5%;
+    width: 31em;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
