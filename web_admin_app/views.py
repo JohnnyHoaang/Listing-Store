@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.template import loader
@@ -7,6 +7,8 @@ from product_listing_app.models import Post
 from . import group_filters
 from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
+
+# deletes members page
 @user_passes_test(group_filters.is_member)
 def members_page(request):
     users = User.objects.all()
@@ -15,6 +17,7 @@ def members_page(request):
         'users' : users,
     }
     return HttpResponse(template.render(context, request))
+# loads admin users page
 @user_passes_test(group_filters.is_admin_users)
 def admin_manage_users(request):
     members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
@@ -23,6 +26,7 @@ def admin_manage_users(request):
         'members' : members
     }
     return HttpResponse(template.render(context,request))
+# loads admin items page
 @user_passes_test(group_filters.is_admin_items)
 def admin_manage_items(request):
     members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
@@ -33,41 +37,23 @@ def admin_manage_items(request):
         'posts' : posts,
     }
     return HttpResponse(template.render(context,request))
-
+# deletes users for admin users page
+@user_passes_test(group_filters.is_admin_users)
 def delete_user_au(request, username):
-    print(username)
     user = User.objects.get(username=username)
     user.delete()
-    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
-    template = loader.get_template('web_app/admins_items.html')
-    context = {
-        'members' : members,
-    }
-    return HttpResponse(template.render(context,request))
-
-def delete_user(request, username):
-    print(username)
+    return HttpResponse(admin_manage_users(request))
+# deletes users for admin items page
+@user_passes_test(group_filters.is_admin_items)
+def delete_user_ai(request, username):
     user = User.objects.get(username=username)
     user.delete()
-    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
-    posts = Post.objects.all()
-    template = loader.get_template('web_app/admins_items.html')
-    context = {
-        'members' : members,
-        'posts' : posts,
-    }
-    return HttpResponse(template.render(context,request))
-
+    return HttpResponse(admin_manage_items(request))
+# deletes post for admin items page
+@user_passes_test(group_filters.is_admin_items)
 def delete_post(request, post_title):
     print(post_title)
     post = Post.objects.get(post_title=post_title)
     post.delete()
-    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
-    posts = Post.objects.all()
-    template = loader.get_template('web_app/admins_items.html')
-    context = {
-        'members' : members,
-        'posts' : posts,
-    }
-    return HttpResponse(template.render(context,request))
+    return HttpResponse(admin_manage_items(request))
     

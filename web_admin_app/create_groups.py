@@ -36,8 +36,8 @@ if Group.objects.filter(name="admin_item_gp").count() == 0:
     permissions = [add_user_perms, delete_user_perms, view_user_perms, 
                     add_post_perms, change_post_perms, delete_post_perms, view_post_perms]
     admin_items.permissions.set(permissions)
-if Group.objects.filter(name="admins").count() == 0:
-    admins = Group(name="admins", id=3)
+if Group.objects.filter(name="admin_gp").count() == 0:
+    admins = Group(name="admin_gp", id=3)
     admins.save()
     permissions = [add_user_perms, delete_user_perms, view_user_perms, 
                     add_post_perms, change_post_perms, delete_post_perms, view_post_perms,
@@ -46,7 +46,7 @@ if Group.objects.filter(name="admins").count() == 0:
 if User.objects.filter(username="Instructor").count() == 0:
     user = User.objects.create_user('Instructor', 'instructor@gmail.com', 'Python420')
     user.save()
-    g = Group.objects.get(name='admins')
+    g = Group.objects.get(name='admin_gp')
     g.user_set.add(user)
 
 users = User.objects.all().values('username', 'groups__name')
