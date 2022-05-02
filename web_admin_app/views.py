@@ -56,4 +56,14 @@ def delete_post(request, post_title):
     post = Post.objects.get(post_title=post_title)
     post.delete()
     return HttpResponse(admin_manage_items(request))
-    
+@user_passes_test(group_filters.is_admin)
+def admin_access(request):
+    non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name')
+    print(non_admin_users)
+    posts = Post.objects.all()
+    template = loader.get_template('web_app/admins.html')
+    context = {
+        'non_admin_users' : non_admin_users,
+        'posts' : posts,
+    }
+    return HttpResponse(template.render(context,request))
