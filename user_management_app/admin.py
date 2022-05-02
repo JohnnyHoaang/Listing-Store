@@ -1,4 +1,5 @@
 from django.contrib import admin
-from messaging_app.models import Message
+from .models import Profile
 
 # Register your models here.
+admin.site.register(Profile)

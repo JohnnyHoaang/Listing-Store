@@ -1,43 +1,48 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm
-from django.contrib.auth.models import User
+from .models import Profile
+from .forms import CustomUserCreationForm
+from django.contrib.auth import logout
+from django.http import HttpResponse
 from django.template import loader
+import base64
 
 # Create your views here.
 def index(request):
-    return render(request, "base.html")
-    # return HttpResponse("Hello World")
-
-# @csrf_token
-def signup(request):
-    if request.method == "POST":
-        form = None
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            username = request.POST['username']
-            fname = request.POST['first_name']
-            lname = request.POST['last_name']
-            email = request.POST['email']
-            pwd = request.POST['password']
-            # pwd2 = request.POST['pwd2']  --> to confirm the pwd
-
-            new_user = User.objects.create_user(username, email, pwd)
-            new_user.first_name = fname
-            new_user.last_name = lname
-            new_user.save()
-            # return redirect('signin')
-            return redirect('/accounts/login')
-    else:
-        form = CreateUserForm()
-    template = loader.get_template('registration/signup.html')
+    encoded_image = None
+    if request.user.is_authenticated:
+        if request.user.profile.avatar != None:
+            encoded_image = base64.b64encode(request.user.profile.avatar).decode("utf-8")
     context = {
-    'form': form,
+        'encoded_image': encoded_image
     }
-    return HttpResponse(template.render(context, request))        
+    template = loader.get_template('base.html')
+    return HttpResponse(template.render(context, request))
 
-    # return render(request, "registration/signup.html")
 
+def signup(request):
+    form = None
+    if request.method == 'POST':  
+        form = CustomUserCreationForm(request.POST)  
+        if form.is_valid(): 
+            new_user = form.save(commit = False)
+            new_user.first_name = form.cleaned_data['first_name']
+            new_user.last_name = form.cleaned_data['last_name']
+            new_user.save()
+            with open('user_management_app/static/default_avatar.png', 'rb') as imagefile:
+                bytestring = imagefile.read()
+                profile = Profile(user=new_user, avatar=bytestring)
+                profile.save()
+            return redirect('login')
+    else:  
+        form = CustomUserCreationForm()  
+    context = {  
+        'form':form  
+    }  
+    return render(request, 'registration/signup.html', context)     
 
-def signin(request):
+def login(request):
     return render(request, "registration/login.html")
+
+
+def logout(request):
+    logout(request)
