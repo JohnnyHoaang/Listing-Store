@@ -19,7 +19,7 @@
         <td><button id='modify'>Modify groups</button></td>
         <td><button id='flag'>Flag</button></td>
         <td><button id='warn'>Warn</button></td>
-        <td><button onclick="location.href='{% url 'delete_users' username=member.username %}'" id='delete' >Delete</button></td>
+        <td><button onclick="location.href='{% url 'delete_users_ai' username=member.username %}'" id='delete' >Delete</button></td>
     </tr>
     {% endfor %}
 </table>

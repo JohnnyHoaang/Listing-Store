@@ -34,6 +34,17 @@ def admin_manage_items(request):
     }
     return HttpResponse(template.render(context,request))
 
+def delete_user_au(request, username):
+    print(username)
+    user = User.objects.get(username=username)
+    user.delete()
+    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
+    template = loader.get_template('web_app/admins_items.html')
+    context = {
+        'members' : members,
+    }
+    return HttpResponse(template.render(context,request))
+
 def delete_user(request, username):
     print(username)
     user = User.objects.get(username=username)
