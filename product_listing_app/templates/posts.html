@@ -4,14 +4,11 @@
             <div class="style">
             <div class="card">
             <div class="post-body">
-                <h1>{{ create_post.post_title }}</h1>
-                <p>{{ create_post.post_date }}</p>
+                <h1>{{ post_title }}</h1>
+                <p>{{ post_date }}</p>
                 <p>Posts Here</p>
-                <form action="{% url 'create_post' %}" method="post">
-                {% csrf_token %}
 
-                <button type="submit" value={{ CreatePost }} name='createposts' >Create Post</button>
-                </form>
+                <button type="submit" value={{create_post}} name='createposts'>Create Post</button>
             </div>
             </div>
     </div>

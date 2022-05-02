@@ -23,6 +23,7 @@ class CreatePost(TemplateView):
 def homepage(request):
     return render(request, "posts.html")
 
+
 def display_post(request):
     display_post = Post.objects.get()
     template = loader.get_template('user_management_app/base.html')
