@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .models import Post
 from django.template import loader
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 
 # Create your views here.
 class ListPosts(ListView):
@@ -14,6 +14,10 @@ class ListPosts(ListView):
 class DetailedPost(DetailView):
     model = Post
     template_name = 'posts.html'
+
+class CreatePost(TemplateView):
+    model = Post
+    template_name = 'create_posts.html'
 
 
 def homepage(request):
@@ -27,6 +31,12 @@ def display_post(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+def user_post(self):
+        # user = get_user(self.request).user
+        # if user.is_authenticated():
+        pass
+
 '''
 def add_post(request):
     title = None
