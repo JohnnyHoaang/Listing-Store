@@ -37,17 +37,18 @@ def admin_manage_items(request):
         'posts' : posts,
     }
     return HttpResponse(template.render(context,request))
-# deletes users for admin users page
-@user_passes_test(group_filters.is_admin_users)
-def delete_user_au(request, username):
+def delete_user(username):
     user = User.objects.get(username=username)
     user.delete()
+# deletes users for admin users page
+@user_passes_test(group_filters.is_admin_users)
+def delete_user_admin_users(request, username):
+    delete_user(username)
     return HttpResponse(admin_manage_users(request))
 # deletes users for admin items page
 @user_passes_test(group_filters.is_admin_items)
-def delete_user_ai(request, username):
-    user = User.objects.get(username=username)
-    user.delete()
+def delete_user_admin_items(request, username):
+    delete_user(username)
     return HttpResponse(admin_manage_items(request))
 # deletes post for admin items page
 @user_passes_test(group_filters.is_admin_items)
