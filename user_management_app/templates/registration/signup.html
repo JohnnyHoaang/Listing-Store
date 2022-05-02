@@ -1,16 +1,7 @@
 {% extends "base.html" %}
 {% block content %}  
   
-<div class = "signup">  
-  
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}  
-      
+<div class = "signup">       
     <h1>Create an account</h1>  
   
     <form method="post" >  
