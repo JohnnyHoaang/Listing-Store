@@ -17,24 +17,25 @@ class DetailedPost(DetailView):
 
 
 def homepage(request):
-    return render(request, "homepage.html")
+    return render(request, "posts.html")
 
-def create_post(request):
-    create_post = Post.objects.get()
-    template = loader.get_template('product_listing_app/homepage.html')
+def display_post(request):
+    display_post = Post.objects.get()
+    template = loader.get_template('user_management_app/base.html')
     context = {
-        'create_post': create_post,
+        'display_post': display_post,
     }
 
     return HttpResponse(template.render(context, request))
-
+'''
 def add_post(request):
     title = None
     if request.method == 'POST':
         title = request.POST.get('post_title', None)
-        template = loader.get_template('todo_app/homepage.html')
+        template = loader.get_template('todo_app/base.html')
         context = {
             'title' : title
         }
     return HttpResponse(template.render(context, request))
+    '''
 
