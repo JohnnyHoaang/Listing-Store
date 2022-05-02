@@ -3,22 +3,23 @@
 {% load static %}
 {% block jsblock %}
 <link rel="stylesheet", href="{% static 'styles.css' %}">
-<h2>Members Table</h2>
+<h2>Users Table</h2>
 <table id='memberTable'>
     <tr>
         <th>User ID</th>
         <th>Username</th>
         <th>Group</th>
     </tr>
-    {% for member in members %}
+    {% for user in non_admin_users %}
     <tr>
-        <td>{{ member.id }}</td>
-        <td>{{ member.username }}</td>
-        <td> {{ member.groups__name }} </td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td> {{ user.groups__name }} </td>
         <td><button id='edit'>Edit details</button></td>
+        <td><button id='modify'>Modify group</button></td>
         <td><button id='flag'>Flag</button></td>
         <td><button id='warn'>Warn</button></td>
-        <td><button onclick="location.href='{% url 'delete_users_ai' username=member.username %}'" id='delete' >Delete</button></td>
+        <td><button  id='delete' >Delete</button></td>
     </tr>
     {% endfor %}
 </table>
@@ -45,8 +46,7 @@
         <td> {{ post.post_keywords }}</td>
         <td><img src="../../../static/{{ post.post_image }}" width="40px" height="40px"></td>
         <td><button id='flag'>Flag</button></td>
-        <td><button onclick="location.href='{% url 'delete_posts' post_title=post.post_title%}'" id='delete'>Delete</button></td>
-
+        <td><button  id='delete'>Delete</button></td>
     </tr>
     {% endfor %}
 </table>
