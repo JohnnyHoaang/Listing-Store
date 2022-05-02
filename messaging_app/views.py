@@ -1,4 +1,3 @@
-from concurrent.futures import thread
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.shortcuts import redirect
@@ -10,7 +9,7 @@ from .forms import MessageForm, ThreadForm
 # Create your views here.
 
 def home(request):
-    return render(request, 'messagingHome.html')
+    return render(request, 'social/inbox.html')
 
 class ListTreads(View):
     def get(self, request, *args, **kwargs):
