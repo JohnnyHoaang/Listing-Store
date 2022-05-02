@@ -9,7 +9,7 @@ from django.views.generic import ListView, DetailView
 # Create your views here.
 class ListPosts(ListView):
     posts = Post.objects.filter(post_status=1).order_by('-post_date')
-    template_name = 'homepage.html'
+    template_name = 'posts.html'
 
 class DetailedPost(DetailView):
     model = Post
