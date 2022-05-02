@@ -1,10 +1,11 @@
+from concurrent.futures import thread
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.views import View
-from messaging_app.models import ThreadModel
-from .forms import ThreadForm
+from messaging_app.models import ThreadModel, Message
+from .forms import MessageForm, ThreadForm
 
 # Create your views here.
 
@@ -52,3 +53,15 @@ class CreateThread(View):
 
         except:
             return redirect('create-thread')
+
+class ThreadView(View):
+    def get(self, request, pk, *args, **kwargs):
+        form = MessageForm
+        thread = ThreadModel.objects.get(pk=pk)
+        message_list = Message.objects.filter(thread__pk__contains=pk)
+        context = {
+            'thread': thread,
+            'form': form,
+            'message_list': message_list
+        }
+        return render(request, 'social/thread.html', context)
