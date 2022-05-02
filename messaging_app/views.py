@@ -1,12 +1,10 @@
-from asyncio import ThreadedChildWatcher
-from concurrent.futures import thread
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 from django.db.models import Q
-from django.views import View
+from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.views import View
 from messaging_app.models import ThreadModel
-from models import ThreadModel
-from forms import ThreadForm
+from .forms import ThreadForm
 
 # Create your views here.
 
