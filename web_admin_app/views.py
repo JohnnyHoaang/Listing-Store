@@ -46,3 +46,17 @@ def delete_user(request, username):
         'posts' : posts,
     }
     return HttpResponse(template.render(context,request))
+
+def delete_post(request, post_title):
+    print(post_title)
+    post = Post.objects.get(post_title=post_title)
+    post.delete()
+    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
+    posts = Post.objects.all()
+    template = loader.get_template('web_app/admins_items.html')
+    context = {
+        'members' : members,
+        'posts' : posts,
+    }
+    return HttpResponse(template.render(context,request))
+    
