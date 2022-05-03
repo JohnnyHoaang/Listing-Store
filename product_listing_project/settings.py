@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'user_management_app',
     'web_admin_app',
     'messaging_app',
-    'product_listing_app',
     'crispy_forms',
+    'product_listing_app',
 ]
 
 MIDDLEWARE = [
