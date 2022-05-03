@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <h2>Create a Post</h2>
-    <form method="POST" action="">
+    <form action="" method="post">
         {% csrf_token %}
-        <input type="text" name="post_title" value="Create"/>
-        <button type="submit">Submit</button>
+        {{form | crispy }}
+        <button type="submit">Post</button>
     </form>
 {% endblock content %}

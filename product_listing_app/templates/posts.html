@@ -4,10 +4,12 @@
             <div class="style">
             <div class="card">
             <div class="post-body">
-                <h1>{{ post_title }}</h1>
-                <p>{{ post_date }}</p>
+                <h1>{{ title }}</h1>
+                <p>{{ category }}</p>
                 <p>Posts Here</p>
+                <button>
                 <a href="{% url 'create' %}"> Create Post </a>
+                </button>
             </div>
         </div>
     </div>

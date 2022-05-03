@@ -1,3 +1,4 @@
+from dataclasses import field
 from re import template
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -8,7 +9,7 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView
 
 # Create your views here.
 class ListPosts(ListView):
-    posts = Post.objects.filter(post_status=1).order_by('-post_date')
+    posts = Post.objects.filter(status=1).order_by('-date')
     template_name = 'posts.html'
 
 class DetailedPost(DetailView):
@@ -17,9 +18,10 @@ class DetailedPost(DetailView):
 
 
 class CreatePost(CreateView):
-    form_class = Post
+    model = Post
     template_name = 'create_posts.html'
     success_url = 'create/'
+    fields = ['title', 'category', 'price', 'keywords', 'description', 'status', 'image']
     '''
     def valid_form(self, post):
         post
@@ -39,10 +41,6 @@ def display_post(request):
 
     return HttpResponse(template.render(context, request))
 
-def user_post(self):
-        # user = get_user(self.request).user
-        # if user.is_authenticated():
-        pass
 
 def create_post(request):
     #return redirect("create_posts.html")
@@ -53,17 +51,3 @@ def create_post(request):
     }
     return HttpResponse(template.render(context, request))
     #return render(request, "create_posts.html")
-    
-
-'''
-def add_post(request):
-    title = None
-    if request.method == 'POST':
-        title = request.POST.get('post_title', None)
-        template = loader.get_template('todo_app/base.html')
-        context = {
-            'title' : title
-        }
-    return HttpResponse(template.render(context, request))
-    '''
-
