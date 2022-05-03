@@ -19,7 +19,7 @@ class DetailedPost(DetailView):
 class CreatePost(CreateView):
     form_class = Post
     template_name = 'create_posts.html'
-    success_url = '/create'
+    success_url = 'create/'
     '''
     def valid_form(self, post):
         post
@@ -45,7 +45,14 @@ def user_post(self):
         pass
 
 def create_post(request):
-    return redirect("create_posts.html")
+    #return redirect("create_posts.html")
+    creating = Post.objects.get()
+    template = loader.get_template('create_posts.html')
+    context = {
+        'creating' : creating,
+    }
+    return HttpResponse(template.render(context, request))
+    #return render(request, "create_posts.html")
     
 
 '''
