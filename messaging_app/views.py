@@ -11,7 +11,7 @@ from .forms import MessageForm, ThreadForm
 def home(request):
     return render(request, 'social/inbox.html')
 
-class ListTreads(View):
+class ListThreads(View):
     def get(self, request, *args, **kwargs):
         threads = ThreadModel.objects.filter(Q(user=request.user) | Q(reciever=request.user))
 
