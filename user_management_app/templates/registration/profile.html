@@ -26,11 +26,12 @@
             </table>
             <input class = "registration_button" type="submit" name="submit" value="Update"/>
         </form>
+        <h3><a href={%url 'change_password'%}>Change your password</a></h3>
         {% if messages %}   
             {% for message in messages %}  
                 {{ message }}  
             {% endfor %}   
-    {% endif %} 
+        {% endif %} 
     </div>
     <div class="service">
         <h1>Services</h1>

@@ -1,12 +1,12 @@
-import re
 from django.shortcuts import render, redirect
 from .models import Profile
 from .forms import CustomUserCreationForm, UserUpdateForm
 from django.contrib.auth import logout
-from django.http import HttpResponse
 from django.template import loader
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm 
+from django.contrib.auth import update_session_auth_hash
 import base64
 
 # Create your views here.
@@ -20,7 +20,7 @@ def index(request):
         'encoded_image': encoded_image
     }
     template = loader.get_template('base.html')
-    return HttpResponse(template.render(context, request))
+    return render(request, 'base.html', context)  
 
 
 def signup(request):
@@ -36,6 +36,7 @@ def signup(request):
                 bytestring = imagefile.read()
                 profile = Profile(user=new_user, avatar=bytestring)
                 profile.save()
+            messages.success(request, 'Your account was successfully created! Please login to your account')
             return redirect('login')
     else:  
         form = CustomUserCreationForm()  
@@ -51,18 +52,6 @@ def login(request):
 
 def logout(request):
     logout(request)
-
-
-def profile(request):
-    encoded_image = None
-    if request.user.is_authenticated:
-        if request.user.profile.avatar != None:
-            encoded_image = base64.b64encode(request.user.profile.avatar).decode("utf-8")
-    context = {
-        'encoded_image': encoded_image
-    }
-    template = loader.get_template('registration/profile.html')
-    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='/login')
@@ -93,3 +82,28 @@ def profile(request):
         'u_form': u_form,
     }
     return render(request, 'registration/profile.html', context)
+
+
+@login_required(login_url='/login')
+def change_password(request):
+    encoded_image = None
+    if request.user.is_authenticated:
+        # check if an avatar exists in the db and displays it
+        if request.user.profile.avatar != None:
+            encoded_image = base64.b64encode(request.user.profile.avatar).decode("utf-8")
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the error above.')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        'encoded_image': encoded_image,
+        'form': form
+    }
+    return render(request, 'registration/change_password.html', context)
