@@ -26,7 +26,7 @@ body{
 
 #logo{
     position: absolute;
-    top: -2.5em;
+    top: -1.7em;
 }
 
 header, footer{
@@ -56,8 +56,15 @@ div.registration{
     display: flex;
 }
 
-div.registration > div > span > h3 > a{
+a.red{
     color: #e11a50;
+}
+
+a.green{
+    color: #6cad16;
+}
+
+div.registration > div > span > h3 > a{
     text-decoration: None;
 
 }
@@ -196,4 +203,8 @@ input[type=text]:focus, input[type=password]:focus {
 
 .profile_picture{
     border-radius: 50%;
+}
+
+a.red{
+    color: #e11a50;
 }
