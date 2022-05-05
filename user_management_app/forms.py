@@ -51,3 +51,10 @@ class CustomUserCreationForm(UserCreationForm):
             self.cleaned_data['password2']  
         )  
         return user
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
+    
