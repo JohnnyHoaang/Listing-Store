@@ -2,15 +2,58 @@ body {
     font-family:Arial, Helvetica, sans-serif;
   }
   h1 {
-    color: white;
+    color: rgb(243, 46, 138);
     background-color: #53537d;
     text-align: center;
   }
-  span{
-    color: white;
-    background-color: #53537d;
+  h2{
     text-align: center;
+  }
+  button{
+    padding: 5px 15px 5px 15px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(181, 177, 177);
+    border-radius:15px;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border: none;
+  }
+  button:hover{
+    background-color: rgb(202, 198, 198);
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border-radius:15px;
+    border: none;
+  }
+  form{
+    padding:10px;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border-radius:15px;
+    border: solid white;
     display: inline-block;
-    padding: 10px 10px;
-    margin: 10px 10px 0 0;
+    margin-inline-start: 33.5vw;
   }
+
+  textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  select{
+    background-color: rgb(250, 235, 238);
+    margin: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  input{
+    background-color: rgb(218, 239, 239);
+    margin: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  

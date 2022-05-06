@@ -18,7 +18,7 @@ class Post(models.Model):
     title = models.CharField(max_length=2000)
     category = models.CharField(max_length=2000, choices=categories_for_posts, default=categories_for_posts)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
-    keywords = models.TextField(blank=True, null=True)
+    keywords = models.CharField(max_length=2000, null=True)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=2000, choices=status_for_posts, default=status_for_posts)
     image = models.ImageField(upload_to='', blank=True, null=True)
