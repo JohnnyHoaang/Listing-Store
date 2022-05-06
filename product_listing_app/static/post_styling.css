@@ -29,28 +29,28 @@ body {
     border-radius:15px;
     border: solid rgb(143, 207, 91);
     display: inline-block;
-    margin-inline-start: 33.5vw;
+    margin-inline-start: 30vw;
   }
 
   textarea {
     background-color: rgba(215, 210, 210, 0.856);
     box-sizing: border-box;
     margin: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 12px;
+    margin-bottom: 12px;
   }
 
   select{
     background-color: rgba(215, 210, 210, 0.856);
     margin: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 12px;
+    margin-bottom: 12px;
   }
 
   input{
     background-color: rgba(215, 210, 210, 0.856);
     margin: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 12px;
+    margin-bottom: 12px;
   }
   
