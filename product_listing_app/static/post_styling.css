@@ -27,31 +27,28 @@ body {
     padding:10px;
     box-shadow:4px 4px 10px rgba(0,0,0,0.06);
     border-radius:15px;
-    border: solid white;
+    border: solid rgb(143, 207, 91);
     display: inline-block;
     margin-inline-start: 33.5vw;
   }
 
   textarea {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
+    background-color: rgba(215, 210, 210, 0.856);
     box-sizing: border-box;
+    margin: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   select{
-    background-color: rgb(250, 235, 238);
+    background-color: rgba(215, 210, 210, 0.856);
     margin: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
   }
 
   input{
-    background-color: rgb(218, 239, 239);
+    background-color: rgba(215, 210, 210, 0.856);
     margin: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
