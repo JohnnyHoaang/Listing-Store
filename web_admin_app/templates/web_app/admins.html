@@ -37,13 +37,13 @@
     </tr>
     {% for post in posts %}
     <tr>
-        <td> {{ post.post_title }}</td>
-        <td> {{ post.post_description }}</td>
-        <td> {{ post.post_category }}</td>
-        <td> {{ post.post_status }}</td>
-        <td> {{ post.post_price }}</td>
-        <td> {{ post.post_date }}</td>
-        <td> {{ post.post_keywords }}</td>
+        <td> {{ post.title }}</td>
+        <td> {{ post.description }}</td>
+        <td> {{ post.category }}</td>
+        <td> {{ post.status }}</td>
+        <td> {{ post.price }}</td>
+        <td> {{ post.date }}</td>
+        <td> {{ post.keywords }}</td>
         <td><img src="../../../static/{{ post.post_image }}" width="40px" height="40px"></td>
         <td><button id='flag'>Flag</button></td>
         <td><button  id='delete'>Delete</button></td>

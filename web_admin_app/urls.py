@@ -8,5 +8,5 @@ urlpatterns = [
     path('dashboard/admin', views.admin_access, name='admin'),
     path('dashboard/admin_items/user/<str:username>' , views.delete_user_admin_items, name='delete_users_admin_items'),
     path('dashboard/admin_users/user/<str:username>' , views.delete_user_admin_users, name='delete_users_admin_users'),
-    path('dashboard/admin_items/post/<str:post_title>' , views.delete_post, name='delete_posts'),
+    path('dashboard/admin_items/post/<str:title>' , views.delete_post, name='delete_posts'),
 ]
