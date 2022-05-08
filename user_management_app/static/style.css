@@ -73,8 +73,8 @@ div.registration > div > span > h3 > a{
     background-color: white;
     margin: auto;
     width: 31em;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
     border-radius: 10px;
 }
 
@@ -100,7 +100,9 @@ input {
     background-color: #8ac53f;
     border-radius: 10px;  
     margin-left: 150px;
-    
+    text-decoration: None;
+    color: black;
+    text-align: center;
 }
 
 tr {
