@@ -9,4 +9,10 @@ urlpatterns = [
     path('dashboard/admin_items/user/<str:username>' , views.delete_user_admin_items, name='delete_users_admin_items'),
     path('dashboard/admin_users/user/<str:username>' , views.delete_user_admin_users, name='delete_users_admin_users'),
     path('dashboard/admin_items/post/<str:title>' , views.delete_post, name='delete_posts'),
+    path('dashboard/admin_users/add_member', views.add_member_users, name='add_member_users'),
+    path('dashboard/admin_items/add_member', views.add_member_items, name='add_member_items'),
+    path('dasboard/admin_users/block_member/<str:username>', views.block_member_admin_users, name ='block_member_users'),
+    path('dasboard/admin_users/unblock_member/<str:username>', views.unblock_member_admin_users, name ='unblock_member_users'),
+    path('dasboard/admin_items/block_member/<str:username>', views.block_member_admin_items, name ='block_member_items'),
+    path('dasboard/admin_items/unblock_member/<str:username>', views.unblock_member_admin_items, name ='unblock_member_items'),
 ]

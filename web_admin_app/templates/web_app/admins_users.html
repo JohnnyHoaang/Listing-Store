@@ -3,6 +3,8 @@
 {% load static %}
 {% block jsblock %}
 <link rel="stylesheet", href="{% static 'styles.css' %}">
+<h2>Members List</h2>
+<button  onclick="location.href='{% url 'add_member_users' %}'">Add member</button>
 <table>
     <tr>
         <th>User ID</th>
@@ -15,7 +17,8 @@
         <td>{{ member.username }}</td>
         <td> {{ member.groups__name }} </td>
         <td><button id='edit'>Edit details</button></td>
-        <td><button id='flag'>Flag</button></td>
+        <td><button onclick="location.href='{% url 'block_member_users' username=member.username %}'" id='flag'>Flag</button></td>
+        <td><button onclick="location.href='{% url 'unblock_member_users' username=member.username %}'">Unflag</button></td>
         <td><button id='warn'>Warn</button></td>
         <td><button onclick="location.href='{% url 'delete_users_admin_users' username=member.username %}'" id='delete'>Delete</button></td>
     </tr>
