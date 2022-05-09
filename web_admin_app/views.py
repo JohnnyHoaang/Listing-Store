@@ -159,3 +159,21 @@ def unblock_member_admin_items(request, username):
         unblock_member(username)
         return redirect('admin_items')
     return HttpResponse(admin_manage_items(request))    
+
+def redirect_dashboard_page(request):
+    user = request.user
+    if group_filters.is_admin(user):
+        print("you are admin")
+        return redirect('admin')
+    elif group_filters.is_admin_items(user):
+        print("you are admin items")
+        return redirect('admin_items')
+    elif group_filters.is_admin_users(user):
+        print("you are admin user")
+        return redirect('admin_users')
+    elif group_filters.is_member(user):
+        return redirect('members')
+    
+    
+    template = 'dashboard.html'
+    return render(request, 'dashboard.html')
