@@ -22,10 +22,10 @@ if Group.objects.filter(name="members").count() == 0:
     members = Group(name="members", id=0)
     members.save()
     
-    g = Group.objects.get(name='members')
+    group = Group.objects.get(name='members')
     users = User.objects.all()
-    for u in users:
-        g.user_set.add(u)
+    for user in users:
+        group.user_set.add(user)
 if Group.objects.filter(name="admin_user_gp").count() == 0:
     admin_users = Group(name="admin_user_gp", id=1)
     admin_users.save()

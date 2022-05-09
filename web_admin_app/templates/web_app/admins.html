@@ -18,7 +18,7 @@
         <td>{{ user.username }}</td>
         <td> {{ user.groups__name }} </td>
         <td><button onclick="location.href='{% url 'edit_user_details' username=user.username %}'" id='edit'>Edit details</button></td>
-        <td><button id='modify'>Modify group</button></td>
+        <td><button onclick="location.href='{% url 'modify_group' username=user.username %}'" id='delete' id='modify'>Modify group</button></td>
         <td><button onclick="location.href='{% url 'block_users' username=user.username %}'" id='flag'>Flag</button></td>
         <td><button onclick="location.href='{% url 'unblock_users' username=user.username %}'">Unflag</button></td>
         <td><button id='warn'>Warn</button></td>
@@ -49,6 +49,7 @@
         <td> {{ post.keywords }}</td>
         <td><img src="../../../static/{{ post.post_image }}" width="40px" height="40px"></td>
         <td><button id='flag'>Flag</button></td>
+        <td><button onclick="location.href='{% url 'edit_posts' title=post.title %}'" id='edit'>Edit</button></td>
         <td><button onclick="location.href='{% url 'delete_posts' title=post.title %}'" id='delete'>Delete</button></td>
     </tr>
     {% endfor %}

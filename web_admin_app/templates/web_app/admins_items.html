@@ -46,6 +46,7 @@
         <td> {{ post.keywords }}</td>
         <td><img src="../../../static/{{ post.image }}" width="40px" height="40px"></td>
         <td><button id='flag'>Flag</button></td>
+        <td><button onclick="location.href='{% url 'edit_posts' title=post.title %}'" id='edit'>Edit</button></td>
         <td><button onclick="location.href='{% url 'delete_posts' title=post.title%}'" id='delete'>Delete</button></td>
 
     </tr>

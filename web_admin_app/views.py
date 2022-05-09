@@ -9,6 +9,7 @@ from user_management_app.forms import CustomUserCreationForm, UserUpdateForm
 from django.contrib import messages
 
 from user_management_app.models import Profile
+from web_admin_app.forms import PostUpdateForm
 from . import group_filters
 from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
@@ -122,18 +123,29 @@ def unblock_user(request,username):
 
 def edit_user_details(request,username):
     user = User.objects.get(username=username)
-    u_form = UserUpdateForm(instance=request.user)
+    u_form = UserUpdateForm(instance=user)
     if request.method == 'POST':
         u_form = UserUpdateForm(data=request.POST, instance=user) 
         if u_form.is_valid():
             u_form.save()
             return redirect_dashboard_page(request)
-    else:
-        u_form = UserUpdateForm(instance=user)
     context = {
         'u_form':u_form
     }
     return render(request, 'web_app/edit_details.html', context)
 
-def modify_group(request):
+def modify_group(request, username):
+    user = User.objects.get(username=username)
     return render(request, 'web_app/modify_groups.html')
+def edit_post(request, title):
+    post = Post.objects.get(title=title)
+    form = PostUpdateForm(instance=post)
+    if request.method == 'POST':
+        form = PostUpdateForm(data=request.POST, instance=post) 
+        if form.is_valid():
+            form.save()
+            return redirect_dashboard_page(request)
+    context = {
+        'u_form': form
+    }
+    return render(request, 'web_app/edit_posts.html', context)
