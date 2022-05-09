@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Post
 from django.template import loader
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
 
@@ -17,7 +18,7 @@ class DetailedPost(DetailView):
     template_name = 'posts.html'
 
 
-class CreatePost(CreateView):
+class CreatePost(LoginRequiredMixin,CreateView):
     model = Post
     template_name = 'create_posts.html'
     success_url = 'create/'
