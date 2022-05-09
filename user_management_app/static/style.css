@@ -7,19 +7,15 @@
 html{
     height:100%; 
     width:100%;
-    /* font-family: monospace; */
     background-color: #dbe3e5;
 }
   
 body{
-    /* background-color: #d5d6ec; */
     display: flex;
     flex-direction: column;
 }
 
 .main{
-    /* background-image: url("static/background1.jpg"); */
-    /* color: white; */
     height: 50em;
     padding: 40px; 
 }
@@ -73,8 +69,6 @@ div.registration > div > span > h3 > a{
     background-color: white;
     margin: auto;
     width: 31em;
-    margin-top: 20px;
-    margin-bottom: 20px;
     border-radius: 10px;
 }
 
@@ -87,10 +81,8 @@ div.registration > div > span > h3 > a{
 }
 
 input {
-    /* width: 250%; */
     width: 29.5em;
     padding: 10px;
-    /*margin: 5px 0 10px 0;**/
     border: none;
     background: #f1f1f1;
 }
@@ -100,7 +92,9 @@ input {
     background-color: #8ac53f;
     border-radius: 10px;  
     margin-left: 150px;
-    
+    text-decoration: None;
+    color: black;
+    text-align: center;
 }
 
 tr {
@@ -121,7 +115,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 #searchbar{
     margin: auto;
-    width: 50%;
+    width: 40%;
     background: #c9c9c9;
     border-radius: 5px;
 }
