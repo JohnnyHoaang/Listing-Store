@@ -8,4 +8,8 @@ class PostUpdateForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['description', 'category', 'price', 'keywords', 'status', 'image']
-        
+
+class GroupUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['groups']

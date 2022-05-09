@@ -9,7 +9,7 @@ from user_management_app.forms import CustomUserCreationForm, UserUpdateForm
 from django.contrib import messages
 
 from user_management_app.models import Profile
-from web_admin_app.forms import PostUpdateForm
+from web_admin_app.forms import GroupUpdateForm, PostUpdateForm
 from . import group_filters
 from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
@@ -136,7 +136,17 @@ def edit_user_details(request,username):
 
 def modify_group(request, username):
     user = User.objects.get(username=username)
-    return render(request, 'web_app/modify_groups.html')
+    form = GroupUpdateForm(instance=user)
+    if request.method == 'POST':
+        form = GroupUpdateForm(data=request.POST, instance=user) 
+        if form.is_valid():
+            form.save()
+            return redirect_dashboard_page(request)
+    context = {
+        'form':form
+    }
+    return render(request, 'web_app/modify_groups.html', context)
+    
 def edit_post(request, title):
     post = Post.objects.get(title=title)
     form = PostUpdateForm(instance=post)
