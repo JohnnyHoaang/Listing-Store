@@ -3,6 +3,7 @@ import os
 
 django.setup()
 from django.contrib.auth.models import Group, User, Permission
+from user_management_app.models import Profile
 
 
 add_user_perms = Permission.objects.get(name='Can add user')
@@ -46,13 +47,17 @@ if Group.objects.filter(name="admin_gp").count() == 0:
 if User.objects.filter(username="Instructor").count() == 0:
     user = User.objects.create_user('Instructor', 'instructor@gmail.com', 'Python420')
     user.save()
-    g = Group.objects.get(name='admin_gp')
-    g.user_set.add(user)
+    with open('user_management_app/static/default_avatar.png', 'rb') as imagefile:
+        bytestring = imagefile.read()
+        profile = Profile(user=user, avatar=bytestring)
+        profile.save()
+    group = Group.objects.get(name='admin_gp')
+    group.user_set.add(user)
 
 users = User.objects.all().values('username', 'groups__name')
 
 # sets users without groups to members
 no_members=users = User.objects.filter(groups__name=None)
-g = Group.objects.get(name='members')
+group = Group.objects.get(name='members')
 for member in no_members:
-    g.user_set.add(member)
+    group.user_set.add(member)
