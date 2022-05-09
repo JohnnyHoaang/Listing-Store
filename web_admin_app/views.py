@@ -134,3 +134,6 @@ def edit_user_details(request,username):
         'u_form':u_form
     }
     return render(request, 'web_app/edit_details.html', context)
+
+def modify_group(request):
+    return render(request, 'web_app/modify_groups.html')

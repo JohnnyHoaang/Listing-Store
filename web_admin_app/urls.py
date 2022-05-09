@@ -12,4 +12,5 @@ urlpatterns = [
     path('dashboard/block_user/<str:username>', views.block_user, name ='block_users'),
     path('dashboard/unblock_user/<str:username>', views.unblock_user, name ='unblock_users'),
     path('dashboard/edit_details/<str:username>', views.edit_user_details, name='edit_user_details'),
+    path('dashboard/modify_group/', views.modify_group, name='modify_group')
 ]

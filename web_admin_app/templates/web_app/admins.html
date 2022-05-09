@@ -2,8 +2,10 @@
 {% block content %}
 {% load static %}
 {% block jsblock %}
+<div class='dashboard'>
 <link rel="stylesheet", href="{% static 'styles.css' %}">
 <h2>Users List</h2>
+<button  onclick="location.href='{% url 'add_member' %}'">Add member</button>
 <table id='memberTable'>
     <tr>
         <th>User ID</th>
@@ -51,6 +53,6 @@
     </tr>
     {% endfor %}
 </table>
-
+</div>
 {% endblock %}
 {% endblock %}
