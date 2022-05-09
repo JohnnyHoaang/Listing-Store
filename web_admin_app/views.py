@@ -12,6 +12,18 @@ from user_management_app.models import Profile
 from . import group_filters
 from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
+def redirect_dashboard_page(request):
+    user = request.user
+    if group_filters.is_admin(user):
+        return redirect('admin')
+    elif group_filters.is_admin_items(user):
+        return redirect('admin_items')
+    elif group_filters.is_admin_users(user):
+        return redirect('admin_users')
+    elif group_filters.is_member(user):
+        return redirect('members')
+    return render(request, 'dashboard.html')
+
 
 # deletes members page
 @user_passes_test(group_filters.is_member)
@@ -42,31 +54,19 @@ def admin_manage_items(request):
         'posts' : posts,
     }
     return HttpResponse(template.render(context,request))
-def delete_user(username):
-    user = User.objects.get(username=username)
-    user.delete()
-# deletes users for admin users page
-@user_passes_test(group_filters.is_admin_users)
-def delete_user_admin_users(request, username):
+
+# deletes users 
+def delete_user(request, username):
     if username is not None:
-        delete_user(username)
-        return redirect('admin_users')
-    return HttpResponse(admin_manage_users(request))
-# deletes users for admin items page
-@user_passes_test(group_filters.is_admin_items)
-def delete_user_admin_items(request, username):
-    if username is not None:
-        delete_user(username)
-        return redirect('admin_items')
-    return HttpResponse(admin_manage_items(request))
-# deletes post for admin items page
-@user_passes_test(group_filters.is_admin_items)
-def delete_post(request, post_title):
-    if post_title is not None:
-        post = Post.objects.get(post_title=post_title)
+        user = User.objects.get(username=username)
+        user.delete()
+    return (redirect_dashboard_page(request))
+
+def delete_post(request, title):
+    if title is not None:
+        post = Post.objects.get(title=title)
         post.delete()
-        return redirect('admin_items')
-    return HttpResponse(admin_manage_items(request))
+    return (redirect_dashboard_page(request))
     
 @user_passes_test(group_filters.is_admin)
 def admin_access(request):
@@ -92,14 +92,13 @@ def add_member(form):
         profile = Profile(user=new_user, avatar=bytestring)
         profile.save()
 
-@user_passes_test(group_filters.is_admin_users)
-def add_member_users(request):
+def add_member_table(request):
     if request.method == 'POST':  
         form = CustomUserCreationForm(request.POST)  
         if form.is_valid(): 
             add_member(form)
             messages.success(request, 'Your account was successfully created! Please login to your account')
-            return redirect('admin_users')
+            return(redirect_dashboard_page(request))
     else:  
         form = CustomUserCreationForm()  
     context = {  
@@ -107,79 +106,28 @@ def add_member_users(request):
     }  
     return render(request, 'web_app/add_users.html', context)   
 
-@user_passes_test(group_filters.is_admin_items)
-def add_member_items(request):
-    if request.method == 'POST':  
-        form = CustomUserCreationForm(request.POST)  
-        if form.is_valid(): 
-            add_member(form)
-            messages.success(request, 'Your account was successfully created! Please login to your account')
-            return redirect('admin_items')
-    else:  
-        form = CustomUserCreationForm()  
-    context = {  
-        'form':form  
-    }  
-    return render(request, 'web_app/add_users.html', context)   
-
-def block_member(username):
-    user = User.objects.get(username=username)
-    user.is_active=False
-    user.save()
-
-def unblock_member(username):
-    user = User.objects.get(username=username)
-    user.is_active=True
-    user.save()
-
-@user_passes_test(group_filters.is_admin_users)
-def block_member_admin_users(request, username):
+def block_user(request, username):
     if username is not None:
-        block_member(username)
-        return redirect('admin_users')
-    return HttpResponse(admin_manage_users(request))
+        user = User.objects.get(username=username)
+        user.is_active=False
+        user.save()
+    return(redirect_dashboard_page(request))
 
-@user_passes_test(group_filters.is_admin_items)
-def block_member_admin_items(request, username):
+def unblock_user(request,username):
     if username is not None:
-        block_member(username)
-        return redirect('admin_items')
-    return HttpResponse(admin_manage_items(request))
+        user = User.objects.get(username=username)
+        user.is_active=True
+        user.save()
+    return(redirect_dashboard_page(request))
 
-@user_passes_test(group_filters.is_admin_users)
-def unblock_member_admin_users(request, username):
-    if username is not None:
-        unblock_member(username)
-        return redirect('admin_users')
-    return HttpResponse(admin_manage_users(request))
-
-@user_passes_test(group_filters.is_admin_items)
-def unblock_member_admin_items(request, username):
-    if username is not None:
-        unblock_member(username)
-        return redirect('admin_items')
-    return HttpResponse(admin_manage_items(request))    
-
-def redirect_dashboard_page(request):
-    user = request.user
-    if group_filters.is_admin(user):
-        return redirect('admin')
-    elif group_filters.is_admin_items(user):
-        return redirect('admin_items')
-    elif group_filters.is_admin_users(user):
-        return redirect('admin_users')
-    elif group_filters.is_member(user):
-        return redirect('members')
-    return render(request, 'dashboard.html')
-
-def edit_details(request,username):
+def edit_user_details(request,username):
     user = User.objects.get(username=username)
     u_form = UserUpdateForm(instance=request.user)
     if request.method == 'POST':
         u_form = UserUpdateForm(data=request.POST, instance=user) 
         if u_form.is_valid():
             u_form.save()
-            return redirect('admin_users')
+            return redirect_dashboard_page(request)
     else:
         u_form = UserUpdateForm(instance=user)
     context = {
