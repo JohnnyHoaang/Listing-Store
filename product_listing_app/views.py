@@ -23,11 +23,10 @@ class CreatePost(LoginRequiredMixin,CreateView):
     template_name = 'create_posts.html'
     success_url = 'create/'
     fields = ['title', 'category', 'price', 'keywords', 'description', 'status', 'image']
-    '''
-    def valid_form(self, post):
-        post
+
+    def valid_form(self):
+        pass
     
-    '''
 
 def homepage(request):
     return render(request, "posts.html")
@@ -42,7 +41,7 @@ def display_post(request):
 
     return HttpResponse(template.render(context, request))
 
-
+'''
 def create_post(request):
     #return redirect("create_posts.html")
     creating = Post.objects.get()
@@ -52,3 +51,4 @@ def create_post(request):
     }
     return HttpResponse(template.render(context, request))
     #return render(request, "create_posts.html")
+'''

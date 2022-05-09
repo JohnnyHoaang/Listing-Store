@@ -1,4 +1,7 @@
 from django.db import models
+#from djangoratings.fields import RatingField
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
 
 # Create your models here.
 class Post(models.Model):
@@ -23,6 +26,9 @@ class Post(models.Model):
     status = models.CharField(max_length=2000, choices=status_for_posts, default=status_for_posts)
     image = models.ImageField(upload_to='', blank=True, null=True)
     date = models.DateField(auto_now_add=True)
+    #rating = RatingField(range=5, can_change_vote = True, allow_anonymous = False)
+    #rating  = GenericRelation(Rating, related_query_name='posts')
+
 
     def __str__(self):
         post_value = f'Title: {self.title}'
