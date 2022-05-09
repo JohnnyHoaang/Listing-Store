@@ -5,7 +5,7 @@ from django.contrib.auth.models import User, Group
 from django.template import loader
 from requests import request
 from product_listing_app.models import Post
-from user_management_app.forms import CustomUserCreationForm
+from user_management_app.forms import CustomUserCreationForm, UserUpdateForm
 from django.contrib import messages
 
 from user_management_app.models import Profile
@@ -163,17 +163,26 @@ def unblock_member_admin_items(request, username):
 def redirect_dashboard_page(request):
     user = request.user
     if group_filters.is_admin(user):
-        print("you are admin")
         return redirect('admin')
     elif group_filters.is_admin_items(user):
-        print("you are admin items")
         return redirect('admin_items')
     elif group_filters.is_admin_users(user):
-        print("you are admin user")
         return redirect('admin_users')
     elif group_filters.is_member(user):
         return redirect('members')
-    
-    
-    template = 'dashboard.html'
     return render(request, 'dashboard.html')
+
+def edit_details(request,username):
+    user = User.objects.get(username=username)
+    u_form = UserUpdateForm(instance=request.user)
+    if request.method == 'POST':
+        u_form = UserUpdateForm(data=request.POST, instance=user) 
+        if u_form.is_valid():
+            u_form.save()
+            return redirect('admin_users')
+    else:
+        u_form = UserUpdateForm(instance=user)
+    context = {
+        'u_form':u_form
+    }
+    return render(request, 'web_app/edit_details.html', context)
