@@ -30,7 +30,7 @@ class CreateThread(View):
             reciever = User.objects.get(username=username)
             if ThreadModel.objects.filter(user=request.user, reciever=reciever).exists():
                 thread = ThreadModel.objects.filter(user=request.user, reciever=reciever)[0]
-                return redirect('thread', pk=thread.pk)
+                return redirect(f'thread/{thread.pk}')
             elif ThreadModel.objects.filter(user=reciever, reciever=request.user).exists():
                 thread = ThreadModel.objects.filter(user=reciever, reciever=request.user)[0]
                 return redirect('thread', pk=thread.pk)
