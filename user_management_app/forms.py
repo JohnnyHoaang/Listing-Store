@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm 
 
 # This is a custom form from which I do my own validation
@@ -49,7 +49,9 @@ class CustomUserCreationForm(UserCreationForm):
             self.cleaned_data['username'],  
             self.cleaned_data['email'],  
             self.cleaned_data['password2']  
-        )  
+        )
+        group = Group.objects.get(name='members')
+        group.user_set.add(user)
         return user
 
 
