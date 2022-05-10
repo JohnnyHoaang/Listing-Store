@@ -21,7 +21,7 @@ class CreatePost(LoginRequiredMixin,CreateView):
     fields = ['title', 'category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/'
     
-class ListPosts(ListView):
+class ListPost(ListView):
     model = Post
     template_name = 'posts.html'
     context_object_name='posting'

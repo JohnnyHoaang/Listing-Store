@@ -6,6 +6,6 @@
     <form id="post_form" action="" method="POST">
         {% csrf_token %}
         {{form | crispy }}
-        <a href="{% url 'posts' %}"><button type="submit">Post</button></a>
+        <button type="submit">Post</button>
     </form>
 {% endblock content %}
