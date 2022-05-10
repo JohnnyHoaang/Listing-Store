@@ -14,14 +14,6 @@ from django.contrib import messages
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
 
 # Create your views here.
-class ListPosts(ListView):
-    model = Post
-    template_name = 'posts.html'
-    context_object_name='posting'
-
-    def get_queryset(self):
-        return super().get_queryset()
-
 
 class CreatePost(LoginRequiredMixin,CreateView):
     model = Post
@@ -29,5 +21,10 @@ class CreatePost(LoginRequiredMixin,CreateView):
     fields = ['title', 'category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/'
     
-def homepage(request):
-    return render(request, "posts.html")
+class ListPosts(ListView):
+    model = Post
+    template_name = 'posts.html'
+    context_object_name='posting'
+
+    def get_queryset(self):
+        return super().get_queryset()
