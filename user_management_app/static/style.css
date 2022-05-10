@@ -97,7 +97,7 @@ input {
     text-align: center;
 }
 
-tr {
+.signup > form > table > tbody > tr {
     display: flex;
     flex-direction: column;
     text-align: left;
