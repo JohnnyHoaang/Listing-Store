@@ -30,16 +30,16 @@ class CreateThread(View):
             reciever = User.objects.get(username=username)
             if ThreadModel.objects.filter(user=request.user, reciever=reciever).exists():
                 thread = ThreadModel.objects.filter(user=request.user, reciever=reciever)[0]
-                return redirect(f'thread/{thread.pk}')
+                return redirect(f'inbox/{thread.pk}')
             elif ThreadModel.objects.filter(user=reciever, reciever=request.user).exists():
                 thread = ThreadModel.objects.filter(user=reciever, reciever=request.user)[0]
-                return redirect('thread', pk=thread.pk)
+                return redirect(f'inbox/{thread.pk}')
 
             if form.is_valid():
                 sender_thread = ThreadModel(user=request.user, reciever=reciever)
                 sender_thread.save()
                 thread_pk = sender_thread.pk
-                return redirect('thread', pk=thread_pk)
+                return redirect(f'inbox/{thread.pk}')
 
         except:
             return redirect('create-thread')
