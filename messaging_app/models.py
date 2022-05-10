@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 class ThreadModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = '+')
     reciever = models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
+    has_unread = models.BooleanField(default=False)
 
 class Message(models.Model):
     thread = models.ForeignKey('ThreadModel', related_name='+', on_delete=models.CASCADE, blank=True, null=True)
