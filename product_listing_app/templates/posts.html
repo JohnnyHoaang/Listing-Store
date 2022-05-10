@@ -1,18 +1,9 @@
 {% block content %}
-    <div class="box">
-        <div class="row">
-            <div class="style">
-            <div class="card">
-            <div class="post-body">
-            <br>
-                <h1>{{ title }}</h1>
-                <p>{{ category }}</p>
-                <p>Posts Here</p>
-                <a href="{% url 'create' %}"><button>Create Post</button>
-
-            </div>
-        </div>
-    </div>
-</div>
+    {% for post in posting %}
+        <h1>Title: {{post.title}}</h1>
+        <p>Category: {{ post.category }}</p>
+    {% endfor %}
+    <p>Posts Here</p>
+    <a href="{% url 'create' %}"><button>Create Post</button></a>
 
 {% endblock content %}
