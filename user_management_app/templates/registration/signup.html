@@ -1,16 +1,7 @@
 {% extends "base.html" %}
 {% block content %}  
   
-<div class = "signup">  
-  
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}  
-      
+<div class = "signup">       
     <h1>Create an account</h1>  
   
     <form method="post" >  
@@ -20,16 +11,11 @@
         </table>     
         <input class = "registration_button" type="submit" name="submit" value="Register" />  
     </form>  
+    {% if messages %}   
+        {% for message in messages %}  
+            {{ message }}  
+        {% endfor %}   
+    {% endif %} 
 </div>  
   
 {% endblock content %}  
-
-
-{% comment %} {% block content %}
-<h2>Create an account</h2>
-    <form action='' method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
-{% endblock content %} {% endcomment %}

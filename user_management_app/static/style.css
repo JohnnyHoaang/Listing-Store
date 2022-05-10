@@ -7,26 +7,22 @@
 html{
     height:100%; 
     width:100%;
-    /* font-family: monospace; */
     background-color: #dbe3e5;
 }
   
 body{
-    /* background-color: #d5d6ec; */
     display: flex;
     flex-direction: column;
 }
 
 .main{
-    /* background-image: url("static/background1.jpg") 50% 0 no-repeat fixed; */
-    /* color: white; */
     height: 50em;
-    /* padding: 40px 0 0 0;  */
+    padding: 40px; 
 }
 
 #logo{
     position: absolute;
-    top: -2.5em;
+    top: -1.7em;
 }
 
 header, footer{
@@ -56,13 +52,15 @@ div.registration{
     display: flex;
 }
 
-/* div.registration > span > button{
-    padding: 0.5em;
+a.red{
+    color: #e11a50;
+}
 
-} */
+a.green{
+    color: #6cad16;
+}
 
 div.registration > div > span > h3 > a{
-    color: black;
     text-decoration: None;
 
 }
@@ -71,8 +69,6 @@ div.registration > div > span > h3 > a{
     background-color: white;
     margin: auto;
     width: 31em;
-    margin-top: 20px;
-    margin-bottom: 20px;
     border-radius: 10px;
 }
 
@@ -85,20 +81,20 @@ div.registration > div > span > h3 > a{
 }
 
 input {
-    /* width: 250%; */
     width: 29.5em;
     padding: 10px;
-    margin: 5px 0 10px 0;
     border: none;
     background: #f1f1f1;
 }
 
 .registration_button{
     width: 40%;    
-    background-color: aqua;
+    background-color: #8ac53f;
     border-radius: 10px;  
     margin-left: 150px;
-    
+    text-decoration: None;
+    color: black;
+    text-align: center;
 }
 
 tr {
@@ -119,7 +115,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 #searchbar{
     margin: auto;
-    width: 50%;
+    width: 40%;
     background: #c9c9c9;
     border-radius: 5px;
 }
@@ -135,4 +131,74 @@ input[type=text]:focus, input[type=password]:focus {
     margin-left: 25px;
 }
 
+.profile{
+    display: flex;
+}
 
+.profile_display{
+    margin-left: 5%;
+    background: white;
+    padding: 1em;
+    border-radius: 10px;
+    width: 25%;
+}
+
+.profile_display > div > h1{
+    font-size: xxx-large;
+}
+
+#profile_change{
+    width: 35%;
+}
+
+#profile_change > form{
+    margin-left: 2%;
+}
+ 
+.service{
+    width: 20%;
+    background: white;
+    margin-right: 5%;
+    border-radius: 10px;
+}
+
+.service > h1{
+    background: black;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+}
+
+.service > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.service > div > button{
+    margin: 10%;
+}
+
+.service > div > img{
+    margin: auto;
+    margin-top: 6px;
+}
+
+#avatar_input{
+    background: white;
+    width: 100%;
+}
+
+#avatar_button{
+    width: 40%;
+    padding: 1%;
+    background: #8ac53f;
+    border-radius: 10px;
+}
+
+.profile_picture{
+    border-radius: 50%;
+}
+
+a.red{
+    color: #e11a50;
+}

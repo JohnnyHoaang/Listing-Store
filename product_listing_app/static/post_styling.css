@@ -1,16 +1,62 @@
 body {
     font-family:Arial, Helvetica, sans-serif;
   }
+
   h1 {
-    color: white;
-    background-color: #53537d;
+    /* color: rgb(243, 46, 138); */
+    background-color: #7e7eac;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  h2{
     text-align: center;
   }
-  span{
-    color: white;
-    background-color: #53537d;
-    text-align: center;
+
+  button{
+    padding: 5px 15px 5px 15px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(181, 177, 177);
+    border-radius:15px;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border: none;
+  }
+
+  button:hover{
+    background-color: rgb(202, 198, 198);
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border-radius:15px;
+    border: none;
+  }
+
+  #post_form{
+    padding:10px;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border-radius:15px;
+    border: solid rgb(143, 207, 91);
     display: inline-block;
-    padding: 10px 10px;
-    margin: 10px 10px 0 0;
+    margin-inline-start: 30vw;
   }
+
+  textarea {
+    background-color: rgba(215, 210, 210, 0.856);
+    box-sizing: border-box;
+    margin: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  select{
+    background-color: rgba(215, 210, 210, 0.856);
+    margin: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  input{
+    background-color: rgba(215, 210, 210, 0.856);
+    /* margin: 10px; */
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
