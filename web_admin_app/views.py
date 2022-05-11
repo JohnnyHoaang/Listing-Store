@@ -159,3 +159,10 @@ def edit_post(request, title):
         'u_form': form
     }
     return render(request, 'web_app/edit_posts.html', context)
+
+def show_post(request, title):
+    post = Post.objects.get(title=title)
+    context = {
+        'post': post
+    }
+    return render(request, 'web_app/show_post.html', context)

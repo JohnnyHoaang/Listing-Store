@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% block jsblock %}
+<link rel="stylesheet", href="{% static 'styles.css' %}">
+<div>
+  <h1>Post Details</h1>
+  <h2>Title: {{ post.title }}</h2>
+  <p></p>
+  <h2>Description: {{ post.description }}</h2>
+  <p></p>
+  <h2>Category: {{ post.category }}</h2>
+  <p></p>
+  <h2>Status: {{ post.status }}</h2>
+  <p></p>
+  <h2>Price: {{ post.price }}</h2>
+  <p></p>
+  <h2>Date: {{ post.date }}</h2>
+  <p></p>
+  <h2>Keywords: {{ post.keywords }}</h2>
+  <p> </p>
+</div>
+{% endblock %}
+{% endblock %}

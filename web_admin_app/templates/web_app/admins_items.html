@@ -17,8 +17,8 @@
         <td>{{ member.username }}</td>
         <td> {{ member.groups__name }} </td>
         <td><button id='edit'>Edit details</button></td>
-        <td><button onclick="location.href='{% url 'block_users' username=member.username %}'" id='flag'>Flag</button></td>
-        <td><button onclick="location.href='{% url 'unblock_users' username=member.username %}'">Unflag</button></td>
+        <td><button onclick="location.href='{% url 'block_users' username=member.username %}'" id='flag'>Block</button></td>
+        <td><button onclick="location.href='{% url 'unblock_users' username=member.username %}'">Unblock</button></td>
         <td><button onclick="location.href='{% url 'delete_user' username=member.username %}'" id='delete' >Delete</button></td>
     </tr>
     {% endfor %}
@@ -27,28 +27,18 @@
 <table id='itemTable'>
     <tr>
         <th>Title</th>
-        <th>Description</th>
         <th>Category</th>
-        <th>Status</th>
         <th>Price</th>
-        <th>Date</th>
-        <th>Keywords</th>
-        <th>Image</th>
     </tr>
     {% for post in posts %}
     <tr>
         <td> {{ post.title }}</td>
-        <td> {{ post.description }}</td>
         <td> {{ post.category }}</td>
-        <td> {{ post.status }}</td>
         <td> {{ post.price }}</td>
-        <td> {{ post.date }}</td>
-        <td> {{ post.keywords }}</td>
-        <td><img src="../../../static/{{ post.image }}" width="40px" height="40px"></td>
+        <td><button onclick="location.href='{% url 'show_posts' title=post.title %}'">More details</button></td>
         <td><button id='flag'>Flag</button></td>
         <td><button onclick="location.href='{% url 'edit_posts' title=post.title %}'" id='edit'>Edit</button></td>
-        <td><button onclick="location.href='{% url 'delete_posts' title=post.title%}'" id='delete'>Delete</button></td>
-
+        <td><button onclick="location.href='{% url 'delete_posts' title=post.title %}'" id='delete'>Delete</button></td>
     </tr>
     {% endfor %}
 </table>

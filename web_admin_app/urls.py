@@ -14,4 +14,6 @@ urlpatterns = [
     path('dashboard/edit_details/<str:username>', views.edit_user_details, name='edit_user_details'),
     path('dashboard/modify_group/<str:username>', views.modify_group, name='modify_group'),
     path('dashboard/edit_post/<str:title>', views.edit_post, name='edit_posts'),
+    path('dashboard/show_post/<str:title>', views.show_post, name='show_posts'),
+    
 ]
