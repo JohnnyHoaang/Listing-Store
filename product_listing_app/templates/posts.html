@@ -1,9 +1,12 @@
 {% block content %}
-    {% for post in posting %}
-        <h1>Title: {{post.title}}</h1>
-        <p>Category: {{ post.category }}</p>
-    {% endfor %}
     <p>Posts Here</p>
+    <ul>
+    {% for post in posting_list %}
+        <li>Title: {{ post.title }}</li>
+    {% empty %}
+        EMPTY
+    {% endfor %}
+    </ul>
     <a href="{% url 'create' %}"><button>Create Post</button></a>
 
-{% endblock content %}
+{% endblock %}
