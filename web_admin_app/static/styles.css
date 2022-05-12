@@ -3,7 +3,14 @@
   color : white
   
 }
-
+.block {
+  background-color: darkgoldenrod;
+  color : white;
+}
+.unblock {
+  background-color: green;
+  color : white;
+}
 #edit {
   background-color: blue;
   color : white;

@@ -22,16 +22,16 @@
         <td><button onclick="location.href='{% url 'edit_user_details' username=user.username %}'" id='edit'>Edit details</button></td>
         <td><button onclick="location.href='{% url 'modify_group' username=user.username %}'" id='modify'>Modify group</button></td>
         {% if user.is_active%}
-        <td><button onclick="location.href='{% url 'block_users' username=user.username %}'" id='flag'>Block</button></td>
+        <td><button onclick="location.href='{% url 'block_users' username=user.username %}'" class='block'>Block</button></td>
         {% else %}
-        <td><button onclick="location.href='{% url 'unblock_users' username=user.username %}'">Unblock</button></td>
+        <td><button onclick="location.href='{% url 'unblock_users' username=user.username %}'" class="unblock">Unblock</button></td>
         {% endif %}
         <td><button onclick="location.href='{% url 'delete_user' username=user.username %}'" id='delete' >Delete</button></td>
     </tr>
     {% endfor %}
 </table>
 <br>
-<h2>Items List</h2>
+<h2>Product List</h2>
 <br>
 <table id='itemTable' class='table'>
     <tr>
@@ -45,7 +45,11 @@
         <td> {{ post.category }}</td>
         <td> {{ post.price }}</td>
         <td><button onclick="location.href='{% url 'show_posts' title=post.title %}'">More details</button></td>
-        <td><button class="flag" value="false">Flag</button></td>
+        {% if post.flagged %}
+        <td>Product flagged!<button class="flag" onclick="location.href='{% url 'unflag_post' title=post.title %}'">Unflag</button></td>
+        {% else %}
+        <td><button class="flag" onclick="location.href='{% url 'flag_post' title=post.title %}'">Flag</button></td>
+        {% endif %}
         <td><button onclick="location.href='{% url 'edit_posts' title=post.title %}'" id='edit'>Edit</button></td>
         <td><button onclick="location.href='{% url 'delete_posts' title=post.title %}'" id='delete'>Delete</button></td>
     </tr>

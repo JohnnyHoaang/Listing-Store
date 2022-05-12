@@ -73,12 +73,13 @@ def delete_post(request, title):
 def admin_access(request):
     non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name', 'is_active')
     print(non_admin_users)
-    posts = Post.objects.all()
+    posts = Post.objects.all().values('title','category','price','flagged')
     template = loader.get_template('web_app/admins.html')
     context = {
         'non_admin_users' : non_admin_users,
         'posts' : posts,
     }
+    print(posts)
     return HttpResponse(template.render(context,request))
 
 def add_member(form):
@@ -166,3 +167,20 @@ def show_post(request, title):
         'post': post
     }
     return render(request, 'web_app/show_post.html', context)
+
+def flag_post(request, title):
+    if title is not None:
+        post = Post.objects.get(title=title)
+        post.flagged = True
+        post.save()
+    return redirect_dashboard_page(request)
+
+def unflag_post(request, title):
+    if title is not None:
+        post = Post.objects.get(title=title)
+        post.flagged = False
+        post.save()
+    return redirect_dashboard_page(request)
+
+
+    
