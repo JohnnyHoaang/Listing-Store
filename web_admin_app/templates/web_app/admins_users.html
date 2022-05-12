@@ -19,7 +19,6 @@
         <td><button onclick="location.href='{% url 'edit_user_details' username=member.username %}'" id='edit'>Edit details</button></td>
         <td><button onclick="location.href='{% url 'block_users' username=member.username %}'" id='flag'>Block</button></td>
         <td><button onclick="location.href='{% url 'unblock_users' username=member.username %}'">Unblock</button></td>
-        <td><button id='warn'>Warn</button></td>
         <td><button onclick="location.href='{% url 'delete_user' username=member.username %}'" id='delete'>Delete</button></td>
     </tr>
     {% endfor %}

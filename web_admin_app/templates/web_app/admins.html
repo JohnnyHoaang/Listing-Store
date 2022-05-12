@@ -6,6 +6,7 @@
 <link rel="stylesheet", href="{% static 'styles.css' %}">
 <script defer src="{% static 'script.js' %}"></script> 
 <h2>Users List</h2>
+<br>
 <button  onclick="location.href='{% url 'add_member' %}'">Add member</button>
 <table id='memberTable'>
     <tr>
@@ -19,14 +20,16 @@
         <td>{{ user.username }}</td>
         <td> {{ user.groups__name }} </td>
         <td><button onclick="location.href='{% url 'edit_user_details' username=user.username %}'" id='edit'>Edit details</button></td>
-        <td><button onclick="location.href='{% url 'modify_group' username=user.username %}'" id='delete' id='modify'>Modify group</button></td>
+        <td><button onclick="location.href='{% url 'modify_group' username=user.username %}'" id='modify'>Modify group</button></td>
         <td><button onclick="location.href='{% url 'block_users' username=user.username %}'" id='flag'>Block</button></td>
         <td><button onclick="location.href='{% url 'unblock_users' username=user.username %}'">Unblock</button></td>
         <td><button onclick="location.href='{% url 'delete_user' username=user.username %}'" id='delete' >Delete</button></td>
     </tr>
     {% endfor %}
 </table>
+<br>
 <h2>Items List</h2>
+<br>
 <table id='itemTable'>
     <tr>
         <th>Title</th>
