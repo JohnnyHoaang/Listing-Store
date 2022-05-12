@@ -21,10 +21,7 @@ class CreatePost(LoginRequiredMixin,CreateView):
     fields = ['title', 'category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/'
     
-class ListPost(ListView):
+class PostView(ListView):
     model = Post
     template_name = 'posts.html'
-    context_object_name= 'posting_list'
-
-    def get_queryset(self):
-        return super().get_queryset()
+    context_object_name= 'posts'

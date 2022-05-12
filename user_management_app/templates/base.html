@@ -29,9 +29,9 @@
                 {% endif %}
             </div>
         </header>
-        <section class="main" style="background-image: url('{% static "background2.jpg"%}')">
-            {% block content %} {% include 'posts.html' %} {% endblock %}
-        </section>
+        <div class="main" style="background-image: url('{% static "background2.jpg" %}')">
+            {% block content %}{% endblock %}
+        </div>
         <footer>
             &copy; 2022
         </footer>

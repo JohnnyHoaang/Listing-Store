@@ -5,9 +5,7 @@
 <br>
     <form id="post_form" action="" method="POST">
         {% csrf_token %}
-        <table>
-        {{ form.as_table }}
-        </table>
-        <input class="post_btn" value="Post" type="submit"/>
+        {{form | crispy }}
+        <button type="submit">Post</button>
     </form>
-{% endblock content  %}
+{% endblock content %}

@@ -3,7 +3,7 @@ from django.db import models
 #from djangoratings.fields import RatingField
 from django.contrib.contenttypes.fields import GenericRelation
 from star_ratings.models import Rating
-from user_management_app.models import Profile
+from user_management_app.models import Profile, User
 
 # Create your models here.
 class Post(models.Model):
@@ -21,6 +21,7 @@ class Post(models.Model):
         ('Explicit', 'Explicit'),
     ]
     title = models.CharField(max_length=2000)
+    # author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=2000, choices=categories_for_post, default=categories_for_post)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     keywords = models.CharField(max_length=2000, null=True)
@@ -41,3 +42,4 @@ class Post(models.Model):
         # or decode('utf-8')
         encode_image = base64.b64encode(self.image).decode('ascii')
         return encode_image
+

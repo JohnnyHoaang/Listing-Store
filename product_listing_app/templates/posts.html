@@ -1,12 +1,10 @@
+{% extends "base.html" %}
 {% block content %}
-    <p>Posts Here</p>
-    <ul>
-    {% for post in posting_list %}
-        <li>Title: {{ post.title }}</li>
-    {% empty %}
-        EMPTY
-    {% endfor %}
-    </ul>
-    <a href="{% url 'create' %}"><button>Create Post</button></a>
+<p>Posts Here</p>
 
+    {% for post in posts %}
+        {{ post.title }}
+        {{ post.description }}
+    {% endfor %}
+    <a href="{% url 'create' %}"><button>Create Post</button></a>
 {% endblock %}
