@@ -3,11 +3,17 @@
   color : white
   
 }
-.block {
+#block {
   background-color: darkgoldenrod;
   color : white;
 }
-.unblock {
+#block:hover {
+  background-color: green;
+}
+#unblock:hover {
+  background-color: darkgoldenrod;
+}
+#unblock {
   background-color: green;
   color : white;
 }
@@ -58,6 +64,7 @@ table tbody tr:nth-of-type(even) {
   margin-right: auto;
 }
 
-#add {
-  margin-left: 35em;
+.center {
+  display: flex;
+  justify-content: center;
 }

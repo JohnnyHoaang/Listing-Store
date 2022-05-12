@@ -4,24 +4,32 @@
 {% block jsblock %}
 <link rel="stylesheet", href="{% static 'styles.css' %}">
 <h2>Members List</h2>
-<button  onclick="location.href='{% url 'add_member' %}'" id="add">Add member</button>
+<br>
+<div class="center">
+    <button onclick="location.href='{% url 'add_member' %}'" id="add">Add member</button>
+</div>
 <table class='table'>
     <tr>
         <th>User ID</th>
         <th>Username</th>
         <th>Group</th>
     </tr>
+    {% if members %}
     {% for member in members %}
     <tr>
         <td>{{ member.id }}</td>
         <td>{{ member.username }}</td>
         <td> {{ member.groups__name }} </td>
         <td><button onclick="location.href='{% url 'edit_user_details' username=member.username %}'" id='edit'>Edit details</button></td>
-        <td><button onclick="location.href='{% url 'block_users' username=member.username %}'" id='flag'>Block</button></td>
-        <td><button onclick="location.href='{% url 'unblock_users' username=member.username %}'">Unblock</button></td>
+        {% if member.is_active%}
+        <td><button onclick="location.href='{% url 'block_users' username=member.username %}'" id='block'>Block</button></td>
+        {% else %}
+        <td><button onclick="location.href='{% url 'unblock_users' username=member.username %}'" id="unblock">Unblock</button></td>
+        {% endif %}
         <td><button onclick="location.href='{% url 'delete_user' username=member.username %}'" id='delete'>Delete</button></td>
     </tr>
     {% endfor %}
+    {% endif %}
 </table>
 {% endblock %}
 {% endblock %}

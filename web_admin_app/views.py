@@ -38,7 +38,7 @@ def members_page(request):
 # loads admin users page
 @user_passes_test(group_filters.is_admin_users)
 def admin_manage_users(request):
-    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
+    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name', 'is_active')
     template = loader.get_template('web_app/admins_users.html')
     context = {
         'members' : members
@@ -47,7 +47,7 @@ def admin_manage_users(request):
 # loads admin items page
 @user_passes_test(group_filters.is_admin_items)
 def admin_manage_items(request):
-    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name')
+    members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name', 'is_active')
     posts = Post.objects.all()
     template = loader.get_template('web_app/admins_items.html')
     context = {
