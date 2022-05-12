@@ -68,3 +68,9 @@ table tbody tr:nth-of-type(even) {
   display: flex;
   justify-content: center;
 }
+
+.form{
+  margin: auto;
+  width: 31em;
+  border-radius: 10px;
+}
