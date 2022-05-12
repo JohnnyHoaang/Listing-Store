@@ -4,8 +4,8 @@
 {% block jsblock %}
 <link rel="stylesheet", href="{% static 'styles.css' %}">
 <h2>Members List</h2>
-<button  onclick="location.href='{% url 'add_member' %}'">Add member</button>
-<table id='memberTable'>
+<button  onclick="location.href='{% url 'add_member' %}'" id="add">Add member</button>
+<table id='memberTable' class='table'>
     <tr>
         <th>User ID</th>
         <th>Username</th>
@@ -24,7 +24,7 @@
     {% endfor %}
 </table>
 <h2>Items table</h2>
-<table id='itemTable'>
+<table id='itemTable' class='table'>
     <tr>
         <th>Title</th>
         <th>Category</th>

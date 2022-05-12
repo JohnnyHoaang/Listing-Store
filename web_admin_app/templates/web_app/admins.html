@@ -7,8 +7,8 @@
 <script defer src="{% static 'script.js' %}"></script> 
 <h2>Users List</h2>
 <br>
-<button  onclick="location.href='{% url 'add_member' %}'">Add member</button>
-<table id='memberTable'>
+<button onclick="location.href='{% url 'add_member' %}'" id="add">Add member</button>
+<table id='memberTable' class='table'>
     <tr>
         <th>User ID</th>
         <th>Username</th>
@@ -21,8 +21,11 @@
         <td> {{ user.groups__name }} </td>
         <td><button onclick="location.href='{% url 'edit_user_details' username=user.username %}'" id='edit'>Edit details</button></td>
         <td><button onclick="location.href='{% url 'modify_group' username=user.username %}'" id='modify'>Modify group</button></td>
+        {% if user.is_active%}
         <td><button onclick="location.href='{% url 'block_users' username=user.username %}'" id='flag'>Block</button></td>
+        {% else %}
         <td><button onclick="location.href='{% url 'unblock_users' username=user.username %}'">Unblock</button></td>
+        {% endif %}
         <td><button onclick="location.href='{% url 'delete_user' username=user.username %}'" id='delete' >Delete</button></td>
     </tr>
     {% endfor %}
@@ -30,7 +33,7 @@
 <br>
 <h2>Items List</h2>
 <br>
-<table id='itemTable'>
+<table id='itemTable' class='table'>
     <tr>
         <th>Title</th>
         <th>Category</th>
@@ -48,6 +51,7 @@
     </tr>
     {% endfor %}
 </table>
+
 </div>
 {% endblock %}
 {% endblock %}

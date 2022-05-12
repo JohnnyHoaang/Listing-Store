@@ -71,7 +71,7 @@ def delete_post(request, title):
     
 @user_passes_test(group_filters.is_admin)
 def admin_access(request):
-    non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name')
+    non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name', 'is_active')
     print(non_admin_users)
     posts = Post.objects.all()
     template = loader.get_template('web_app/admins.html')

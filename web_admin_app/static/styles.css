@@ -32,6 +32,8 @@ th, td {
 }
 
 table {
+  margin-left: auto;
+  margin-right: auto;
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
@@ -42,4 +44,13 @@ table {
 
 table tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
+}
+
+.table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#add {
+  margin-left: 35em;
 }

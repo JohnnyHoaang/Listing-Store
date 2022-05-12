@@ -4,8 +4,8 @@
 {% block jsblock %}
 <link rel="stylesheet", href="{% static 'styles.css' %}">
 <h2>Members List</h2>
-<button  onclick="location.href='{% url 'add_member' %}'">Add member</button>
-<table>
+<button  onclick="location.href='{% url 'add_member' %}'" id="add">Add member</button>
+<table class='table'>
     <tr>
         <th>User ID</th>
         <th>Username</th>
