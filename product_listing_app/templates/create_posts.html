@@ -6,6 +6,7 @@
     <form id="post_form" action="" method="POST">
         {% csrf_token %}
         {{form | crispy }}
+        <input id="image_input" type="file" name="image" accept="image/*" />
         <button type="submit">Post</button>
     </form>
 {% endblock content %}

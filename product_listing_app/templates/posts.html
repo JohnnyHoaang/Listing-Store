@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<p>Posts Here</p>
-
+<h1>Posts Here</h1>
+<br>
     {% for post in posts %}
-        {{ post.title }}
-        {{ post.description }}
+    <ul>
+    <div class="profile_display">
+        <img class="post_image" src="data:;base64,{{ convert_image }}" width="200" height="200"/>
+    <div>
+    <li>Title: {{ post.title }}</li>
+    <li>Category: {{ post.category }}</li>
+    <li>Price: {{ post.price }}</li>
+    <li>Keywords: {{ post.keywords }}</li>
+    <li>Description: {{ post.description }}</li>
+    <li>Status: {{ post.status }}</li>
+    <li>Date: {{ post.date }}</li>
+</ul>
+<br>
+     {% empty %}
+
+    <h4>There are no posts yet!</h4>
     {% endfor %}
-    <a href="{% url 'create' %}"><button>Create Post</button></a>
+    <br>
+    <a href="{% url 'create' %}"><button> Create a New Post</button></a>
 {% endblock %}

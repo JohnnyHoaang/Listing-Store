@@ -27,11 +27,10 @@ class Post(models.Model):
     keywords = models.CharField(max_length=2000, null=True)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=2000, choices=status_for_post, default=status_for_post)
-    image = models.BinaryField(blank=True, null=True, editable=True, verbose_name='Image')
+    image = models.BinaryField(blank=True, null=True, editable=True)
     date = models.DateField(auto_now_add=True)
     #rating = RatingField(range=5, can_change_vote = True, allow_anonymous = False)
     #rating  = GenericRelation(Rating, related_query_name='posts')
-
 
     def __str__(self):
         post_value = f'Title: {self.title}'
@@ -39,7 +38,7 @@ class Post(models.Model):
 
     @property
     def convert_image(self):
-        # or decode('utf-8')
-        encode_image = base64.b64encode(self.image).decode('ascii')
+        # or decode('ascii')
+        encode_image = base64.b64encode(self.image).decode('utf-8')
         return encode_image
 

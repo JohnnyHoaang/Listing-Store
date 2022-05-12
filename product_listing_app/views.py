@@ -25,3 +25,4 @@ class PostView(ListView):
     model = Post
     template_name = 'posts.html'
     context_object_name= 'posts'
+    #encoded_image = base64.b64encode(request.user.profile.avatar).decode("utf-8")

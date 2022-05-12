@@ -2,9 +2,8 @@ body {
     font-family:Arial, Helvetica, sans-serif;
   }
 
-  h1 {
-    /* color: rgb(243, 46, 138); */
-    background-color: #7e7eac;
+  h1{
+    background-color: #7d7d86;
     text-align: center;
     border-radius: 10px;
   }
@@ -32,7 +31,7 @@ body {
   #post_form{
     padding:10px;
     box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-    border-radius:15px;
+    border-radius:12px;
     border: solid rgb(143, 207, 91);
     display: inline-block;
     margin-inline-start: 30vw;
