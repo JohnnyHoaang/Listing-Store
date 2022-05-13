@@ -7,13 +7,13 @@
     <div class="profile_display">
         <img class="post_image" src="data:;base64,{{ convert_image }}" width="200" height="200"/>
     <div>
-    <a href="{% url 'details' post.pk %}">{{ post.title }}</a><br>
+    <a href="{% url 'details' post.pk %}" id="post_details">{{ post.title }}</a><br>
     <b>Category:</b> {{ post.category }}<br>
     <b>Keywords:</b> {{ post.keywords }}<br>
     <b>Description:</b> {{ post.description }}<br>
     <b>Status:</b> {{ post.status }}<br>
     <b>Status:</b> {{ post.price }}<br>
-    <small><a href="{% url 'edit' post.pk %}">Edit</a></small><br>
+    <small><a href="{% url 'edit' post.pk %}" id="edit_posts">Edit</a></small><br>
 
 </ul>
 <br>

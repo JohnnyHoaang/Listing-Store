@@ -2,11 +2,10 @@ import base64
 from tkinter import CASCADE
 from django.db import models
 #from djangoratings.fields import RatingField
-from django.contrib.contenttypes.fields import GenericRelation
 from django.urls import reverse
 from star_ratings.models import Rating
 from product_listing_project import settings
-from user_management_app.models import Profile, User
+from user_management_app.models import User
 
 # Create your models here.
 class Post(models.Model):
