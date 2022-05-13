@@ -1,0 +1,19 @@
+
+<h1> {{ post.title }}</h1>
+<small> By: </small><br>
+{{ post.date }}
+<hr>
+<br/>
+<b>Category:</b> {{ post.category }}<br>
+<br>
+<b>Price:</b> {{ post.price }}<br>
+<br>
+<b>Keywords:</b> {{ post.keywords }}<br>
+<br>
+<b>Description:</b> {{ post.description }}<br>
+<br>
+<b>Status:</b> {{ post.status }}<br>
+<br>
+<b>Date:</b> {{ post.date }}
+<br>
+<a href="{% url 'posts' %}"><button>Back</button></a>

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} Create Post{% endblock %}
+{% block title %} Edit Post{% endblock %}
 {% block content %}
-<h2>Create a Post</h2>
+<h2>Edit Your Post</h2>
 <br>
     <form id="post_form" action="" method="POST">
         {% csrf_token %}
         {{form | crispy }}
         <input id="image_input" type="file" name="image" accept="image/*" />
-        <button type="submit">Post</button>
+        <button type="submit">Update Post</button>
     </form>
 {% endblock content %}
