@@ -15,19 +15,18 @@ COMMENT ON DATABASE "django-db"
 GRANT ALL ON DATABASE "django-db" TO postgres;
 
 GRANT TEMPORARY, CONNECT ON DATABASE "django-db" TO PUBLIC;
+-- Password = django
+DROP ROLE IF EXISTS django;
 
--- Role: django (change pwd for django so that everyone uses the same pwd)
--- DROP ROLE IF EXISTS django;
+CREATE ROLE django WITH
+  LOGIN
+  NOSUPERUSER
+  INHERIT
+  CREATEDB
+  NOCREATEROLE
+  REPLICATION
+  ENCRYPTED PASSWORD 'SCRAM-SHA-256$4096:vOa3G04Vm8GyrGMXbAloIg==$/mqyErND/C1elg1A9GtdJdhlyUuiQmJ9O9/mG7Po+r8=:/Qw3wdAf8h3CSXMq3C64Bc7OPtwu4RdNDP8OzBzbll8=';
 
--- CREATE ROLE django WITH
---   LOGIN
---   NOSUPERUSER
---   INHERIT
---   CREATEDB
---   NOCREATEROLE
---   REPLICATION
---   ENCRYPTED PASSWORD 'SCRAM-SHA-256$4096:mAEvgBr5Cx/WRdNnD6zpAg==$6E5fs8M7BVoA8CwZ5Y4szmpQmAwbvBNX9H8CC40+r6c=:PRoinnZwg7vcA4yiwHxO+D5KQal8hKDRMmquikGoNMI=';
-
--- COMMENT ON ROLE django IS 'django-db user';
+COMMENT ON ROLE django IS 'django-db user';
 
 GRANT ALL ON DATABASE "django-db" TO django;

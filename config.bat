@@ -1,0 +1,1 @@
+SET DJANGO_PWD=django
