@@ -48,7 +48,7 @@ def admin_manage_users(request):
 @user_passes_test(group_filters.is_admin_items)
 def admin_manage_items(request):
     members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name', 'is_active')
-    posts = Post.objects.all()
+    posts = Post.objects.all().values('title','category','price', 'pk')
     template = loader.get_template('web_app/admins_items.html')
     context = {
         'members' : members,
@@ -73,7 +73,7 @@ def delete_post(request, title):
 def admin_access(request):
     non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name', 'is_active')
     print(non_admin_users)
-    posts = Post.objects.all().values('title','category','price','flagged')
+    posts = Post.objects.all().values('title','category','price','flagged', 'pk')
     template = loader.get_template('web_app/admins.html')
     context = {
         'non_admin_users' : non_admin_users,
@@ -156,13 +156,6 @@ def edit_post(request, title):
         'u_form': form
     }
     return render(request, 'web_app/edit_posts.html', context)
-
-def show_post(request, title):
-    post = Post.objects.get(title=title)
-    context = {
-        'post': post
-    }
-    return render(request, 'web_app/show_post.html', context)
 
 def flag_post(request, title):
     if title is not None:
