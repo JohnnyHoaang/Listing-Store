@@ -1,9 +1,9 @@
 
 <h1> {{ post.title }}</h1>
-<small> By: {{post.author}}</small><br>
+<small> By: {{post.user}}</small><br>
 {{ post.date }} <br>
-<a href="{% url 'edit' post.pk %}">[Edit]</a>
-<a href="{% url 'delete' post.pk %}">[Delete]</a>
+<a href="{% url 'edit' post.pk %}" id="editing_posts">[Edit]</a>
+<a href="{% url 'delete' post.pk %}" id="deleting posts">[Delete]</a>
 <hr>
 <br/>
 <b>Category:</b> {{ post.category }}<br>
