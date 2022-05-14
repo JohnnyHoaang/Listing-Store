@@ -1,11 +1,18 @@
 from .models import Post
 from .forms import CreatePostForm, PostEditForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
+def LikedPostView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('like_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('details', args=[str(pk)]))
 
-class CreatePost(LoginRequiredMixin,CreateView):
+class CreatePost(CreateView):
     model = Post
     form_class = CreatePostForm
     template_name = 'create_posts.html'
@@ -22,6 +29,13 @@ class PostView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'post_details.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+        query = get_object_or_404(Post, id=self.kwargs['pk'])
+        like_count = query.get_count_likes()
+        context["like_count"] = like_count
+        return context
 
 class EditPostView(UpdateView):
     model = Post

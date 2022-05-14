@@ -24,5 +24,14 @@
 <b>Date:</b> {{ post.date }}
 <br>
 <br>
+<form action="{% url 'post_likes' post.pk %}" method="POST">
+     {% csrf_token %}
+     Likes: {{ like_count }}
+     <br>
+     <br>
+     <button name="like_id", value="{{ post.id }}", type="submit">Like</button>
+</form>
+<br>
+<br>
 <a href="{% url 'posts' %}"><button>Back</button></a>
 {% endblock content %}

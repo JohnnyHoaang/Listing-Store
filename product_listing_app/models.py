@@ -48,3 +48,6 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse('posts/')
+
+    def get_count_likes(self):
+        return self.likes.count()
