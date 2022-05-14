@@ -7,7 +7,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 class CreatePost(LoginRequiredMixin,CreateView):
     model = Post
     template_name = 'create_posts.html'
-    fields = ['title', 'user', 'category', 'price', 'keywords', 'description', 'status', 'image']
+    fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/posts/'
     
 class PostView(ListView):
@@ -24,7 +24,7 @@ class PostDetailView(DetailView):
 class EditPostView(UpdateView):
     model = Post
     template_name = 'editing_posts.html'
-    fields = ['title', 'user','category', 'price', 'keywords', 'description', 'status', 'image']
+    fields = ['title', 'author','category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/posts/'
 
 class PostDeleteView(DeleteView):

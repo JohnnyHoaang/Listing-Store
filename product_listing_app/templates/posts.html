@@ -14,8 +14,12 @@
     <b>Status:</b> {{ post.status }}<br>
     <b>Price:</b> {{ post.price }}<br>
     <b>Date:</b> {{ post.date }}<br>
-    <small><a href="{% url 'edit' post.pk %}" id="edit_posts">Edit</a></small><br>
-    <small><a href="{% url 'delete' post.pk %}" id="delete_posts">Delete</a></small><br>
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+        <small><a href="{% url 'edit' post.pk %}" id="edit_posts">Edit</a></small><br>
+        <small><a href="{% url 'delete' post.pk %}" id="delete_posts">Delete</a></small><br>
+        {% endif %}
+    {% endif %}
 </ul>
 <br>
      {% empty %}

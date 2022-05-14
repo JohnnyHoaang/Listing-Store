@@ -35,7 +35,6 @@ body {
     border: solid rgb(143, 207, 91);
     display: inline-block;
     margin-inline-start: 30vw;
-    color:#ad3ea7;
   }
 
   textarea {
@@ -64,15 +63,14 @@ body {
     outline: none;
     text-decoration: none;
     padding: 2px 1px 0;
-    color: #3e93ad;
   }
   
   #edit_posts:link, #post_details:link, #delete_posts:link, #editing_posts:link, #deleting_posts:link {
-    color: #ad3ea7;
+    color: #3e93ad;
   }
   
   #edit_posts:visited, #post_details:visited, #delete_posts:visited, #editing_posts:visited, #deleting_posts:visited {
-    color: #793ead;
+    color: #ad3ea7;
   }
   
   #edit_posts:hover, #post_details:hover, #delete_posts:hover, #editing_posts:hover, #deleting_posts:hover {
@@ -81,5 +79,4 @@ body {
   
   #edit_posts:active, #post_details:active, #delete_posts:active, #editing_posts:active, #deleting_posts:active {
     color: #82b0be;
-    background-color: #ad3ea7;
   }

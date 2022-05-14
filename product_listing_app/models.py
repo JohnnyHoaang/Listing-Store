@@ -23,7 +23,7 @@ class Post(models.Model):
         ('Explicit', 'Explicit'),
     ]
     title = models.CharField(max_length=2000)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     category = models.CharField(max_length=2000, choices=categories_for_post, default=categories_for_post)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     keywords = models.CharField(max_length=2000, null=True)

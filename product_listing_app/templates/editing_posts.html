@@ -2,13 +2,25 @@
 {% load crispy_forms_tags %}
 {% block title %} Edit Post{% endblock %}
 {% block content %}
-<h2>Edit Your Post</h2>
-<br>
-    <form id="post_form" action="" method="POST">
-        {% csrf_token %}
-        {{form | crispy }}
-        <input id="image_input" type="file" name="image" accept="image/*" />
+
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+
+        <h2>Edit Your Post</h2>
         <br>
-        <button type="submit">Update</button>
-    </form>
+            <form id="post_form" action="" method="POST">
+                {% csrf_token %}
+                {{form | crispy }}
+                <input id="image_input" type="file" name="image" accept="image/*" />
+                <br>
+                <button type="submit">Update</button>
+            </form>
+        {% else %}
+        You are not the author of this post! You can not make changes to the content.
+        <a href="{% url 'posts' %}"><button>Back</button></a>
+    {% endif %}
+    {% else %}
+         You are not the author of this post! You can not make changes to the content.
+         <a href="{% url 'posts' %}"><button>Back</button></a>
+{% endif %}
 {% endblock content %}

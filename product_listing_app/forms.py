@@ -1,7 +1,7 @@
 from django import forms
 from datetime import datetime, date
+from product_listing_app.models import Post, Category
 
-from product_listing_app.models import Post
 
 class FormPosts(forms.Form):
     title = forms.CharField()
