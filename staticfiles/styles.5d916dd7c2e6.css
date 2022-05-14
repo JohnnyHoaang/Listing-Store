@@ -1,0 +1,71 @@
+#delete {
+  background-color: red;
+  color : white
+  
+}
+#block {
+  background-color: darkgoldenrod;
+  color : white;
+}
+#block:hover {
+  background-color: green;
+}
+#unblock:hover {
+  background-color: darkgoldenrod;
+}
+#unblock {
+  background-color: green;
+  color : white;
+}
+#edit {
+  background-color: blue;
+  color : white;
+}
+
+#modify {
+  background-color: yellow;
+}
+
+#warn {
+  background-color: yellow;
+}
+
+.flag {
+  background-color: yellow;
+}
+
+table, th, td {
+  border: thin;
+  border-collapse: collapse;
+  border-color:black;
+}
+
+th, td {
+  padding: 12px 15px;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form{
+  margin: auto;
+  width: 31em;
+  border-radius: 10px;
+}

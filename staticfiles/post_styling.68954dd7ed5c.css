@@ -1,0 +1,82 @@
+body {
+    font-family:Arial, Helvetica, sans-serif;
+  }
+
+  h1{
+    background-color: #7d7d86;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  h2{
+    text-align: center;
+  }
+
+  button{
+    padding: 5px 15px 5px 15px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(181, 177, 177);
+    border-radius:15px;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border: none;
+  }
+
+  button:hover{
+    background-color: rgb(202, 198, 198);
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border-radius:15px;
+    border: none;
+  }
+
+  #post_form{
+    padding:10px;
+    box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+    border-radius:12px;
+    border: solid rgb(143, 207, 91);
+    display: inline-block;
+    margin-inline-start: 30vw;
+  }
+
+  textarea {
+    background-color: rgba(215, 210, 210, 0.856);
+    box-sizing: border-box;
+    margin: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  select{
+    background-color: rgba(215, 210, 210, 0.856);
+    margin: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  input{
+    background-color: rgba(215, 210, 210, 0.856);
+    /* margin: 10px; */
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
+  #edit_posts, #post_details, #delete_posts, #editing_posts, #deleting_posts{
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+  }
+  
+  #edit_posts:link, #post_details:link, #delete_posts:link, #editing_posts:link, #deleting_posts:link {
+    color: #3e93ad;
+  }
+  
+  #edit_posts:visited, #post_details:visited, #delete_posts:visited, #editing_posts:visited, #deleting_posts:visited {
+    color: #ad3ea7;
+  }
+  
+  #edit_posts:hover, #post_details:hover, #delete_posts:hover, #editing_posts:hover, #deleting_posts:hover {
+    color: #5aafc9;
+  }
+  
+  #edit_posts:active, #post_details:active, #delete_posts:active, #editing_posts:active, #deleting_posts:active {
+    color: #82b0be;
+  }
