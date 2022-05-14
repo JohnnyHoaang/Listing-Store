@@ -48,14 +48,14 @@ def admin_manage_users(request):
 @user_passes_test(group_filters.is_admin_items)
 def admin_manage_items(request):
     members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name', 'is_active')
-    posts = Post.objects.all().values('title','category','price', 'pk')
+    posts = Post.objects.all().values('title','category','price', 'flagged', 'pk')
     template = loader.get_template('web_app/admins_items.html')
     context = {
         'members' : members,
         'posts' : posts,
     }
     return HttpResponse(template.render(context,request))
-    
+
 @user_passes_test(group_filters.is_admin)
 def admin_access(request):
     non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name', 'is_active')
