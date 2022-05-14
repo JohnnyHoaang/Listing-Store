@@ -12,7 +12,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
-
 # Create your views here.
 
 class CreatePost(LoginRequiredMixin,CreateView):

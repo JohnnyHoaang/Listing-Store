@@ -7,7 +7,7 @@ from product_listing_app.models import Post
 class PostUpdateForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['description', 'category', 'price', 'keywords', 'status', 'image']
+        fields = ['title', 'description', 'category', 'price', 'keywords', 'status']
 
 class GroupUpdateForm(forms.ModelForm):
     class Meta:
