@@ -46,12 +46,12 @@
         <td> {{ post.price }}</td>
         <td><button onclick="location.href='{% url 'show_post' post.pk %}'">More details</button></td>
         {% if post.flagged %}
-        <td>Product flagged!<button class="flag" onclick="location.href='{% url 'flag_post' title=post.title %}'">Unflag</button></td>
+        <td>Product flagged!<button class="flag" onclick="location.href='{% url 'flag_post' pk=post.pk %}'">Unflag</button></td>
         {% else %}
-        <td><button class="flag" onclick="location.href='{% url 'flag_post' title=post.title %}'">Flag</button></td>
+        <td><button class="flag" onclick="location.href='{% url 'flag_post' pk=post.pk %}'">Flag</button></td>
         {% endif %}
-        <td><button onclick="location.href='{% url 'edit_posts' title=post.title %}'" id='edit'>Edit</button></td>
-        <td><button onclick="location.href='{% url 'delete_posts' title=post.title %}'" id='delete'>Delete</button></td>
+        <td><button onclick="location.href='{% url 'edit_posts' pk=post.pk %}'" id='edit'>Edit</button></td>
+        <td><button onclick="location.href='{% url 'delete_posts' pk=post.pk %}'" id='delete'>Delete</button></td>
     </tr>
     {% endfor %}
     {% endif %}
