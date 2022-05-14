@@ -24,7 +24,7 @@ class PostDetailView(DetailView):
 class EditPostView(UpdateView):
     model = Post
     template_name = 'editing_posts.html'
-    fields = ['title', 'category', 'price', 'keywords', 'description', 'status', 'image']
+    fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/posts/'
 
 class PostDeleteView(DeleteView):
