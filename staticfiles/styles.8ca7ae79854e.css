@@ -1,0 +1,32 @@
+#delete {
+  background-color: red;
+  color : white
+  
+}
+
+#edit {
+  background-color: blue;
+  color : white;
+}
+
+#modify {
+  background-color: yellow;
+}
+
+#warn {
+  background-color: yellow;
+}
+
+#flag {
+  background-color: yellow;
+}
+
+table, th, td {
+  border: 2px solid;
+  border-collapse: collapse;
+  border-color:black;
+}
+
+td {
+  padding: 0.5em
+}

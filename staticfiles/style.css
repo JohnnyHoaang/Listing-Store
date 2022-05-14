@@ -1,0 +1,204 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height:100%; 
+    width:100%;
+    background-color: #dbe3e5;
+}
+  
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    height: 50em;
+    padding: 40px; 
+}
+
+#logo{
+    position: absolute;
+    top: -1.7em;
+}
+
+header, footer{
+    text-align: center;
+    padding: 2.4%;
+    background-color: #e2e2e6;
+    display: flex; 
+    color: black;
+    font-size: large;
+}
+
+header{
+    border-bottom: solid gray;
+}
+
+footer {
+    position: relative;
+    bottom:0;
+    width: 100%;
+    border-top: solid gray;
+ }
+ 
+div.registration{
+    position: absolute;
+    right: 0%;  
+    top: 4%;
+    display: flex;
+}
+
+a.red{
+    color: #e11a50;
+}
+
+a.green{
+    color: #6cad16;
+}
+
+div.registration > div > span > h3 > a{
+    text-decoration: None;
+
+}
+
+.signup {
+    background-color: white;
+    margin: auto;
+    width: 31em;
+    border-radius: 10px;
+}
+
+.signup > h1{
+    background-color: black;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 29.5em;
+    padding: 10px;
+    border: none;
+    background: #f1f1f1;
+}
+
+.registration_button{
+    width: 40%;    
+    background-color: #8ac53f;
+    border-radius: 10px;  
+    margin-left: 150px;
+    text-decoration: None;
+    color: black;
+    text-align: center;
+}
+
+tr {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 50px; 
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.registration > span {
+    margin-right: 25px;
+}
+
+#searchbar{
+    margin: auto;
+    width: 40%;
+    background: #c9c9c9;
+    border-radius: 5px;
+}
+
+.registration > div {
+    display: flex;
+    margin-right: 30px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.registration > div > span{
+    margin-left: 25px;
+}
+
+.profile{
+    display: flex;
+}
+
+.profile_display{
+    margin-left: 5%;
+    background: white;
+    padding: 1em;
+    border-radius: 10px;
+    width: 25%;
+}
+
+.profile_display > div > h1{
+    font-size: xxx-large;
+}
+
+#profile_change{
+    width: 35%;
+}
+
+#profile_change > form{
+    margin-left: 2%;
+}
+ 
+.service{
+    width: 20%;
+    background: white;
+    margin-right: 5%;
+    border-radius: 10px;
+}
+
+.service > h1{
+    background: black;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+}
+
+.service > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.service > div > button{
+    margin: 10%;
+}
+
+.service > div > img{
+    margin: auto;
+    margin-top: 6px;
+}
+
+#avatar_input{
+    background: white;
+    width: 100%;
+}
+
+#avatar_button{
+    width: 40%;
+    padding: 1%;
+    background: #8ac53f;
+    border-radius: 10px;
+}
+
+.profile_picture{
+    border-radius: 50%;
+}
+
+a.red{
+    color: #e11a50;
+}
