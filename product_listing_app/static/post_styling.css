@@ -63,6 +63,7 @@ body {
     outline: none;
     text-decoration: none;
     padding: 2px 1px 0;
+    color: #3e93ad;
   }
   
   #edit_posts:link, #post_details:link {
@@ -79,9 +80,9 @@ body {
   
   #edit_posts:hover, #post_details:hover {
     border-bottom: 1px solid;
-    background: #CDFEAA;
+    color: #5aafc9;
   }
   
   #edit_posts:active, #post_details:active {
-    color: #CDFEAA;
+    color: #82b0be;
   }

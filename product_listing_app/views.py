@@ -7,7 +7,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 class CreatePost(LoginRequiredMixin,CreateView):
     model = Post
     template_name = 'create_posts.html'
-    fields = ['title', 'category', 'price', 'keywords', 'description', 'status', 'image']
+    fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/posts/'
     
 class PostView(ListView):
