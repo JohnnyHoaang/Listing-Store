@@ -1,5 +1,4 @@
 import base64
-from tkinter import CASCADE
 from django.db import models
 #from djangoratings.fields import RatingField
 from django.urls import reverse
