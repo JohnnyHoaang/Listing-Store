@@ -80,12 +80,19 @@ div.registration > div > span > h3 > a{
     margin-bottom: 10px;
 }
 
-input {
+.profileTable > tbody > tr > td > input, .loginTable > tbody > tr > td > input, .signupTable > tbody > tr > td > input{
     width: 29.5em;
     padding: 10px;
     border: none;
     background: #f1f1f1;
 }
+input {
+    width: 19.5em;
+    padding: 10px;
+    border: none;
+    background: #f1f1f1;
+}
+
 
 .registration_button{
     width: 40%;    
@@ -118,6 +125,9 @@ input[type=text]:focus, input[type=password]:focus {
     width: 40%;
     background: #c9c9c9;
     border-radius: 5px;
+}
+#searchbutton {
+    width:7.5%;
 }
 
 .registration > div {
@@ -202,3 +212,13 @@ input[type=text]:focus, input[type=password]:focus {
 a.red{
     color: #e11a50;
 }
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.search {
+    width:90em;
+}
+  

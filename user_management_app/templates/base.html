@@ -13,11 +13,14 @@
     <body>
         <header>
             <a href={%url 'index'%}><img src="{% static 'logo.png'%}" width="165" height="165" id="logo"></a>
-            <form>
-            {% csrf_token %}
-            <input id="searchbar" type="text" placeholder="Search..." name="query">
-            <input type="submit" value="Search" id="search">
-            </form>
+            <div class="search">
+                <form>
+                    {% csrf_token %}
+                    <input id="searchbar" type="text" placeholder="Search..." name="query">
+                    <input id="searchbutton" type="submit" value="Search" id="search">
+                </form>
+            </div>
+            
             <div class="registration">
                 {% if user.is_authenticated %}
                 <div>
