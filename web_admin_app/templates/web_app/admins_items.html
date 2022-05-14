@@ -44,7 +44,7 @@
         <td> {{ post.title }}</td>
         <td> {{ post.category }}</td>
         <td> {{ post.price }}</td>
-        <td><button onclick="location.href='{% url 'details' post.pk %}'">More details</button></td>
+        <td><button onclick="location.href='{% url 'show_post' post.pk %}'">More details</button></td>
         {% if post.flagged %}
         <td>Product flagged!<button class="flag" onclick="location.href='{% url 'flag_post' title=post.title %}'">Unflag</button></td>
         {% else %}

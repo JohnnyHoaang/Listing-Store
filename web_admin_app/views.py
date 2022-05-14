@@ -144,6 +144,13 @@ def modify_group(request, username):
     }
     return render(request, 'web_app/modify_groups.html', context)
     
+def show_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    context = {
+        'post': post
+    }
+    return render(request, 'web_app/show_post.html', context)
+    
 def edit_post(request, title):
     post = Post.objects.get(title=title)
     form = PostUpdateForm(instance=post)

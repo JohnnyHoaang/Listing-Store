@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('dashboard', views.redirect_dashboard_page, name='dashboard'),
     path('dashboard/members', views.members_page, name='members'),
     path('dashboard/admin_users',views.admin_manage_users, name='admin_users'),
     path('dashboard/admin_items', views.admin_manage_items, name='admin_items'),
@@ -14,4 +15,5 @@ urlpatterns = [
     path('dashboard/modify_group/<str:username>', views.modify_group, name='modify_group'),
     path('dashboard/edit_post/<str:title>', views.edit_post, name='edit_posts'),
     path('dashboard/flag_post/<str:title>', views.flag_post, name='flag_post'),
+    path('dashboard/show_post/<int:pk>', views.show_post, name="show_post")
 ]

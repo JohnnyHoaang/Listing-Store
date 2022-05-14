@@ -3,6 +3,7 @@
 <h1> {{ post.title }}</h1>
 <small> By: {{post.author}}</small><br>
 {{ post.date }} <br>
+
 <hr>
 <br/>
 <b>Category:</b> {{ post.category }}<br>
@@ -18,5 +19,5 @@
 <b>Date:</b> {{ post.date }}
 <br>
 <br>
-<a href="{% url 'posts' %}"><button>Back</button></a>
+<a href="{% url 'dashboard' %}"><button>Back</button></a>
 {% endblock content %}
