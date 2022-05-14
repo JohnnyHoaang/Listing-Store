@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> {{ post.title }}</h1>
+<small> By: {{post.author}}</small><br>
+{{ post.date }} <br>
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <a href="{% url 'edit' post.pk %}" id="editing_posts">[Edit]</a>
+        <a href="{% url 'delete' post.pk %}" id="deleting posts">[Delete]</a>
+    {% endif %}
+{% endif %}
+<hr>
+<br/>
+<b>Category:</b> {{ post.category }}<br>
+<br>
+<b>Price:</b> {{ post.price }}<br>
+<br>
+<b>Keywords:</b> {{ post.keywords }}<br>
+<br>
+<b>Description:</b> {{ post.description }}<br>
+<br>
+<b>Status:</b> {{ post.status }}<br>
+<br>
+<b>Date:</b> {{ post.date }}
+<br>
+<br>
+<a href="{% url 'posts' %}"><button>Back</button></a>
+{% endblock content %}
