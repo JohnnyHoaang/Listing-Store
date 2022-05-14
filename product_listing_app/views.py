@@ -1,4 +1,5 @@
 from .models import Post
+from .forms import CreatePostForm, PostEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
@@ -6,8 +7,9 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 
 class CreatePost(LoginRequiredMixin,CreateView):
     model = Post
+    form_class = CreatePostForm
     template_name = 'create_posts.html'
-    fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
+    # fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/posts/'
     
 class PostView(ListView):
@@ -23,8 +25,9 @@ class PostDetailView(DetailView):
 
 class EditPostView(UpdateView):
     model = Post
+    form_class = PostEditForm
     template_name = 'editing_posts.html'
-    fields = ['title', 'author','category', 'price', 'keywords', 'description', 'status', 'image']
+    # fields = ['title', 'author','category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/posts/'
 
 class PostDeleteView(DeleteView):

@@ -31,7 +31,7 @@ class Post(models.Model):
     status = models.CharField(max_length=2000, choices=status_for_post, default=status_for_post)
     image = models.BinaryField(blank=True, null=True, editable=True)
     date = models.DateField(auto_now_add=True)
-    #likes = models.PositiveIntegerField(default=0)
+    likes = models.ManyToManyField(User, related_name='liked_posts')
     #user_likes = models.ManyToManyField(User)
     #rating = RatingField(range=5, can_change_vote = True, allow_anonymous = False)
     #rating  = GenericRelation(Rating, related_query_name='posts')

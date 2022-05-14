@@ -1,16 +1,36 @@
 from django import forms
 from datetime import datetime, date
-from product_listing_app.models import Post, Category
+from .models import Post
 
 
-class FormPosts(forms.Form):
-    title = forms.CharField()
-    description = forms.CharField()
-    creation_date = forms.DateField()
+class CreatePostForm(forms.ModelForm):
+   class Meta:
+       model = Post
+       fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
+       widgets = {
+            'title': forms.TextInput(attrs={'class':'form-styling'}),
+            'author': forms.TextInput(attrs={'class':'form-styling', 'value':'', 'id':'username', 'type':'hidden'}),
+            #'author': forms.Select(attrs={'class':'form-styling'}),
+            'category': forms.Select(attrs={'class':'form-styling'}),
+            'price': forms.NumberInput(attrs={'class':'form-styling'}),
+            'keywords': forms.TextInput(attrs={'class':'form-styling'}),
+            'description': forms.Textarea(attrs={'class':'form-styling'}),
+            'status': forms.Select(attrs={'class':'form-styling'}),
+            'image': forms.FileInput(attrs={'class':'form-styling'}),
+        }
 
-    def clean_due_date(self):
-        data = self.cleaned_data['creation_date']
-        #Validation
-        if data < date.today():
-            raise forms.ValidationError("Invalid due date")
-        return data
+class PostEditForm(forms.ModelForm):
+    class Meta:
+       model = Post
+       fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
+       widgets = {
+            'title': forms.TextInput(attrs={'class':'form-styling'}),
+            'author': forms.TextInput(attrs={'class':'form-styling'}),
+            #'author': forms.Select(attrs={'class':'form-styling'}),
+            'category': forms.Select(attrs={'class':'form-styling'}),
+            'price': forms.NumberInput(attrs={'class':'form-styling'}),
+            'keywords': forms.TextInput(attrs={'class':'form-styling'}),
+            'description': forms.Textarea(attrs={'class':'form-styling'}),
+            'status': forms.Select(attrs={'class':'form-styling'}),
+            'image': forms.FileInput(attrs={'class':'form-styling'}),
+        }
