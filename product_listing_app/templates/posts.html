@@ -12,9 +12,10 @@
     <b>Keywords:</b> {{ post.keywords }}<br>
     <b>Description:</b> {{ post.description }}<br>
     <b>Status:</b> {{ post.status }}<br>
-    <b>Status:</b> {{ post.price }}<br>
+    <b>Price:</b> {{ post.price }}<br>
+    <b>Date:</b> {{ post.date }}<br>
     <small><a href="{% url 'edit' post.pk %}" id="edit_posts">Edit</a></small><br>
-
+    <small><a href="{% url 'delete' post.pk %}" id="delete_posts">Delete</a></small><br>
 </ul>
 <br>
      {% empty %}

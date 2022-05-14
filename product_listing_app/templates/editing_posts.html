@@ -8,6 +8,7 @@
         {% csrf_token %}
         {{form | crispy }}
         <input id="image_input" type="file" name="image" accept="image/*" />
-        <button type="submit">Update Post</button>
+        <br>
+        <button type="submit">Update</button>
     </form>
 {% endblock content %}
