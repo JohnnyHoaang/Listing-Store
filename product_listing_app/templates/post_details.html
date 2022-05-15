@@ -28,7 +28,8 @@
      <button name="like_id", value="{{ post.id }}", type="submit">Like</button>
 </form>
 <br>
-<h2>Comments</h2>
+<br>
+<h2 class="left">Comments</h2>
 <br>
 <a href="{% url 'comments' post.pk %}"><button type="submit">Add a Comment</button></a>
 <br>
@@ -44,7 +45,10 @@
     {% endfor %}
 {% endif %}
 <br>
-<h2>Ratings</h2>
+<br>
+<br>
+<br>
+<h2 class="left">Ratings</h2>
 <br>
 <a href="{% url 'rating' post.pk %}"><button type="submit">Add a rating</button></a>
 <br>

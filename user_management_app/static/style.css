@@ -24,6 +24,7 @@ html, body {
     height: 50em;
     padding: 40px; 
     height: 50em;
+    overflow: auto;
 }
 
 #logo{
@@ -134,7 +135,11 @@ input[type=text]:focus, input[type=password]:focus {
     border-radius: 5px;
 }
 #searchbutton {
-    width:7.5%;
+    width:5.5%;
+    margin: auto;
+}
+.filter {
+    width:3.5%;
     margin: auto;
 }
 
@@ -159,7 +164,7 @@ input[type=text]:focus, input[type=password]:focus {
     padding: 1em;
     border-radius: 10px;
     width: 25em;
-    margin: 0 10px 0 10px;
+    margin: 0 10px 20px 10px;
 }
 
 .profile_display > div > h1{
