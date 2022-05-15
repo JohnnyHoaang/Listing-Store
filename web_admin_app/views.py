@@ -98,8 +98,7 @@ def add_member_table(request):
         form = CustomUserCreationForm(request.POST)  
         if form.is_valid(): 
             add_member(form)
-            messages.success(request, 'Your account was successfully created! Please login to your account')
-            return(redirect_dashboard_page(request))
+        return(redirect_dashboard_page(request))
     else:  
         form = CustomUserCreationForm()  
     context = {  
