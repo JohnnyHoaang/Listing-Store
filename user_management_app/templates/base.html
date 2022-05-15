@@ -17,7 +17,7 @@
                 <form>
                     {% csrf_token %}
                     <input id="searchbar" type="text" placeholder="Search..." name="query">
-                    <input id="searchbutton" type="submit" value="Search" id="search">
+                    <input id="searchbutton" type="submit" value="Search">
                 </form>    
                 <form action="{% url 'category' %}">
                     {% csrf_token %}
@@ -28,7 +28,7 @@
                         <option value="Videos">Videos</option>
                         <option value="Movies">Movies</option>
                         <option value="TV Shows">TV Shows</option>
-                    <input type="submit" value="Filter"/>
+                    <input type="submit" value="Filter" class="filter"/>
                 </form> 
                 <form action="{% url 'status' %}">
                     {% csrf_token %}
@@ -38,7 +38,7 @@
                         <option value="R">R</option>
                         <option value="PG">PG</option>
                         <option value="Explicit">Explicit</option>
-                    <input type="submit" value="Filter"/>
+                    <input type="submit" value="Filter" class="filter"/>
                 </form> 
             </div>
             <div class="registration">

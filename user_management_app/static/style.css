@@ -137,6 +137,10 @@ input[type=text]:focus, input[type=password]:focus {
     width:7.5%;
     margin: auto;
 }
+.filter {
+    width:3.5%;
+    margin: auto;
+}
 
 .registration > div {
     display: flex;
