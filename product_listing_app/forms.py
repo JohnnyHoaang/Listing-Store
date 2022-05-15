@@ -15,7 +15,7 @@ class CreatePostForm(forms.ModelForm):
             'keywords': forms.TextInput(attrs={'class':'form-styling'}),
             'description': forms.Textarea(attrs={'class':'form-styling'}),
             'status': forms.Select(attrs={'class':'form-styling'}),
-            'image': forms.FileInput(attrs={'class':'form-styling'}),
+            'image': forms.FileInput(attrs={'class':'form-styling','type':'hidden'}),
         }
 
 class PostEditForm(forms.ModelForm):

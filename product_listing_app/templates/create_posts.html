@@ -10,6 +10,7 @@
             <form id="post_form" action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy }}
+                <input id="avatar_input" type="file" name="image" accept="image/*" />
                 <br>
                 <button type="submit">Post</button>
             </form>

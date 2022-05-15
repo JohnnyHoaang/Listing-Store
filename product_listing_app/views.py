@@ -18,28 +18,25 @@ class CreatePost(CreateView):
     form_class = CreatePostForm
     template_name = 'create_posts.html'
     success_url = '/posts/'
-    '''
-    def post(self, request, post_id):
-        encoded_image = None
-        if request.method == 'POST':
-            form = CreatePostForm(request.POST)
-            if form.is_valid():
-                if request.FILES.get('image', False):
-                    image = request.FILES['image'].file.read()
-                    return redirect('/posts/')
-        else:
-            form = CreatePostForm()
-        context = {
-            'form':form,
-            'encoded_image':encoded_image,
-        }
-        return render(request, self.template_name, context)
-    '''
-    '''
-    def get(self, request):
-        value = 
-        return render(request, self.template_name, {"value":value})
-'''
+    
+def post(request):
+    if request.method == 'POST':
+        form = CreatePostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            if request.FILES.get('image', False):
+                img = request.FILES['image'].file.read()
+                post.image=img
+                post.save()
+                return redirect('/posts/')
+    else:
+        form = CreatePostForm()
+    context = {
+        'form':form,
+    }
+    return render(request, "create_posts.html", context)
+
+    
 class PostView(ListView):
     model = Post
     template_name = 'posts.html'
