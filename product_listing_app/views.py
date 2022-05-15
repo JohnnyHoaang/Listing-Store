@@ -1,7 +1,8 @@
 import base64
-from .models import Post, Comment, Rating
-from .forms import CreatePostForm, PostEditForm, PostCommentForm, RatingForm
-from django.http import HttpResponseRedirect
+from django.template import loader
+from .models import Post, Comment, Rating, AzureImage, MyImage
+from .forms import CreatePostForm, PostEditForm, PostCommentForm, RatingForm, MyImageForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -64,3 +65,31 @@ class RatingView(CreateView):
     form_class = RatingForm
     template_name = 'rating_posts.html'
     success_url = '/posts/'
+
+def display_image(request, image_id):   
+    image = AzureImage.objects.get(id=image_id)
+    template = loader.get_template('view_image.html')
+    context = {
+        'image_url': image.image.url,
+    }
+    return HttpResponse(template.render(context, request))
+
+def add_my_image(request):
+    form = None
+    if request.method == 'POST':
+        form = MyImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Add to the database
+            image_file = form.cleaned_data['image']
+            from product_listing_app.image_utils import image_to_binary
+            byte_arr = image_to_binary(image_file)
+            item = MyImage(image=byte_arr)
+            item.save()
+            return HttpResponseRedirect(redirect_to=reverse('display-image', kwargs={'image_id':item.id}))
+    else:
+        form = MyImageForm()
+    template = loader.get_template('todo_app/image_upload.html')
+    context = {
+        'form' : form
+    }
+    return HttpResponse(template.render(context, request))

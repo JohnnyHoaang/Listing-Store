@@ -80,3 +80,9 @@ class Rating(models.Model):
 
     def __str__(self):
         return self.comment
+
+class AzureImage(models.Model):
+    image = models.ImageField(blank=True, null=True)
+
+class MyImage(models.Model):
+    image = models.BinaryField(editable=True)

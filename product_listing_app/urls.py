@@ -12,4 +12,7 @@ urlpatterns = [
     path ('likes/<int:pk>', views.LikedPostView, name='post_likes'),
     path ('details/<int:pk>/comments/', CreateCommentView.as_view(), name='comments'),
     path ('details/<int:pk>/rating/', RatingView.as_view(), name='rating'),
+    path('image/<int:image_id>/', views.display_image, name='display-image'),
+    path('upload_image/', views.add_my_image, name='add-image'),
+
 ]

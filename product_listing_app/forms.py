@@ -52,3 +52,6 @@ class RatingForm(forms.ModelForm):
             'comment': forms.Textarea(attrs={'class':'form-styling'}),
             'rate': forms.Select(attrs={'class':'form-styling'}),
         }
+
+class MyImageForm(forms.Form):
+    image = forms.ImageField()
