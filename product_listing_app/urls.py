@@ -10,6 +10,7 @@ urlpatterns = [
     path ('create/', views.post, name='create'),
     path ('details/<int:pk>', login_required(PostDetailView.as_view(), login_url='/login'), name='details'),
     path ('details/<int:pk>/edit/', EditPostView.as_view(), name='edit'),
+    #path ('details/<int:id>/edit/', views.edit_post, name='edit'),
     path ('details/<int:pk>/delete/', PostDeleteView.as_view(), name='delete'),
     path ('likes/<int:pk>', views.LikedPostView, name='post_likes'),
     path ('details/<int:pk>/comments/', CreateCommentView.as_view(), name='comments'),

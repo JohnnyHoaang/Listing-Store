@@ -6,7 +6,7 @@
 {{ post.date }} <br>
 {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
-        <small><a href="{% url 'edit' post.id %}" id="edit_posts">Edit</a></small><br>
+        <small><a href="{% url 'edit' post.pk %}" id="edit_posts">Edit</a></small><br>
         <small><a href="{% url 'delete' post.pk %}" id="delete_posts">Delete</a></small><br>
         {% endif %}
     {% endif %}
@@ -36,6 +36,8 @@
      <br>
      <button name="like_id", value="{{ post.id }}", type="submit">Like</button>
 </form>
+<br>
+<b>Flagged:</b>{{ post.flagged }}
 <br>
 <h2>Comments</h2>
 <br>

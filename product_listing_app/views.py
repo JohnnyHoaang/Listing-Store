@@ -23,7 +23,7 @@ def post(request):
                 img = request.FILES['image'].file.read()
                 post.image=img
                 post.save()
-                return redirect('/posts/')
+            return redirect('/posts/')
     else:
         form = CreatePostForm()
     context = {
@@ -57,23 +57,29 @@ class EditPostView(UpdateView):
     template_name = 'editing_posts.html'
     success_url = '/posts/'
 
-def edit_post(request):
+'''
+def edit_post(request, id):
+    post = get_object_or_404(Post, id=id)
     if request.method == 'POST':
-        form = PostEditForm(request.POST)
+        form = EditPostView(request.POST, instance=post)
         if form.is_valid():
+            print("hello")
             post = form.save(commit=False)
             if request.FILES.get('image', False):
                 img = request.FILES['image'].file.read()
                 post.image=img
+                post.title=request.POST.get('title')
+                post.category=request.POST.get('categeory')
                 post.save()
-                return redirect('/posts/')
+                form.save()
+        return redirect('/posts/')
     else:
-        form = PostEditForm()
+        form = EditPostView()
     context = {
-        'form':form,
+        'post':post,
     }
     return render(request, 'editing_posts.html', context)
-
+'''
 class PostDeleteView(DeleteView):
     model = Post
     template_name = 'deleting_posts.html'
