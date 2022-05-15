@@ -39,11 +39,6 @@ class Post(models.Model):
     def __str__(self):
         post_value = f'Title: {self.title}'
         return f'{post_value}'
-
-    @property
-    def convert_image(self):
-        encode_image = base64.b64encode(self.image).decode('utf-8')
-        return encode_image
     
     def get_absolute_url(self):
         return reverse('posts/')
