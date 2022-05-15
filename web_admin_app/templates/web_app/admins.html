@@ -27,7 +27,7 @@
         {% if user.is_active%}
         <td><button onclick="location.href='{% url 'block_users' username=user.username %}'" id='block'>Block</button></td>
         {% else %}
-        <td><button onclick="location.href='{% url 'unblock_users' username=user.username %}'" id="unblock">Unblock</button></td>
+        <td><button onclick="location.href='{% url 'block_users' username=user.username %}'" id="unblock">Unblock</button></td>
         {% endif %}
         <td><button onclick="location.href='{% url 'delete_user' username=user.username %}'" id='delete' >Delete</button></td>
     </tr>
@@ -48,14 +48,14 @@
         <td> {{ post.title }}</td>
         <td> {{ post.category }}</td>
         <td> {{ post.price }}</td>
-        <td><button onclick="location.href='{% url 'show_posts' title=post.title %}'">More details</button></td>
+        <td><button onclick="location.href='{% url 'show_post' post.pk %}'">More details</button></td>
         {% if post.flagged %}
-        <td>Product flagged!<button class="flag" onclick="location.href='{% url 'unflag_post' title=post.title %}'">Unflag</button></td>
+        <td>Product flagged!<button class="flag" onclick="location.href='{% url 'flag_post' pk=post.pk %}'">Unflag</button></td>
         {% else %}
-        <td><button class="flag" onclick="location.href='{% url 'flag_post' title=post.title %}'">Flag</button></td>
+        <td><button class="flag" onclick="location.href='{% url 'flag_post' pk=post.pk %}'">Flag</button></td>
         {% endif %}
-        <td><button onclick="location.href='{% url 'edit_posts' title=post.title %}'" id='edit'>Edit</button></td>
-        <td><button onclick="location.href='{% url 'delete_posts' title=post.title %}'" id='delete'>Delete</button></td>
+        <td><button onclick="location.href='{% url 'edit_posts' pk=post.pk %}'" id='edit'>Edit</button></td>
+        <td><button onclick="location.href='{% url 'delete_posts' pk=post.pk %}'" id='delete'>Delete</button></td>
     </tr>
     {% endfor %}
 </table>

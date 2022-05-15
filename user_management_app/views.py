@@ -1,16 +1,30 @@
 from django.shortcuts import render, redirect
+
+from product_listing_app.models import Post
 from .models import Profile
 from .forms import CustomUserCreationForm, UserUpdateForm
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm 
+from django.contrib.postgres.search import SearchVector, SearchQuery
 from django.contrib.auth import update_session_auth_hash
 import base64
 
 # Create your views here.
 def index(request):  
-    return render(request, 'base.html')
+    qs = ""
+    query = request.GET.get("query")
+    posts = Post.objects.all()
+    if query:
+        qs = Post.objects.annotate(search=SearchVector("title", "description", "keywords")).filter(search=SearchQuery(query))
+        if qs.count()==0:
+            messages.error(request, "No Results Found!")
+    context = {
+        "queryset": qs,
+        "posts": posts,
+    }
+    return render(request, "posts.html", context)
 
 
 def signup(request):

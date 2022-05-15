@@ -2,15 +2,14 @@ body {
     font-family:Arial, Helvetica, sans-serif;
   }
 
-  h1 {
-    /* color: rgb(243, 46, 138); */
-    background-color: #7e7eac;
+  h1{
+    background-color: #7d7d86;
     text-align: center;
     border-radius: 10px;
   }
   
   h2{
-    text-align: center;
+    font-size: 16px;
   }
 
   button{
@@ -32,7 +31,7 @@ body {
   #post_form{
     padding:10px;
     box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-    border-radius:15px;
+    border-radius:12px;
     border: solid rgb(143, 207, 91);
     display: inline-block;
     margin-inline-start: 30vw;
@@ -60,3 +59,29 @@ body {
     margin-bottom: 12px;
   }
   
+  #edit_posts, #post_details, #delete_posts, #editing_posts, #deleting_posts{
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+  }
+  
+  #edit_posts:link, #post_details:link, #delete_posts:link, #editing_posts:link, #deleting_posts:link {
+    color: #3e93ad;
+  }
+  
+  #edit_posts:visited, #post_details:visited, #delete_posts:visited, #editing_posts:visited, #deleting_posts:visited {
+    color: #ad3ea7;
+  }
+  
+  #edit_posts:hover, #post_details:hover, #delete_posts:hover, #editing_posts:hover, #deleting_posts:hover {
+    color: #5aafc9;
+  }
+  
+  #edit_posts:active, #post_details:active, #delete_posts:active, #editing_posts:active, #deleting_posts:active {
+    color: #82b0be;
+  }
+
+  .post_page{
+    display: flex;
+    margin-top: 2em;
+  }
