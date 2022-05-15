@@ -14,13 +14,12 @@
         <header>
             <a href={%url 'index'%}><img src="{% static 'logo.png'%}" width="165" height="165" id="logo"></a>
             <div class="search">
-                <form>
+                <form action="{% url 'index' %}">
                     {% csrf_token %}
                     <input id="searchbar" type="text" placeholder="Search..." name="query">
-                    <input id="searchbutton" type="submit" value="Search" id="search">
-                </form>
+                    <input id="searchbutton" type="submit" value="Search">
+                </form>   
             </div>
-            
             <div class="registration">
                 {% if user.is_authenticated %}
                 <div>
@@ -37,14 +36,8 @@
             </div>
         </header>
         <section class="main" style="background-image: url('{% static "background2.jpg"%}')">
-            
-            {% for object in queryset %}
-                <h3 class="queryheader"><a href="{% url 'details' object.pk %}">{{object.title}}</a></h3>
-                <p>{{object.description| truncatechars:200}}</p>
-                
-            {% empty %}
-            {% endfor %}
             {% block content %} 
+            {% include queryset %}
             {% include messages %}
             {% endblock %}
 

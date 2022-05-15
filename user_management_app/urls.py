@@ -4,6 +4,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from web_admin_app import views as wv
 urlpatterns = [
     path('', views.index, name='index'), 
+    path('category_filter/', views.category_filter_query, name='category'),
+    path('status_filter/', views.status_filter_query, name = 'status'),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path('signup/', views.signup, name='signup'),  
