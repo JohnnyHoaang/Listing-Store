@@ -21,7 +21,7 @@
           <h1>Profile Info</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table>
+            <table class="profileTable">
                 {{ u_form.as_table }}
             </table>
             <input class = "registration_button" type="submit" name="submit" value="Update"/>
@@ -37,7 +37,7 @@
         <h1>Services</h1>
         <div>
             <img src="{% static 'message.png'%}" width="100" height="100" />
-            <a href="{% url 'inbox' %}" class="inbox-icon"><button>Message</button></a>
+            <button onclick="location.href='{% url 'inbox' %}'">Message</button>
             <img src="{% static 'admin.png'%}" width="100" height="100" />
             <button onclick="location.href='{% url 'redirect_dashboard_page' %}'">Administration</button>
             <a href={%url 'index'%} class="registration_button"> Go back Home</a>

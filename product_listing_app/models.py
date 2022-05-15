@@ -34,6 +34,7 @@ class Post(models.Model):
     image = models.BinaryField(blank=True, null=True, editable=True)
     date = models.DateField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='liked_posts')
+    flagged = models.BooleanField(default=False)
 
     def __str__(self):
         post_value = f'Title: {self.title}'

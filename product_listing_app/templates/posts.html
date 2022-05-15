@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Posts Here</h1>
+
+{% if messages %}   
+{% for message in messages %}  
+    {{ message }}  
+{% endfor %}   
+{% endif %} 
 <br>
+<a href="{% url 'create' %}"><button> Create a New Post</button></a>
+<section class="post_page">
+    <br>
     {% for post in posts %}
     <ul>
     <div class="profile_display">
@@ -30,4 +38,5 @@
     {% if user.is_authenticated %}
         <a href="{% url 'create' %}"><button> Create a New Post</button></a>
     {% endif %}
+</section>
 {% endblock %}

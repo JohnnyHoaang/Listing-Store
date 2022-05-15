@@ -24,6 +24,8 @@ class PostView(ListView):
     template_name = 'posts.html'
     context_object_name= 'posts'
     ordering = ['-date']
+    success_url = '/'
+    #encoded_image = base64.b64encode(request.user.profile.avatar).decode("utf-8")
 
 class PostDetailView(DetailView):
     model = Post
