@@ -1,4 +1,5 @@
 @echo off
+pip install virtualenv
 rem activate venv
 if exist .venv\ (
    .venv\Scripts\activate
