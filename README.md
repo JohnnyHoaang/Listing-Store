@@ -15,7 +15,7 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py shell
-exec(open('web_admin_app/create_groups').read())
+exec(open('web_admin_app/create_groups.py').read())
 exit()
 python manage.py runserver
 ```
