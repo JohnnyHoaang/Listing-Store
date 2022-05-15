@@ -1,6 +1,6 @@
 from os import unlink
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, Group
 from django.template import loader
 from requests import request
@@ -48,7 +48,7 @@ def admin_manage_users(request):
 @user_passes_test(group_filters.is_admin_items)
 def admin_manage_items(request):
     members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name', 'is_active')
-    posts = Post.objects.all().values('title','category','price', 'flagged', 'pk')
+    posts = Post.objects.all().values('title','category','price', 'flagged', 'pk', 'comment', 'rated' , 'likes')
     template = loader.get_template('web_app/admins_items.html')
     context = {
         'members' : members,
@@ -59,8 +59,7 @@ def admin_manage_items(request):
 @user_passes_test(group_filters.is_admin)
 def admin_access(request):
     non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name', 'is_active')
-    print(non_admin_users)
-    posts = Post.objects.all().values('title','category','price','flagged', 'pk')
+    posts = Post.objects.all().values('title','category','price','flagged', 'pk' , 'comment' , 'rated', 'likes')
     template = loader.get_template('web_app/admins.html')
     context = {
         'non_admin_users' : non_admin_users,
@@ -146,8 +145,11 @@ def modify_group(request, username):
     
 def show_post(request, pk):
     post = Post.objects.get(pk=pk)
+    query = get_object_or_404(Post, id=pk)
+    like_count = query.get_count_likes()
     context = {
-        'post': post
+        'post': post, 
+        'like_count' : like_count,
     }
     return render(request, 'web_app/show_post.html', context)
 
