@@ -88,4 +88,5 @@ body {
   .post_page{
     display: flex;
     margin-top: 2em;
+    flex-wrap: wrap;
   }
