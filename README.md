@@ -31,11 +31,11 @@ https://gitlab.com/veronika.pontolillo/python-project2
 - Dan: https://dan-python420-product-app.herokuapp.com/
 - Johnny: https://johnny-python-lab7.herokuapp.com/
 - Maria:
-- Veronika:
+- Veronika: https://veronika-python420-todo-app.herokuapp.com/
 
 ## Contributors
 
 Dan Willis Njoumene (2033804)
 Johnny Hoang (2036759)
 Maria
-Veronika
+Veronika Pontolillo (2034373)

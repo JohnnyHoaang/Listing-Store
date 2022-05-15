@@ -15,12 +15,14 @@ class Post(models.Model):
         ('Videos','Videos'),
         ('Movies','Movies'),
         ('TV Shows','TV Shows'),
+        ('Other', 'Other')
     ]
     status_for_post = [
         ('PG13','PG13'),
         ('R','R'),
         ('PG','PG'),
         ('Explicit', 'Explicit'),
+        ('Other', 'Other')
     ]
     title = models.CharField(max_length=2000)
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -31,11 +33,8 @@ class Post(models.Model):
     status = models.CharField(max_length=2000, choices=status_for_post, default=status_for_post)
     image = models.BinaryField(blank=True, null=True, editable=True)
     date = models.DateField(auto_now_add=True)
+    likes = models.ManyToManyField(User, related_name='liked_posts')
     flagged = models.BooleanField(default=False)
-    #likes = models.PositiveIntegerField(default=0)
-    #user_likes = models.ManyToManyField(User)
-    #rating = RatingField(range=5, can_change_vote = True, allow_anonymous = False)
-    #rating  = GenericRelation(Rating, related_query_name='posts')
 
     def __str__(self):
         post_value = f'Title: {self.title}'
@@ -43,9 +42,41 @@ class Post(models.Model):
 
     @property
     def convert_image(self):
-        # or decode('ascii')
         encode_image = base64.b64encode(self.image).decode('utf-8')
         return encode_image
     
     def get_absolute_url(self):
         return reverse('posts/')
+
+    def get_count_likes(self):
+        return self.likes.count()
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, related_name="comment")
+    text = models.TextField(blank=True, null=True)
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
+
+    def get_absolute_url(self):
+        return reverse('posts/')
+
+class Rating(models.Model):
+    rating_for_posts = [
+        (0,'0'),
+        (1,'1'),
+        (2,'2'), 
+        (3,'3'),
+        (4,'4'),
+        (5,'5'),
+    ]
+    posting = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, related_name="rated")
+    rater = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField(blank=True, null=True)
+    rate = models.PositiveSmallIntegerField(blank=True, null=True,choices=rating_for_posts)
+
+    def __str__(self):
+        return self.comment
