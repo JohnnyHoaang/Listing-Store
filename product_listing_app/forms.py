@@ -1,6 +1,6 @@
 from django import forms
 from datetime import datetime, date
-from .models import Post, Comment
+from .models import Post, Comment, Rating
 
 
 class CreatePostForm(forms.ModelForm):
@@ -41,4 +41,15 @@ class PostCommentForm(forms.ModelForm):
             'post': forms.TextInput(attrs={'class':'form-styling', 'value':'','id':'post-title', 'type':'hidden'}),
             'commenter': forms.TextInput(attrs={'class':'form-styling', 'value':'', 'id':'commentee', 'type':'hidden'}),
             'text': forms.Textarea(attrs={'class':'form-styling'}),
+        }
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['posting','rater','comment','rating']
+        widgets = {
+            'posting': forms.TextInput(attrs={'class':'form-styling', 'value':'','id':'posting-title', 'type':'hidden'}),
+            'rater': forms.TextInput(attrs={'class':'form-styling', 'value':'', 'id':'username-rate', 'type':'hidden'}),
+            'comment': forms.Textarea(attrs={'class':'form-styling'}),
+            'rating': forms.Select(attrs={'class':'form-styling'}),
         }

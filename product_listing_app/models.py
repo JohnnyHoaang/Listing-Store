@@ -34,8 +34,6 @@ class Post(models.Model):
     image = models.BinaryField(blank=True, null=True, editable=True)
     date = models.DateField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='liked_posts')
-    #rating = RatingField(range=5, can_change_vote = True, allow_anonymous = False)
-    #rating  = GenericRelation(Rating, related_query_name='posts')
 
     def __str__(self):
         post_value = f'Title: {self.title}'
@@ -64,3 +62,21 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('posts/')
+
+class Rating(models.Model):
+    rating_for_posts = [
+        (0,'0'),
+        (1,'1'),
+        (2,'2'), 
+        (3,'3'),
+        (4,'4'),
+        (5,'5'),
+    ]
+    posting = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, related_name="rating")
+    rater = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField(blank=True, null=True)
+    rating = models.PositiveSmallIntegerField(blank=True, null=True,choices=rating_for_posts)
+
+    def __str__(self):
+        return self.comment

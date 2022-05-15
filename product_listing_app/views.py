@@ -1,5 +1,5 @@
-from .models import Post, Comment
-from .forms import CreatePostForm, PostEditForm, PostCommentForm
+from .models import Post, Comment, Rating
+from .forms import CreatePostForm, PostEditForm, PostCommentForm, RatingForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -56,3 +56,9 @@ class CreateCommentView(CreateView):
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
+
+class RatingView(CreateView):
+    model = Rating
+    form_class = RatingForm
+    template_name = 'rating_posts.html'
+    success_url = '/posts/'

@@ -34,11 +34,9 @@
      <button name="like_id", value="{{ post.id }}", type="submit">Like</button>
 </form>
 <br>
+<h2>Comments</h2>
 <br>
-<h2>Comment Here</h2>
-<br><br>
 <a href="{% url 'comments' post.pk %}"><button type="submit">Add a Comment</button></a>
-<br>
 <br>
 {% if not post.comment.all %}
     No comments
@@ -48,6 +46,20 @@
     <br>
     <small>{{ comments.date }}</small>
      - {{ comments.text }}
+     <br>
+    {% endfor %}
+{% endif %}
+<br>
+<h2>Ratings</h2>
+<br>
+<a href="{% url 'rating' post.pk %}"><button type="submit">Add a rating</button></a>
+<br>
+{% if not post.rating.all %}
+    No ratings
+{% else %}
+    {% for rate in post.rating.all %}
+    <b>{{ rate.rater }}</b><br>
+     <b>{{ rate.rating }}/5</b> - {{ rate.comment }}
      <br>
     {% endfor %}
 {% endif %}
