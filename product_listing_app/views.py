@@ -1,6 +1,5 @@
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 # Create your views here.
 

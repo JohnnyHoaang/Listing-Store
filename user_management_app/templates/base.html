@@ -43,11 +43,7 @@
             {% endfor %}   
         {% endif %} 
             {% for object in queryset %}
-                {% if user.is_authenticated %}
                 <h3 class="queryheader"><a href="{% url 'details' object.pk %}">{{object.title}}</a></h3>
-                {% else %}
-                <h3 class="queryheader">{{object.title}}</h3>
-                {% endif %}
                 <p>{{object.description| truncatechars:200}}</p>
                 
             {% empty %}
