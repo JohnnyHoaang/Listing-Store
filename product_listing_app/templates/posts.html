@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load image_filter %}
 {% block content %}
 <div>
 <form action="{% url 'category' %}">
@@ -44,7 +45,7 @@
     {% for post in posts %}
     <ul>
     <div class="profile_display">
-        <img class="post_image" src="data:;base64,{{ encoded_image }}" width="200" height="200"/>
+        <img class="post_image" src="data:;base64,{{ post.image | encode_image }}" width="200" height="200"/>
     <div>
     <a href="{% url 'details' post.pk %}" id="post_details">{{ post.title }}</a><br>
     <b>Category:</b> {{ post.category }}<br>
@@ -53,6 +54,7 @@
     <b>Status:</b> {{ post.status }}<br>
     <b>Price:</b> {{ post.price }}<br>
     <b>Date:</b> {{ post.date }}<br>
+
     {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
         <small><a href="{% url 'edit' post.pk %}" id="edit_posts">Edit</a></small><br>

@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def LikedPostView(request, pk):
@@ -13,19 +14,31 @@ def LikedPostView(request, pk):
     post.likes.add(request.user)
     return HttpResponseRedirect(reverse('details', args=[str(pk)]))
 
-class CreatePost(CreateView):
-    model = Post
-    form_class = CreatePostForm
-    template_name = 'create_posts.html'
-    success_url = '/posts/'
+def post(request):
+    if request.method == 'POST':
+        form = CreatePostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            if request.FILES.get('image', False):
+                img = request.FILES['image'].file.read()
+                post.image=img
+                post.save()
+            return redirect('/posts/')
+    else:
+        form = CreatePostForm()
+    context = {
+        'form':form,
+    }
+    return render(request, "create_posts.html", context)
 
+    
 class PostView(ListView):
     model = Post
     template_name = 'posts.html'
     context_object_name= 'posts'
     ordering = ['-date']
     success_url = '/'
-    #encoded_image = base64.b64encode(request.user.profile.avatar).decode("utf-8")
+
 
 class PostDetailView(DetailView):
     model = Post
@@ -44,6 +57,29 @@ class EditPostView(UpdateView):
     template_name = 'editing_posts.html'
     success_url = '/posts/'
 
+'''
+def edit_post(request, id):
+    post = get_object_or_404(Post, id=id)
+    if request.method == 'POST':
+        form = EditPostView(request.POST, instance=post)
+        if form.is_valid():
+            print("hello")
+            post = form.save(commit=False)
+            if request.FILES.get('image', False):
+                img = request.FILES['image'].file.read()
+                post.image=img
+                post.title=request.POST.get('title')
+                post.category=request.POST.get('categeory')
+                post.save()
+                form.save()
+        return redirect('/posts/')
+    else:
+        form = EditPostView()
+    context = {
+        'post':post,
+    }
+    return render(request, 'editing_posts.html', context)
+'''
 class PostDeleteView(DeleteView):
     model = Post
     template_name = 'deleting_posts.html'

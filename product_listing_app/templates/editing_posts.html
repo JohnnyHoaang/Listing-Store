@@ -11,7 +11,7 @@
             <form id="post_form" action="" method="POST">
                 {% csrf_token %}
                 {{form | crispy }}
-                <input id="image_input" type="file" name="image" accept="image/*" />
+                <input id="avatar_input" type="file" name="image" accept="image/*" />
                 <br>
                 <button type="submit">Update</button>
             </form>
