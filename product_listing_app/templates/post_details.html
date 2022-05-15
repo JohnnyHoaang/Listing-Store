@@ -54,12 +54,12 @@
 <br>
 <a href="{% url 'rating' post.pk %}"><button type="submit">Add a rating</button></a>
 <br>
-{% if not post.rating.all %}
+{% if not post.rated.all %}
     No ratings
 {% else %}
-    {% for rate in post.rating.all %}
-    <b>{{ rate.rater }}</b><br>
-     <b>{{ rate.rating }}/5</b> - {{ rate.comment }}
+    {% for rates in post.rated.all %}
+    <b>{{ rates.rater }}</b><br>
+     <b>{{ rates.rate }}/5</b> - {{ rates.comment }}
      <br>
     {% endfor %}
 {% endif %}

@@ -72,11 +72,11 @@ class Rating(models.Model):
         (4,'4'),
         (5,'5'),
     ]
-    posting = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, related_name="rating")
+    posting = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, related_name="rated")
     rater = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     comment = models.TextField(blank=True, null=True)
-    rating = models.PositiveSmallIntegerField(blank=True, null=True,choices=rating_for_posts)
+    rate = models.PositiveSmallIntegerField(blank=True, null=True,choices=rating_for_posts)
 
     def __str__(self):
         return self.comment

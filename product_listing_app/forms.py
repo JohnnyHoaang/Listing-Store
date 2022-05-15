@@ -21,10 +21,9 @@ class CreatePostForm(forms.ModelForm):
 class PostEditForm(forms.ModelForm):
     class Meta:
        model = Post
-       fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
+       fields = ['title','category', 'price', 'keywords', 'description', 'status', 'image']
        widgets = {
             'title': forms.TextInput(attrs={'class':'form-styling'}),
-            'author': forms.TextInput(attrs={'class':'form-styling'}),
             'category': forms.Select(attrs={'class':'form-styling'}),
             'price': forms.NumberInput(attrs={'class':'form-styling'}),
             'keywords': forms.TextInput(attrs={'class':'form-styling'}),
@@ -46,10 +45,10 @@ class PostCommentForm(forms.ModelForm):
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ['posting','rater','comment','rating']
+        fields = ['posting','rater','comment','rate']
         widgets = {
-            'posting': forms.TextInput(attrs={'class':'form-styling', 'value':'','id':'posting-title', 'type':'hidden'}),
+            'posting': forms.Select(attrs={'class':'form-styling', 'value':'','id':'posttitle'}),
             'rater': forms.TextInput(attrs={'class':'form-styling', 'value':'', 'id':'username-rate', 'type':'hidden'}),
             'comment': forms.Textarea(attrs={'class':'form-styling'}),
-            'rating': forms.Select(attrs={'class':'form-styling'}),
+            'rate': forms.Select(attrs={'class':'form-styling'}),
         }
