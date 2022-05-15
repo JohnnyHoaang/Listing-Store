@@ -33,6 +33,17 @@ class PostEditForm(forms.ModelForm):
             'flagged': forms.TimeInput(attrs={'class':'form-styling'}),
             'image': forms.FileInput(attrs={'class':'form-styling', 'type':'hidden'}),
         }
+    '''
+    def update_post(self, title, category, price, keywords, description, status, flagged, image):
+        self.title = title
+        self.category = category
+        self.price = price
+        self.keywords = keywords
+        self.description = description
+        self.status = status
+        self.flagged = flagged
+        self.image = image
+'''
 
 class PostCommentForm(forms.ModelForm):
     class Meta:

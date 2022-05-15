@@ -50,36 +50,34 @@ class PostDetailView(DetailView):
         like_count = query.get_count_likes()
         context["like_count"] = like_count
         return context
-
+'''
 class EditPostView(UpdateView):
     model = Post
     form_class = PostEditForm
     template_name = 'editing_posts.html'
     success_url = '/posts/'
-
 '''
-def edit_post(request, id):
-    post = get_object_or_404(Post, id=id)
+def edit_post(request, pk):
+    posting = Post.objects.get(id=pk)
     if request.method == 'POST':
-        form = EditPostView(request.POST, instance=post)
+        form = PostEditForm(data=request.POST, instance=posting)
+        if request.FILES.get('image', False):
+             img = request.FILES['image'].file.read()
+             Post.objects.filter(id=pk).update(image=img)
         if form.is_valid():
-            print("hello")
             post = form.save(commit=False)
-            if request.FILES.get('image', False):
-                img = request.FILES['image'].file.read()
-                post.image=img
-                post.title=request.POST.get('title')
-                post.category=request.POST.get('categeory')
-                post.save()
-                form.save()
+            img = post.image
+            #Post.objects.filter(id=pk).update(title=post.title, category=post.category, price=post.price, keywords=post.keywords, description=post.description, status=post.status)
+            form.save()
         return redirect('/posts/')
     else:
-        form = EditPostView()
+        form = PostEditForm(instance=posting)
     context = {
-        'post':post,
+        'post':posting,
+        'form':form,
     }
     return render(request, 'editing_posts.html', context)
-'''
+
 class PostDeleteView(DeleteView):
     model = Post
     template_name = 'deleting_posts.html'
