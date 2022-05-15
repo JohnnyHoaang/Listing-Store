@@ -23,6 +23,7 @@
     <b>Status:</b> {{ post.status }}<br>
     <b>Price:</b> {{ post.price }}<br>
     <b>Date:</b> {{ post.date }}<br>
+    
     {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
         <small><a href="{% url 'edit' post.pk %}" id="edit_posts">Edit</a></small><br>

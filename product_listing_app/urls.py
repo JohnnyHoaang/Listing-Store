@@ -1,7 +1,7 @@
 from django.urls import path
 from requests import request
 from .import views
-from .views import CreatePost, PostDetailView, PostView, EditPostView, PostDeleteView, LikedPostView, CreateCommentView, RatingView, post
+from .views import PostDetailView, PostView, EditPostView, PostDeleteView, LikedPostView, CreateCommentView, RatingView, post
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [

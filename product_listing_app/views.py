@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def LikedPostView(request, pk):
@@ -13,12 +14,6 @@ def LikedPostView(request, pk):
     post.likes.add(request.user)
     return HttpResponseRedirect(reverse('details', args=[str(pk)]))
 
-class CreatePost(CreateView):
-    model = Post
-    form_class = CreatePostForm
-    template_name = 'create_posts.html'
-    success_url = '/posts/'
-    
 def post(request):
     if request.method == 'POST':
         form = CreatePostForm(request.POST)
@@ -61,6 +56,23 @@ class EditPostView(UpdateView):
     form_class = PostEditForm
     template_name = 'editing_posts.html'
     success_url = '/posts/'
+
+def edit_post(request):
+    if request.method == 'POST':
+        form = PostEditForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            if request.FILES.get('image', False):
+                img = request.FILES['image'].file.read()
+                post.image=img
+                post.save()
+                return redirect('/posts/')
+    else:
+        form = PostEditForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'editing_posts.html', context)
 
 class PostDeleteView(DeleteView):
     model = Post
