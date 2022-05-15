@@ -26,6 +26,7 @@ def filter(query, request, *filters):
         "posts": posts,
     }
     return context
+    
 def index(request):  
     query = request.GET.get("query")
     context = filter(query, request,"title", "description", "keywords")

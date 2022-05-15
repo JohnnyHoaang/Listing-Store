@@ -19,8 +19,11 @@
 <b>Date:</b> {{ post.date }}
 <br>
 <br>
-<h2>Likes: {{ like_count }}</h2>
-<h2>Comments</h2>
+<hr>
+<br>
+<p>Likes: {{ like_count }}</p>
+<br>
+<h2 class="left">Comments</h2>
 {% if not post.comment.all %}
     No comments
 {% else %}
@@ -33,7 +36,10 @@
     {% endfor %}
 {% endif %}
 <br>
-<h2>Ratings</h2>
+<br>
+<br>
+<br>
+<h2 class="left">Ratings</h2>
 {% if not post.rated.all %}
     No ratings
 {% else %}
