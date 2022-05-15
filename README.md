@@ -37,5 +37,5 @@ https://gitlab.com/veronika.pontolillo/python-project2
 
 Dan Willis Njoumene (2033804)
 Johnny Hoang (2036759)
-Maria
+Maria Ramirez (2041788)
 Veronika Pontolillo (2034373)
