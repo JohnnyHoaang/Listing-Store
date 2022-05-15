@@ -1,12 +1,10 @@
-from typing import List
 from django.urls import path
-from . import views
-from .views import CreateThread, ListThreads, ThreadView, CreateMessage
-
+from messaging_app.views import Inbox, UserSearch, Directs, NewConversation, SendDirect
 urlpatterns = [
-    path('', views.home, name='message'),
-    path('inbox/', ListThreads.as_view(), name='inbox'), 
-    path('inbox/create-thread/', CreateThread.as_view(), name='create-thread'),
-    path('inbox/<int:pk>/', ThreadView.as_view(), name='thread'),
-    path('inbox/<int:pk>/create-message/', CreateMessage.as_view(), name='create-message')
+   	path('', Inbox, name='inbox'),
+   	path('directs/<username>', Directs, name='directs'),
+   	path('new/', UserSearch, name='usersearch'),
+   	path('new/<username>', NewConversation, name='newconversation'),
+   	path('send/', SendDirect, name='send_direct'),
+
 ]
