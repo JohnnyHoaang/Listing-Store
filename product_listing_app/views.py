@@ -50,13 +50,7 @@ class PostDetailView(DetailView):
         like_count = query.get_count_likes()
         context["like_count"] = like_count
         return context
-'''
-class EditPostView(UpdateView):
-    model = Post
-    form_class = PostEditForm
-    template_name = 'editing_posts.html'
-    success_url = '/posts/'
-'''
+
 def edit_post(request, pk):
     posting = Post.objects.get(id=pk)
     if request.method == 'POST':
@@ -65,11 +59,8 @@ def edit_post(request, pk):
              img = request.FILES['image'].file.read()
              Post.objects.filter(id=pk).update(image=img)
         if form.is_valid():
-            post = form.save(commit=False)
-            img = post.image
-            #Post.objects.filter(id=pk).update(title=post.title, category=post.category, price=post.price, keywords=post.keywords, description=post.description, status=post.status)
             form.save()
-        return redirect('/posts/')
+            return redirect('posts')
     else:
         form = PostEditForm(instance=posting)
     context = {
