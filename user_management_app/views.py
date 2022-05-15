@@ -12,48 +12,33 @@ from django.contrib.auth import update_session_auth_hash
 import base64
 
 # Create your views here.
-def index(request):  
-    qs = ""
-    query = request.GET.get("query")
+
+# returns filtered querysets
+def filter(query, request, *filters):
+    qs=""
     posts = Post.objects.all()
     if query:
-        qs = Post.objects.annotate(search=SearchVector("title", "description", "keywords")).filter(search=SearchQuery(query))
+        qs = Post.objects.annotate(search=SearchVector(*filters)).filter(search=SearchQuery(query))
         if qs.count()==0:
             messages.error(request, "No Results Found!")
     context = {
         "queryset": qs,
         "posts": posts,
     }
+    return context
+def index(request):  
+    query = request.GET.get("query")
+    context = filter(query, request,"title", "description", "keywords")
     return render(request, "posts.html", context)
 
 def category_filter_query(request):
-    qs = ""
-    print("reached")
-    posts = Post.objects.all()
     query = request.GET.get("category")
-    if query:
-        qs = Post.objects.annotate(search=SearchVector("category")).filter(search=SearchQuery(query))
-        if qs.count()==0:
-            messages.error(request, "No Results Found!")
-    context = {
-        'posts': posts,
-        'queryset' : qs,
-        }
+    context = filter(query, request,"category")
     return render(request, "posts.html", context)
+
 def status_filter_query(request):
-    qs = ""
-    posts = Post.objects.all()
     query = request.GET.get("status")
-    print("reached")
-    if query:
-        qs = Post.objects.annotate(search=SearchVector("status")).filter(search=SearchQuery(query))
-        print(posts)
-        if qs.count()==0:
-            messages.error(request, "No Results Found!")
-    context = {
-        'posts': posts,
-        'queryset' : qs,
-        }
+    context = filter(query,request, 'status')
     return render(request, "posts.html", context)
 
 def signup(request):
