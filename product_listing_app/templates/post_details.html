@@ -24,6 +24,8 @@
 <b>Date:</b> {{ post.date }}
 <br>
 <br>
+<hr>
+<br>
 <form action="{% url 'post_likes' post.pk %}" method="POST">
      {% csrf_token %}
      Likes: {{ like_count }}
@@ -31,6 +33,23 @@
      <br>
      <button name="like_id", value="{{ post.id }}", type="submit">Like</button>
 </form>
+<br>
+<br>
+<h2>Comment Here</h2>
+<br><br>
+<a href="{% url 'comments' post.pk %}"><button type="submit">Add a Comment</button></a>
+<br>
+<br>
+{% if not post.comment.all %}
+    No comments
+{% else %}
+    {% for comments in post.comment.all %}
+    <b>{{ comments.commenter }}</b>
+    <br>
+    <small>{{ comments.date }}</small>
+     - {{ comments.text }}
+    {% endfor %}
+{% endif %}
 <br>
 <br>
 <a href="{% url 'posts' %}"><button>Back</button></a>

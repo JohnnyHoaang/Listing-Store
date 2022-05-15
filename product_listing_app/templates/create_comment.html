@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Comments{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h2>Post a Comment</h2>
+    <br>
+        <div class="create-form">
+            <form id="post_form" action="" method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <br>
+                <button type="submit">Post</button>
+            </form>
+        </div>
+{% else %}
+        You are not logged in as a user! Please login or sign up to create a comment.
+        <a href="{% url 'posts' %}"><button>Back</button></a>
+{% endif %}
+{% endblock content %}

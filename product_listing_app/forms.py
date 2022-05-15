@@ -1,6 +1,6 @@
 from django import forms
 from datetime import datetime, date
-from .models import Post
+from .models import Post, Comment
 
 
 class CreatePostForm(forms.ModelForm):
@@ -33,4 +33,13 @@ class PostEditForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class':'form-styling'}),
             'status': forms.Select(attrs={'class':'form-styling'}),
             'image': forms.FileInput(attrs={'class':'form-styling'}),
+        }
+
+class PostCommentForm(forms.ModelForm):
+    class Meta:
+       model = Comment
+       fields = ['commenter', 'text']
+       widgets = {
+            'commenter': forms.TextInput(attrs={'class':'form-styling'}),
+            'text': forms.Textarea(attrs={'class':'form-styling'}),
         }

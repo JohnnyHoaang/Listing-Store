@@ -1,5 +1,5 @@
-from .models import Post
-from .forms import CreatePostForm, PostEditForm
+from .models import Post, Comment
+from .forms import CreatePostForm, PostEditForm, PostCommentForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -48,3 +48,13 @@ class PostDeleteView(DeleteView):
     model = Post
     template_name = 'deleting_posts.html'
     success_url = '/posts/'
+
+class CreateCommentView(CreateView):
+    model = Comment
+    form_class = PostCommentForm
+    template_name = 'create_comment.html'
+    success_url = '/posts/'
+
+    def valid_form(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().valid_form(form)

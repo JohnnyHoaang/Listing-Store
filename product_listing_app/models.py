@@ -32,7 +32,6 @@ class Post(models.Model):
     image = models.BinaryField(blank=True, null=True, editable=True)
     date = models.DateField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='liked_posts')
-    #user_likes = models.ManyToManyField(User)
     #rating = RatingField(range=5, can_change_vote = True, allow_anonymous = False)
     #rating  = GenericRelation(Rating, related_query_name='posts')
 
@@ -51,3 +50,12 @@ class Post(models.Model):
 
     def get_count_likes(self):
         return self.likes.count()
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, related_name="comment")
+    text = models.TextField()
+    commenter = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.post.title} {self.commenter}'
