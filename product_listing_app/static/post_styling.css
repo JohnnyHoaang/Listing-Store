@@ -9,7 +9,11 @@ body {
   }
   
   h2{
-    font-size: 16px;
+    text-align: center;
+  }
+
+  h2.left{
+    text-align: left;
   }
 
   button{
@@ -84,4 +88,5 @@ body {
   .post_page{
     display: flex;
     margin-top: 2em;
+    flex-wrap: wrap;
   }
