@@ -14,6 +14,12 @@
                 <button type="submit">Post</button>
             </form>
         </div>
+        <script>
+                let commenter = "{{ user.id }}";
+                document.getElementById("commentee").value = commenter;
+                let posting = "{{ post.title }}";
+                document.getElementById("post-title").value = posting;
+        </script>
 {% else %}
         You are not logged in as a user! Please login or sign up to create a comment.
         <a href="{% url 'posts' %}"><button>Back</button></a>

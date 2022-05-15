@@ -15,12 +15,14 @@ class Post(models.Model):
         ('Videos','Videos'),
         ('Movies','Movies'),
         ('TV Shows','TV Shows'),
+        ('Other', 'Other')
     ]
     status_for_post = [
         ('PG13','PG13'),
         ('R','R'),
         ('PG','PG'),
         ('Explicit', 'Explicit'),
+        ('Other', 'Other')
     ]
     title = models.CharField(max_length=2000)
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -53,9 +55,12 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, related_name="comment")
-    text = models.TextField()
-    commenter = models.CharField(max_length=255)
+    text = models.TextField(blank=True, null=True)
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.post.title} {self.commenter}'
+        return self.text
+
+    def get_absolute_url(self):
+        return reverse('posts/')

@@ -16,7 +16,6 @@ class CreatePost(CreateView):
     model = Post
     form_class = CreatePostForm
     template_name = 'create_posts.html'
-    # fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/posts/'
     
 class PostView(ListView):
@@ -41,7 +40,6 @@ class EditPostView(UpdateView):
     model = Post
     form_class = PostEditForm
     template_name = 'editing_posts.html'
-    # fields = ['title', 'author','category', 'price', 'keywords', 'description', 'status', 'image']
     success_url = '/posts/'
 
 class PostDeleteView(DeleteView):
@@ -55,6 +53,6 @@ class CreateCommentView(CreateView):
     template_name = 'create_comment.html'
     success_url = '/posts/'
 
-    def valid_form(self, form):
+    def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
-        return super().valid_form(form)
+        return super().form_valid(form)
