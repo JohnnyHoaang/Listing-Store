@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Rating{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h2>Post a Rating</h2>
+    <br>
+        <div class="create-form">
+            <form id="post_form" action="" method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <br>
+                <button type="submit">Post</button>
+            </form>
+        </div>
+        <script>
+                let user = "{{ user.id }}";
+                document.getElementById("username-rate").value = user;
+                let posting = "{{ post.title }}";
+                document.getElementById("posttitle").value = posting;
+        </script>
+{% else %}
+        You are not logged in as a user! Please login or sign up to create a rating.
+        <a href="{% url 'posts' %}"><button>Back</button></a>
+{% endif %}
+{% endblock content %}

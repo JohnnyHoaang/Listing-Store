@@ -18,5 +18,46 @@
 <b>Date:</b> {{ post.date }}
 <br>
 <br>
+<hr>
+<br>
+<form action="{% url 'post_likes' post.pk %}" method="POST">
+     {% csrf_token %}
+     Likes: {{ like_count }}
+     <br>
+     <br>
+     <button name="like_id", value="{{ post.id }}", type="submit">Like</button>
+</form>
+<br>
+<h2>Comments</h2>
+<br>
+<a href="{% url 'comments' post.pk %}"><button type="submit">Add a Comment</button></a>
+<br>
+{% if not post.comment.all %}
+    No comments
+{% else %}
+    {% for comments in post.comment.all %}
+    <b>{{ comments.commenter }}</b>
+    <br>
+    <small>{{ comments.date }}</small>
+     - {{ comments.text }}
+     <br>
+    {% endfor %}
+{% endif %}
+<br>
+<h2>Ratings</h2>
+<br>
+<a href="{% url 'rating' post.pk %}"><button type="submit">Add a rating</button></a>
+<br>
+{% if not post.rated.all %}
+    No ratings
+{% else %}
+    {% for rates in post.rated.all %}
+    <b>{{ rates.rater }}</b><br>
+     <b>{{ rates.rate }}/5</b> - {{ rates.comment }}
+     <br>
+    {% endfor %}
+{% endif %}
+<br>
+<br>
 <a href="{% url 'index' %}"><button>Back</button></a>
 {% endblock content %}
