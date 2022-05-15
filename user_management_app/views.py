@@ -15,9 +15,16 @@ import base64
 def index(request):  
     qs = ""
     query = request.GET.get("query")
+    posts = Post.objects.all()
     if query:
         qs = Post.objects.annotate(search=SearchVector("title", "description", "keywords")).filter(search=SearchQuery(query))
-    return render(request, "base.html", context={"queryset": qs})
+        if qs.count()==0:
+            messages.error(request, "No Results Found!")
+    context = {
+        "queryset": qs,
+        "posts": posts,
+    }
+    return render(request, "posts.html", context)
 
 
 def signup(request):

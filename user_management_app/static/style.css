@@ -15,9 +15,15 @@ body{
     flex-direction: column;
 }
 
+html, body {
+    width:100%;
+    margin:0;
+}
+
 .main{
     height: 50em;
     padding: 40px; 
+    height: 50em;
 }
 
 #logo{
@@ -27,7 +33,7 @@ body{
 
 header, footer{
     text-align: center;
-    padding: 2.4%;
+    padding: 2.1%;
     background-color: #e2e2e6;
     display: flex; 
     color: black;
@@ -43,6 +49,7 @@ footer {
     bottom:0;
     width: 100%;
     border-top: solid gray;
+    padding: 20px;
  }
  
 div.registration{
@@ -128,6 +135,7 @@ input[type=text]:focus, input[type=password]:focus {
 }
 #searchbutton {
     width:7.5%;
+    margin: auto;
 }
 
 .registration > div {
@@ -150,7 +158,8 @@ input[type=text]:focus, input[type=password]:focus {
     background: white;
     padding: 1em;
     border-radius: 10px;
-    width: 25%;
+    width: 25em;
+    margin: 0 10px 0 10px;
 }
 
 .profile_display > div > h1{

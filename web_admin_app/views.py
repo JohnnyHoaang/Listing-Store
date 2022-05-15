@@ -48,10 +48,22 @@ def admin_manage_users(request):
 @user_passes_test(group_filters.is_admin_items)
 def admin_manage_items(request):
     members = User.objects.filter(groups__name='members').values('username', 'id', 'groups__name', 'is_active')
-    posts = Post.objects.all().values('title','category','price', 'pk')
+    posts = Post.objects.all().values('title','category','price', 'flagged', 'pk')
     template = loader.get_template('web_app/admins_items.html')
     context = {
         'members' : members,
+        'posts' : posts,
+    }
+    return HttpResponse(template.render(context,request))
+
+@user_passes_test(group_filters.is_admin)
+def admin_access(request):
+    non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name', 'is_active')
+    print(non_admin_users)
+    posts = Post.objects.all().values('title','category','price','flagged', 'pk')
+    template = loader.get_template('web_app/admins.html')
+    context = {
+        'non_admin_users' : non_admin_users,
         'posts' : posts,
     }
     return HttpResponse(template.render(context,request))
@@ -63,24 +75,12 @@ def delete_user(request, username):
         user.delete()
     return (redirect_dashboard_page(request))
 
-def delete_post(request, title):
-    if title is not None:
-        post = Post.objects.get(title=title)
+def delete_post(request, pk):
+    if pk is not None:
+        post = Post.objects.get(pk=pk)
         post.delete()
     return (redirect_dashboard_page(request))
     
-@user_passes_test(group_filters.is_admin)
-def admin_access(request):
-    non_admin_users = User.objects.exclude(groups__name='admin_gp').values('username', 'id', 'groups__name', 'is_active')
-    print(non_admin_users)
-    posts = Post.objects.all().values('title','category','price','flagged', 'pk')
-    template = loader.get_template('web_app/admins.html')
-    context = {
-        'non_admin_users' : non_admin_users,
-        'posts' : posts,
-    }
-    print(posts)
-    return HttpResponse(template.render(context,request))
 
 def add_member(form):
     new_user = form.save(commit = False)
@@ -150,9 +150,9 @@ def show_post(request, pk):
         'post': post
     }
     return render(request, 'web_app/show_post.html', context)
-    
-def edit_post(request, title):
-    post = Post.objects.get(title=title)
+
+def edit_post(request, pk):
+    post = Post.objects.get(pk=pk)
     form = PostUpdateForm(instance=post)
     if request.method == 'POST':
         form = PostUpdateForm(data=request.POST, instance=post) 
@@ -164,9 +164,9 @@ def edit_post(request, title):
     }
     return render(request, 'web_app/edit_posts.html', context)
 
-def flag_post(request, title):
-    if title is not None:
-        post = Post.objects.get(title=title)
+def flag_post(request, pk):
+    if pk is not None:
+        post = Post.objects.get(pk=pk)
         if post.flagged:
             post.flagged = False
         else:

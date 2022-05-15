@@ -11,12 +11,12 @@ This project is a product listing website. The website will provide functionalit
 - In the command line, type:
 
 ```
-python manage.py shell
-exec(open('web_admin_app/create_groups').read())
-exit()
 python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
+python manage.py shell
+exec(open('web_admin_app/create_groups').read())
+exit()
 python manage.py runserver
 ```
 
