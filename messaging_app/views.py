@@ -1,82 +1,117 @@
-from django.shortcuts import render, redirect
-from django.db.models import Q
-from django.shortcuts import redirect
-from django.contrib.auth.models import User
-from django.views import View
-from messaging_app.models import ThreadModel, Message
-from .forms import MessageForm, ThreadForm
+from django.shortcuts import render
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'social/inbox.html')
+from django.shortcuts import render, redirect
+from django.template import loader, RequestContext
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 
-class CreateThread(View):
-    def get(self, request, *args, **kwargs):
-        form = ThreadForm()
+from django.contrib.auth.decorators import login_required
 
-        context = {
-            'form' : form
-        }
+from django.contrib.auth.models import User
+from messaging_app.models import Message
 
-        return render(request, 'social/create_thread.html', context)
 
-    def post(self, request, *args, **kwargs):
-        form = ThreadForm(request.POST)
+from django.db.models import Q
+from django.core.paginator import Paginator
+# Create your views here.
 
-        username = request.POST.get('username')
-        
-        try: 
-            reciever = User.objects.get(username=username)
-            if ThreadModel.objects.filter(user=request.user, reciever=reciever).exists():
-                thread = ThreadModel.objects.filter(user=request.user, reciever=reciever)[0]
-                return redirect(f'inbox/{thread.pk}')
-            elif ThreadModel.objects.filter(user=reciever, reciever=request.user).exists():
-                thread = ThreadModel.objects.filter(user=reciever, reciever=request.user)[0]
-                return redirect(f'inbox/{thread.pk}')
+@login_required
+def Inbox(request):
+	messages = Message.get_messages(user=request.user)
+	active_direct = None
+	directs = None
 
-            if form.is_valid():
-                sender_thread = ThreadModel(user=request.user, reciever=reciever)
-                sender_thread.save()
-                thread_pk = sender_thread.pk
-                return redirect(f'inbox/{thread.pk}')
+	if messages:
+		message = messages[0]
+		active_direct = message['user'].username
+		directs = Message.objects.filter(user=request.user, recipient=message['user'])
+		directs.update(is_read=True)
+		for message in messages:
+			if message['user'].username == active_direct:
+				message['unread'] = 0
 
-        except:
-            return redirect('create-thread')
+	context = {
+		'directs': directs,
+		'messages': messages,
+		'active_direct': active_direct,
+		}
 
-class ListThreads(View):
-    def get(self, request, *args, **kwargs):
-        threads = ThreadModel.objects.filter(Q(user=request.user) | Q(reciever=request.user))
+	template = loader.get_template('direct.html')
 
-        context = {
-            'threads' : threads
-        }
-        return render(request, 'social/inbox.html', context)
+	return HttpResponse(template.render(context, request))
 
-class CreateMessage(View):
-    def post(self, request, pk, *args, **kwargs):
-        thread = ThreadModel.objects.get(pk=pk)
-        if thread.reciever == request.user:
-            reciever = thread.user
-        else:
-            reciever = thread.reciever
-        message = Message(
-            thread=thread,
-            sender_user = request.user,
-            reciever_user = reciever,
-            body = request.POST.get('message')
-        )
-        message.save()
-        return redirect('thread', pk=pk)
+@login_required
+def UserSearch(request):
+	query = request.GET.get("q")
+	context = {}
+	
+	if query:
+		users = User.objects.filter(Q(username__icontains=query))
 
-class ThreadView(View):
-    def get(self, request, pk, *args, **kwargs):
-        form = MessageForm()
-        thread = ThreadModel.objects.get(pk=pk)
-        message_list = Message.objects.filter(thread__pk__contains=pk)
-        context = {
-            'thread': thread,
-            'form': form,
-            'message_list': message_list
-        }
-        return render(request, 'social/thread.html', context)
+		#Pagination
+		paginator = Paginator(users, 6)
+		page_number = request.GET.get('page')
+		users_paginator = paginator.get_page(page_number)
+
+		context = {
+				'users': users_paginator,
+			}
+	
+	template = loader.get_template('search_user.html')
+	
+	return HttpResponse(template.render(context, request))
+
+@login_required
+def Directs(request, username):
+	user = request.user
+	messages = Message.get_messages(user=user)
+	active_direct = username
+	directs = Message.objects.filter(user=user, recipient__username=username)
+	directs.update(is_read=True)
+	for message in messages:
+		if message['user'].username == username:
+			message['unread'] = 0
+
+	context = {
+		'directs': directs,
+		'messages': messages,
+		'active_direct':active_direct,
+	}
+
+	template = loader.get_template('direct.html')
+
+	return HttpResponse(template.render(context, request))
+
+
+@login_required
+def NewConversation(request, username):
+	from_user = request.user
+	body = ''
+	try:
+		to_user = User.objects.get(username=username)
+	except Exception as e:
+		return redirect('usersearch')
+	if from_user != to_user:
+		Message.send_message(from_user, to_user, body)
+	return redirect('inbox')
+
+@login_required
+def SendDirect(request):
+	from_user = request.user
+	to_user_username = request.POST.get('to_user')
+	body = request.POST.get('body')
+	
+	if request.method == 'POST':
+		to_user = User.objects.get(username=to_user_username)
+		Message.send_message(from_user, to_user, body)
+		return redirect('inbox')
+	else:
+		HttpResponseBadRequest()
+
+def checkDirects(request):
+	directs_count = 0
+	if request.user.is_authenticated:
+		directs_count = Message.objects.filter(user=request.user, is_read=False).count()
+
+	return {'directs_count':directs_count}
