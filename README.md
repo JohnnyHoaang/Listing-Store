@@ -30,7 +30,7 @@ https://gitlab.com/veronika.pontolillo/python-project2
 
 - Dan: https://dan-python420-product-app.herokuapp.com/
 - Johnny: https://johnny-python-lab7.herokuapp.com/
-- Maria:
+- Maria: https://mariamaria-product-listing-app.herokuapp.com/ 
 - Veronika: https://veronika-python420-todo-app.herokuapp.com/
 
 ## Contributors
