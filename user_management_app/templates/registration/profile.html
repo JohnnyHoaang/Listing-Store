@@ -21,7 +21,7 @@
           <h1>Profile Info</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table>
+            <table class="profileTable">
                 {{ u_form.as_table }}
             </table>
             <input class = "registration_button" type="submit" name="submit" value="Update"/>

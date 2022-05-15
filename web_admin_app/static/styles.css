@@ -64,11 +64,6 @@ table tbody tr:nth-of-type(even) {
   margin-right: auto;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-}
-
 .form{
   margin: auto;
   width: 31em;
