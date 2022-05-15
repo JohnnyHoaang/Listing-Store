@@ -14,7 +14,7 @@
         <header>
             <a href={%url 'index'%}><img src="{% static 'logo.png'%}" width="165" height="165" id="logo"></a>
             <div class="search">
-                <form>
+                <form action="{% url 'index' %}">
                     {% csrf_token %}
                     <input id="searchbar" type="text" placeholder="Search..." name="query">
                     <input id="searchbutton" type="submit" value="Search">
