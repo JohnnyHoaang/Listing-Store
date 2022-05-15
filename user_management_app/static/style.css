@@ -134,7 +134,11 @@ input[type=text]:focus, input[type=password]:focus {
     border-radius: 5px;
 }
 #searchbutton {
-    width:7.5%;
+    width:5.5%;
+    margin: auto;
+}
+.filter {
+    width:3.5%;
     margin: auto;
 }
 

@@ -17,10 +17,30 @@
                 <form>
                     {% csrf_token %}
                     <input id="searchbar" type="text" placeholder="Search..." name="query">
-                    <input id="searchbutton" type="submit" value="Search" id="search">
-                </form>
+                    <input id="searchbutton" type="submit" value="Search">
+                </form>    
+                <form action="{% url 'category' %}">
+                    {% csrf_token %}
+                    <label for="category">Category</label>
+                    <select name="category">
+                        <option value="Books">Books</option>
+                        <option value="CDs">CDs</option>
+                        <option value="Videos">Videos</option>
+                        <option value="Movies">Movies</option>
+                        <option value="TV Shows">TV Shows</option>
+                    <input type="submit" value="Filter" class="filter"/>
+                </form> 
+                <form action="{% url 'status' %}">
+                    {% csrf_token %}
+                    <label for="status">Status</label>
+                    <select name="status">
+                        <option value="PG13">PG13</option>
+                        <option value="R">R</option>
+                        <option value="PG">PG</option>
+                        <option value="Explicit">Explicit</option>
+                    <input type="submit" value="Filter" class="filter"/>
+                </form> 
             </div>
-            
             <div class="registration">
                 {% if user.is_authenticated %}
                 <div>
