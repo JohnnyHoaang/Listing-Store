@@ -41,7 +41,6 @@ class Post(models.Model):
 
     @property
     def convert_image(self):
-        # or decode('ascii')
         encode_image = base64.b64encode(self.image).decode('utf-8')
         return encode_image
     

@@ -1,10 +1,11 @@
+import base64
 from .models import Post, Comment, Rating
 from .forms import CreatePostForm, PostEditForm, PostCommentForm, RatingForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 
 # Create your views here.
 def LikedPostView(request, pk):
@@ -17,13 +18,12 @@ class CreatePost(CreateView):
     form_class = CreatePostForm
     template_name = 'create_posts.html'
     success_url = '/posts/'
-    
+
 class PostView(ListView):
     model = Post
     template_name = 'posts.html'
     context_object_name= 'posts'
     ordering = ['-date']
-    #encoded_image = base64.b64encode(request.user.profile.avatar).decode("utf-8")
 
 class PostDetailView(DetailView):
     model = Post

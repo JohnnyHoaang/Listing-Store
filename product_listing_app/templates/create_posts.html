@@ -7,7 +7,7 @@
     <h2>Create a Post</h2>
     <br>
         <div class="create-form">
-            <form id="post_form" action="" method="POST">
+            <form id="post_form" action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy }}
                 <br>
