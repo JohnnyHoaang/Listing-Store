@@ -80,3 +80,8 @@ body {
   #edit_posts:active, #post_details:active, #delete_posts:active, #editing_posts:active, #deleting_posts:active {
     color: #82b0be;
   }
+
+  .post_page{
+    display: flex;
+    margin-top: 2em;
+  }
