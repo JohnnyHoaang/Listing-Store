@@ -6,7 +6,7 @@ from .models import Post, Comment, Rating
 class CreatePostForm(forms.ModelForm):
    class Meta:
        model = Post
-       fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'image']
+       fields = ['title', 'author', 'category', 'price', 'keywords', 'description', 'status', 'images']
        widgets = {
             'title': forms.TextInput(attrs={'class':'form-styling'}),
             'author': forms.TextInput(attrs={'class':'form-styling', 'value':'', 'id':'username', 'type':'hidden'}),
@@ -15,13 +15,13 @@ class CreatePostForm(forms.ModelForm):
             'keywords': forms.TextInput(attrs={'class':'form-styling'}),
             'description': forms.Textarea(attrs={'class':'form-styling'}),
             'status': forms.Select(attrs={'class':'form-styling'}),
-            'image': forms.FileInput(attrs={'class':'form-styling'}),
+            'images': forms.FileInput(attrs={'class':'form-styling'}),
         }
 
 class PostEditForm(forms.ModelForm):
     class Meta:
        model = Post
-       fields = ['title','category', 'price', 'keywords', 'description', 'status', 'image']
+       fields = ['title','category', 'price', 'keywords', 'description', 'status', 'images']
        widgets = {
             'title': forms.TextInput(attrs={'class':'form-styling'}),
             'category': forms.Select(attrs={'class':'form-styling'}),
@@ -29,7 +29,7 @@ class PostEditForm(forms.ModelForm):
             'keywords': forms.TextInput(attrs={'class':'form-styling'}),
             'description': forms.Textarea(attrs={'class':'form-styling'}),
             'status': forms.Select(attrs={'class':'form-styling'}),
-            'image': forms.FileInput(attrs={'class':'form-styling'}),
+            'images': forms.FileInput(attrs={'class':'form-styling'}),
         }
 
 class PostCommentForm(forms.ModelForm):

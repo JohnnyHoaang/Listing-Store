@@ -13,7 +13,8 @@
     {% for post in posts %}
     <ul>
     <div class="profile_display">
-        <img class="post_image" src="data:;base64,{{ encoded_image }}" width="200" height="200"/>
+        <a href="{% url 'add-image' %}" id="edit_posts">Upload Image</a>
+        <img src="{{image_url}}" ></img>
     <div>
     <a href="{% url 'details' post.pk %}" id="post_details">{{ post.title }}</a><br>
     <b>Category:</b> {{ post.category }}<br>

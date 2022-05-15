@@ -85,3 +85,9 @@ body {
     display: flex;
     margin-top: 2em;
   }
+
+  img{
+    height: 250px;
+    width: 200px;
+    
+  }

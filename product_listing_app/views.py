@@ -26,7 +26,6 @@ class PostView(ListView):
     context_object_name= 'posts'
     ordering = ['-date']
     success_url = '/'
-    #encoded_image = base64.b64encode(request.user.profile.avatar).decode("utf-8")
 
 class PostDetailView(DetailView):
     model = Post
@@ -68,7 +67,7 @@ class RatingView(CreateView):
 
 def display_image(request, image_id):   
     image = AzureImage.objects.get(id=image_id)
-    template = loader.get_template('view_image.html')
+    template = loader.get_template('posts.html')
     context = {
         'image_url': image.image.url,
     }
@@ -88,7 +87,7 @@ def add_my_image(request):
             return HttpResponseRedirect(redirect_to=reverse('display-image', kwargs={'image_id':item.id}))
     else:
         form = MyImageForm()
-    template = loader.get_template('todo_app/image_upload.html')
+    template = loader.get_template('image_upload.html')
     context = {
         'form' : form
     }

@@ -1,13 +1,18 @@
 import base64
 from tkinter import CASCADE
 from django.db import models
-#from djangoratings.fields import RatingField
 from django.urls import reverse
 from star_ratings.models import Rating
 from product_listing_project import settings
 from user_management_app.models import User
 
 # Create your models here.
+class AzureImage(models.Model):
+    image = models.ImageField(blank=True, null=True)
+
+class MyImage(models.Model):
+    image = models.BinaryField(editable=True)
+
 class Post(models.Model):
     categories_for_post = [
         ('Books','Books'),
@@ -31,7 +36,7 @@ class Post(models.Model):
     keywords = models.CharField(max_length=2000, null=True)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=2000, choices=status_for_post, default=status_for_post)
-    image = models.BinaryField(blank=True, null=True, editable=True)
+    images = models.BinaryField(editable=True, blank=True, null=True)
     date = models.DateField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='liked_posts')
     flagged = models.BooleanField(default=False)
@@ -80,9 +85,3 @@ class Rating(models.Model):
 
     def __str__(self):
         return self.comment
-
-class AzureImage(models.Model):
-    image = models.ImageField(blank=True, null=True)
-
-class MyImage(models.Model):
-    image = models.BinaryField(editable=True)
